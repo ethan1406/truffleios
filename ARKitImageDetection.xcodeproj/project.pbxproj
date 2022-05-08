@@ -12,9 +12,10 @@
 		3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3929C48F1E89EC2C00E00B60 /* Main.storyboard */; };
 		3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3929C4921E89EC2C00E00B60 /* Assets.xcassets */; };
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
-		844AEDA3281F55D400095E01 /* ArButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArButton.swift */; };
+		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 844AEDA4281FADD200095E01 /* wedding_card.mp4 */; };
-		84C5B8D728238F2900D4D6A7 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8D628238F2900D4D6A7 /* CityCollectionViewCell.swift */; };
+		84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */; };
+		84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */; };
 		C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41366B81EB80DD400EC054A /* StatusViewController.swift */; };
 		C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -28,9 +29,10 @@
 		3929C4921E89EC2C00E00B60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3929C4971E89EC2C00E00B60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		844AEDA2281F55D400095E01 /* ArButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArButton.swift; sourceTree = "<group>"; };
+		844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArCollectionViewCell.swift; sourceTree = "<group>"; };
 		844AEDA4281FADD200095E01 /* wedding_card.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = wedding_card.mp4; path = ../../../Desktop/wedding_card.mp4; sourceTree = "<group>"; };
-		84C5B8D628238F2900D4D6A7 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
+		84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
 		B8AE7549A2472F11C9D46447 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		C17E12BC981B62B3753B451B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C41366B81EB80DD400EC054A /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				844AEDA1281F550300095E01 /* views */,
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
+				84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */,
 				3929C48D1E89EC2C00E00B60 /* ViewController.swift */,
 				C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */,
 				1488324B1EFC3EBF0043E0AB /* Additional View Controllers */,
@@ -111,8 +114,8 @@
 		844AEDA1281F550300095E01 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				844AEDA2281F55D400095E01 /* ArButton.swift */,
-				84C5B8D628238F2900D4D6A7 /* CityCollectionViewCell.swift */,
+				844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */,
+				84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -201,11 +204,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */,
-				84C5B8D728238F2900D4D6A7 /* CityCollectionViewCell.swift in Sources */,
 				C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */,
 				C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
-				844AEDA3281F55D400095E01 /* ArButton.swift in Sources */,
+				84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */,
+				844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */,
+				84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +352,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E6654C355Q;
 				INFOPLIST_FILE = "$(SRCROOT)/ARKitImageDetection/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.arkit-image-detection${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,7 +373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E6654C355Q;
 				INFOPLIST_FILE = "$(SRCROOT)/ARKitImageDetection/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.arkit-image-detection${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

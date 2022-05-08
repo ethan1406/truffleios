@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "iphone-x.jpg",
+      "filename" : "wedding_invitation_cover_1.jpg",
       "idiom" : "universal"
     }
   ],
@@ -10,7 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "unit" : "inches",
-    "width" : 2.456
+    "width" : 0.129
   }
 }

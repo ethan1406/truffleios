@@ -26,16 +26,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     /// A serial queue for thread safety when modifying the SceneKit node graph.
     let updateQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! +
         ".serialSceneKitQueue")
-    
-    let clickableElement = ArButton(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-    
+
+
+    private let attachmentCollectionViewLayout = UICollectionViewFlowLayout()
+
+    private var attachmentCollectionViewController: AttachmentCollectionViewController!
+
+
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
         return sceneView.session
     }
-    
-    var playerLooper: AVPlayerLooper?
-    var queuePlayer: AVQueuePlayer?
+
+    var player: AVPlayer?
     
     // MARK: - View Controller Life Cycle
     
@@ -49,8 +52,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         statusViewController.restartExperienceHandler = { [unowned self] in
             self.restartExperience()
         }
-        
-        clickableElement.tag = 1
+
+        // initialize collection view controller
+        attachmentCollectionViewLayout.scrollDirection = .horizontal
+        attachmentCollectionViewController = AttachmentCollectionViewController(collectionViewLayout: attachmentCollectionViewLayout)
+        attachmentCollectionViewController.view.isOpaque = false
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +73,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		super.viewWillDisappear(animated)
 
         session.pause()
-	}
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+    }
 
     // MARK: - Session management (Image detection setup)
     
@@ -94,83 +106,79 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imageAnchor = anchor as? ARImageAnchor else { return }
         let referenceImage = imageAnchor.referenceImage
-        
-        updateQueue.async { [self] in
-            
-            let material = SCNMaterial()
-            
-            //video node
-            guard let path = Bundle.main.path(forResource: "wedding_card", ofType:"mp4") else {
-                debugPrint("wedding_card not found")
-                return
-            }
-            let url = NSURL(fileURLWithPath: path)
 
-            let asset = AVURLAsset(url: url as URL, options: nil)
-            let playerItem = AVPlayerItem(asset: asset)
-            self.queuePlayer = AVQueuePlayer(playerItem: playerItem)
-            guard let player = self.queuePlayer else { return }
-            self.playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
-            player.play()
-        
-            //let player = AVPlayer(url: URL(fileURLWithPath: path))
-            let videoNode = SKVideoNode(avPlayer: player)
-            
-            // Sprit
-            let planeGeometry = SCNPlane(width: referenceImage.physicalSize.width * 1.5,
-                                     height: referenceImage.physicalSize.width * 1.5 * 720/1280)
-            
-            let spritescene = SKScene(size: CGSize(width: 1280, height: 720))
-            videoNode.size.width = spritescene.size.width
-            videoNode.size.height = spritescene.size.height
-            videoNode.anchorPoint = CGPoint(x:0, y: 1)
-            //videoNode.zRotation = CGFloat(Double.pi)
-            videoNode.yScale = -1
-            
-            spritescene.addChild(videoNode)
-        
-            //4. Add The Clickable View As A Materil
-            material.diffuse.contents = spritescene
-            
-            let planeNode2 = SCNNode(geometry: planeGeometry)
-            planeNode2.geometry?.firstMaterial = material
+        // create material
+        let collectionViewMaterial = SCNMaterial()
+        let videoMaterial = SCNMaterial()
 
-            planeNode2.eulerAngles.x = -.pi / 2
-
-            //6. Add It To The Scene
-            node.addChildNode(planeNode2)
-            
-            
-            
-            
-            
-//            // Create a plane to visualize the initial position of the detected image.
-//            let plane = SCNPlane(width: referenceImage.physicalSize.width,
-//                                 height: referenceImage.physicalSize.height)
-//            let planeNode = SCNNode(geometry: plane)
-//            planeNode.opacity = 0.25
-//
-//            /*
-//             `SCNPlane` is vertically oriented in its local coordinate space, but
-//             `ARImageAnchor` assumes the image is horizontal in its local space, so
-//             rotate the plane to match.
-//             */
-//            planeNode.eulerAngles.x = -.pi / 2
-//
-//            /*
-//             Image anchors are not tracked after initial detection, so create an
-//             animation that limits the duration for which the plane visualization appears.
-//             */
-//            planeNode.runAction(self.imageHighlightAction)
-//
-//            // Add the plane visualization to the scene.
-//            //node.addChildNode(planeNode)
+        // create video player
+        self.player = createVideoPlayer()
+        guard let avPlayer = player else {
+            return
         }
+        avPlayer.play()
+
 
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
             self.statusViewController.cancelAllScheduledMessages()
             self.statusViewController.showMessage("Detected image “\(imageName)”")
+
+            // set material to custom views
+
+            self.attachmentCollectionViewController.view.frame.size.height = 100
+            self.attachmentCollectionViewController.view.frame.size.width = 650
+
+            collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
+            videoMaterial.diffuse.contents = avPlayer
+
+        }
+
+
+        // Create a plane to visualize the initial position of the detected image.
+        let imageWidth = referenceImage.physicalSize.width
+        let imageHeight = referenceImage.physicalSize.height
+        let attachmentPlaneGeometry = SCNPlane(width: imageWidth * 1.5,
+                                               height: imageWidth / 5)
+
+        let attachmentPlaneNode = SCNNode(geometry: attachmentPlaneGeometry)
+
+        updateQueue.async { [self] in
+            // Add video to the scene
+            let videoPlaneGeometry = SCNPlane(width: referenceImage.physicalSize.width * 2,
+                                     height: referenceImage.physicalSize.width * 2 * 720/1280)
+
+
+            let videoPlaneNode = SCNNode(geometry: videoPlaneGeometry)
+            videoPlaneNode.geometry?.firstMaterial = videoMaterial
+
+            videoPlaneNode.eulerAngles.x = -.pi / 2
+
+            node.addChildNode(videoPlaneNode)
+
+
+
+            attachmentPlaneNode.geometry?.firstMaterial = collectionViewMaterial
+            attachmentPlaneNode.geometry?.firstMaterial?.fillMode = .fill
+
+            //planeNode.opacity = 0.25
+
+            /*
+             `SCNPlane` is vertically oriented in its local coordinate space, but
+             `ARImageAnchor` assumes the image is horizontal in its local space, so
+             rotate the plane to match.
+             */
+            attachmentPlaneNode.eulerAngles.x = -.pi / 2
+            attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.005, z: Float(imageHeight) * 0.75)
+
+            /*
+             Image anchors are not tracked after initial detection, so create an
+             animation that limits the duration for which the plane visualization appears.
+             */
+            //planeNode.runAction(self.imageHighlightAction)
+
+            // Add the plane visualization to the scene.
+            node.addChildNode(attachmentPlaneNode)
         }
     }
 
@@ -183,5 +191,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             .fadeOut(duration: 0.5),
             .removeFromParentNode()
         ])
+    }
+
+    private func createVideoPlayer() -> AVPlayer? {
+        //video node
+        guard let path = Bundle.main.path(forResource: "wedding_card", ofType:"mp4") else {
+            debugPrint("wedding_card not found")
+            return nil
+        }
+
+        let url = NSURL(fileURLWithPath: path)
+
+        let asset = AVURLAsset(url: url as URL, options: nil)
+        let playerItem = AVPlayerItem(asset: asset)
+        let player = AVPlayer(playerItem: playerItem)
+        player.actionAtItemEnd = .none
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerItemDidReachEnd(notification:)),
+                                               name: .AVPlayerItemDidPlayToEndTime,
+                                               object: player.currentItem)
+
+        return player
+    }
+
+    @objc private func playerItemDidReachEnd(notification: Notification) {
+        if let playerItem = notification.object as? AVPlayerItem {
+            playerItem.seek(to: .zero, completionHandler: nil)
+        }
     }
 }
