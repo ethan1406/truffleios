@@ -92,6 +92,7 @@
 		3929C48A1E89EC2C00E00B60 /* ARKitImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				84CA5F9B2827994F00DD28B9 /* models */,
 				844AEDA1281F550300095E01 /* views */,
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */,
@@ -115,9 +116,16 @@
 			isa = PBXGroup;
 			children = (
 				844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */,
-				84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		84CA5F9B2827994F00DD28B9 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		895B89F1FDA649E6F5014972 /* LICENSE */ = {

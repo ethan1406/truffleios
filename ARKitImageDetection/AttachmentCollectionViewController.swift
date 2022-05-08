@@ -1,5 +1,5 @@
 //
-//  CityCollectionViewController.swift
+//  AttachmentCollectionViewController.swift
 //  ARKitImageDetection
 //
 //  Created by Ethan Chang on 5/4/22.
@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "cell"
 
-private let itemsPerRow: CGFloat = 5
+private let itemsPerRow: CGFloat = 2
 
 private let sectionInsets = UIEdgeInsets(
   top: 50.0,
@@ -19,15 +19,15 @@ private let sectionInsets = UIEdgeInsets(
   right: 20.0)
 
 private let attachments = [
-    Attachment(title: "testing 0", image: "", link: "https://www.trufflear.com/"),
-    Attachment(title: "testing 1", image: "", link: "https://www.trufflear.com/"),
-    Attachment(title: "testing 2", image: "", link: "https://www.trufflear.com/"),
+    Attachment(title: "wedding pics", image: "ic_calendar", link: "https://www.trufflear.com/"),
+    Attachment(title: "Schedule", image: "ic_gallery", link: "https://www.trufflear.com/"),
+    Attachment(title: "Registry", image: "ic_instagram", link: "https://www.trufflear.com/"),
     Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//    Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//    Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//    Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//    Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//    Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
 ]
 
 class AttachmentCollectionViewController: UICollectionViewController {
@@ -76,25 +76,19 @@ class AttachmentCollectionViewController: UICollectionViewController {
 
 
         let attachment = attachments[indexPath.row]
-        //cell.linkButton.titleLabel?.font = cell.linkButton.titleLabel?.font.withSize(2)
         cell.setTitle(attachment.title)
-
-        cell.isSelected = false
-        collectionView.deselectItem(at: indexPath, animated: true)
-
+        cell.link = attachment.link
+        cell.setImage(attachment.image)
+        
+        cell.setTouchHandler {link in
+            print("selected")
+            print(indexPath)
+            if let url = URL(string: attachment.link) {
+                UIApplication.shared.open(url)
+            }
+        }
         return cell
 
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let attachment = attachments[indexPath.row]
-//
-//        if let url = URL(string: attachment.link) {
-//            UIApplication.shared.open(url)
-//        }
-
-        print("selected")
-        print(indexPath)
     }
 
     // MARK: UICollectionViewDelegate
@@ -133,11 +127,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
 
 extension AttachmentCollectionViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-      ) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 2
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
@@ -147,20 +137,12 @@ extension AttachmentCollectionViewController: UICollectionViewDelegateFlowLayout
       }
 
       // 3
-      func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-      ) -> UIEdgeInsets {
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
       }
 
       // 4
-      func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-      ) -> CGFloat {
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
       }
 }

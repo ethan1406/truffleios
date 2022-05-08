@@ -12,22 +12,18 @@ import UIKit
 class ArCollectionViewCell: UICollectionViewCell {
 
 
-    let linkButton: UIButton = {
-        var configuration = UIButton.Configuration.filled()
+    var touchHandler: (String) -> Void = {_ in }
 
-        configuration.image = UIImage(named: "restart")
-        configuration.titlePadding = 20
-        configuration.imagePadding = 20
-        configuration.cornerStyle = .capsule
-        configuration.background.backgroundColor = UIColor(named: "PrimaryColor")
+    var link: String? = nil
 
-        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in 
-            print("testing 123")
-        }))
+    private let linkButton: UIButton = {
+
+        let button = UIButton(configuration: createLinkButtonConfiguration(), primaryAction: nil)
+        button.configurationUpdateHandler = createLinkButtonHandler()
 
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.isUserInteractionEnabled = false
+        //button.isUserInteractionEnabled = true
         return button
     }()
 
@@ -37,6 +33,24 @@ class ArCollectionViewCell: UICollectionViewCell {
         container.font = UIFont.boldSystemFont(ofSize: 26)
 
         linkButton.configuration?.attributedTitle = AttributedString(title, attributes: container)
+    }
+
+    func setTouchHandler(_ handler: @escaping (String) -> Void) {
+        touchHandler = handler
+
+        linkButton.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
+
+    }
+
+    func setImage(_ imageName: String) {
+        linkButton.configuration?.image = UIImage(named: imageName)
+    }
+
+
+    @objc private func onButtonTap() {
+        if let webLink = link {
+            touchHandler(webLink)
+        }
     }
 
     override init(frame: CGRect) {
@@ -58,4 +72,35 @@ class ArCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private static func createLinkButtonConfiguration() -> UIButton.Configuration {
+        var configuration = UIButton.Configuration.filled()
+        configuration.titlePadding = 20
+        configuration.imagePadding = 20
+        configuration.cornerStyle = .capsule
+
+        return configuration
+    }
+
+    private static func createLinkButtonHandler() -> UIButton.ConfigurationUpdateHandler {
+        let baseColor = UIColor(named: "PrimaryColor")
+        let handler: UIButton.ConfigurationUpdateHandler = { button in
+            switch button.state {
+            case .normal:
+                button.configuration?.background.backgroundColor = baseColor
+            case [.highlighted]:
+                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+            case .selected:
+                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+            case [.selected, .highlighted]:
+                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+            case .disabled:
+                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+            default:
+                button.configuration?.background.backgroundColor = baseColor
+
+            }
+        }
+
+        return handler
+    }
 }

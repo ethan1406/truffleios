@@ -132,9 +132,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
             videoMaterial.diffuse.contents = avPlayer
 
+            //self.attachmentCollectionViewController.collectionView.reloadData()
         }
-
-
         // Create a plane to visualize the initial position of the detected image.
         let imageWidth = referenceImage.physicalSize.width
         let imageHeight = referenceImage.physicalSize.height
@@ -170,6 +169,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
              */
             attachmentPlaneNode.eulerAngles.x = -.pi / 2
             attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.005, z: Float(imageHeight) * 0.75)
+
 
             /*
              Image anchors are not tracked after initial detection, so create an
