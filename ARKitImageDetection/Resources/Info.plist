@@ -26,6 +26,8 @@
 	<string>The camera is used for augmenting reality</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location is used for augmenting reality</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The microphone is used to record videos when the user records</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

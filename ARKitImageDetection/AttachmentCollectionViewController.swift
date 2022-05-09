@@ -20,9 +20,9 @@ private let sectionInsets = UIEdgeInsets(
 
 private let attachments = [
     Attachment(title: "wedding pics", image: "ic_calendar", link: "https://www.trufflear.com/"),
-    Attachment(title: "Schedule", image: "ic_gallery", link: "https://www.trufflear.com/"),
-    Attachment(title: "Registry", image: "ic_instagram", link: "https://www.trufflear.com/"),
-    Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//    Attachment(title: "Schedule", image: "ic_gallery", link: "https://www.trufflear.com/"),
+//    Attachment(title: "Registry", image: "ic_instagram", link: "https://www.trufflear.com/"),
+//    Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
 //    Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
 //    Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
 //    Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),

@@ -7,8 +7,11 @@ Main view controller for the AR experience.
 
 import ARKit
 import AVFoundation
+import AVKit
 import SceneKit
 import SpriteKit
+import RecordButton
+import SCNRecorder
 import UIKit
 
 
@@ -17,7 +20,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     
     @IBOutlet weak var blurView: UIVisualEffectView!
-    
+
+    // record button
+    private var recordButton : RecordButton!
+    var progressTimer : Timer!
+    var progress : CGFloat! = 0
+
+    var counter = 0
     /// The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
         return children.lazy.compactMap({ $0 as? StatusViewController }).first!
@@ -47,6 +56,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.delegate = self
         sceneView.session.delegate = self
+        sceneView.prepareForRecording()
+
+        setupRecordButton()
 
         // Hook up status view controller callback(s).
         statusViewController.restartExperienceHandler = { [unowned self] in
@@ -57,6 +69,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         attachmentCollectionViewLayout.scrollDirection = .horizontal
         attachmentCollectionViewController = AttachmentCollectionViewController(collectionViewLayout: attachmentCollectionViewLayout)
         attachmentCollectionViewController.view.isOpaque = false
+
+        FileManager.default.clearTmpVideos()
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +81,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Start the AR experience
         resetTracking()
+        counter += 1
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -95,6 +110,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         let configuration = ARImageTrackingConfiguration()
+        configuration.providesAudioData = true
         configuration.trackingImages = referenceImages
         session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
 
@@ -215,9 +231,57 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return player
     }
 
+
+    private func setupRecordButton() {
+        recordButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        recordButton.buttonColor = .white
+        recordButton.progressColor = .red
+        recordButton.closeWhenFinished = false
+        recordButton.addTarget(self, action: #selector(ViewController.record), for: .touchDown)
+        recordButton.addTarget(self, action: #selector(ViewController.stop), for: .touchUpInside)
+        recordButton.center.x = self.view.center.x
+        recordButton.center.y = self.view.bounds.maxY - 85
+        self.view.addSubview(recordButton)
+    }
+
     @objc private func playerItemDidReachEnd(notification: Notification) {
         if let playerItem = notification.object as? AVPlayerItem {
             playerItem.seek(to: .zero, completionHandler: nil)
+        }
+    }
+
+
+    @objc func record() {
+        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(ViewController.updateProgress), userInfo: nil, repeats: true)
+
+        do {
+            try self.sceneView.startVideoRecording()
+        } catch {
+
+        }
+    }
+
+    @objc func updateProgress() {
+
+        let maxDuration = CGFloat(5) // Max duration of the recordButton
+
+        progress = progress + (CGFloat(0.05) / maxDuration)
+        recordButton.setProgress(progress)
+
+        if progress >= 1 {
+            progressTimer.invalidate()
+        }
+
+    }
+
+    @objc func stop() {
+        self.progressTimer.invalidate()
+        self.progress = 0
+
+        self.sceneView.finishVideoRecording { (videoRecording) in
+          /* Process the captured video. Main thread. */
+            let controller = VideoPreviewController(videoURL: videoRecording.url)
+            self.present(controller, animated: true)
         }
     }
 }
