@@ -23,11 +23,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // record button
     private var recordButton : RecordButton!
-    var progressTimer : Timer!
+    var progressTimer : Timer?
     var progress : CGFloat! = 0
 
-    var counter = 0
-    /// The view controller that displays the status and "restart experience" UI.
+    // The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
         return children.lazy.compactMap({ $0 as? StatusViewController }).first!
     }()
@@ -78,15 +77,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		
 		// Prevent the screen from being dimmed to avoid interuppting the AR experience.
 		UIApplication.shared.isIdleTimerDisabled = true
-
+        
         // Start the AR experience
         resetTracking()
-        counter += 1
 	}
+
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
+        player?.pause()
         session.pause()
     }
 
@@ -110,11 +110,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         let configuration = ARImageTrackingConfiguration()
-        configuration.providesAudioData = true
+
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case .granted:
+            configuration.providesAudioData = true
+        case .undetermined,
+                .denied:
+            configuration.providesAudioData = false
+        @unknown default:
+            configuration.providesAudioData = false
+        }
+
         configuration.trackingImages = referenceImages
         session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
 
-        statusViewController.scheduleMessage("Look around to detect images", inSeconds: 7.5, messageType: .contentPlacement)
+        statusViewController.scheduleMessage("Look around to detect wedding cards", inSeconds: 7.5, messageType: .contentPlacement)
 	}
 
     // MARK: - ARSCNViewDelegate (Image detection results)
@@ -128,12 +138,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let videoMaterial = SCNMaterial()
 
         // create video player
-        self.player = createVideoPlayer()
+        if (self.player == nil) {
+            self.player = createVideoPlayer()
+        }
+
+        player?.play()
+
         guard let avPlayer = player else {
             return
         }
-        avPlayer.play()
-
 
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
@@ -168,15 +181,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             videoPlaneNode.geometry?.firstMaterial = videoMaterial
 
             videoPlaneNode.eulerAngles.x = -.pi / 2
+            attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.01, z: 0)
 
+            // add animation
+            videoPlaneNode.opacity = 0.25
+            videoPlaneNode.runAction(self.imageHighlightAction)
             node.addChildNode(videoPlaneNode)
 
 
-
             attachmentPlaneNode.geometry?.firstMaterial = collectionViewMaterial
-            attachmentPlaneNode.geometry?.firstMaterial?.fillMode = .fill
-
-            //planeNode.opacity = 0.25
+            //attachmentPlaneNode.geometry?.firstMaterial?.fillMode = .fill
 
             /*
              `SCNPlane` is vertically oriented in its local coordinate space, but
@@ -184,14 +198,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
              rotate the plane to match.
              */
             attachmentPlaneNode.eulerAngles.x = -.pi / 2
-            attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.005, z: Float(imageHeight) * 0.75)
+            attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.01, z: Float(imageHeight) * 0.75)
 
 
-            /*
-             Image anchors are not tracked after initial detection, so create an
-             animation that limits the duration for which the plane visualization appears.
-             */
-            //planeNode.runAction(self.imageHighlightAction)
+            // add animation
+            attachmentPlaneNode.opacity = 0.25
+            attachmentPlaneNode.runAction(self.imageHighlightAction)
 
             // Add the plane visualization to the scene.
             node.addChildNode(attachmentPlaneNode)
@@ -200,18 +212,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     var imageHighlightAction: SCNAction {
         return .sequence([
-            .wait(duration: 0.25),
-            .fadeOpacity(to: 0.85, duration: 0.25),
-            .fadeOpacity(to: 0.15, duration: 0.25),
-            .fadeOpacity(to: 0.85, duration: 0.25),
-            .fadeOut(duration: 0.5),
-            .removeFromParentNode()
+            .wait(duration: 0.20),
+            .fadeOpacity(to: 0.35, duration: 0.20),
+            .fadeOpacity(to: 0.55, duration: 0.20),
+            .fadeOpacity(to: 0.75, duration: 0.20),
+            .fadeOpacity(to: 0.95, duration: 0.20),
+            .fadeOpacity(to: 1.00, duration: 0.20)
         ])
     }
 
     private func createVideoPlayer() -> AVPlayer? {
         //video node
-        guard let path = Bundle.main.path(forResource: "wedding_card", ofType:"mp4") else {
+        guard let path = Bundle.main.path(forResource: "fred", ofType:"MOV") else {
             debugPrint("wedding_card not found")
             return nil
         }
@@ -223,26 +235,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let player = AVPlayer(playerItem: playerItem)
         player.actionAtItemEnd = .none
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(playerItemDidReachEnd(notification:)),
-                                               name: .AVPlayerItemDidPlayToEndTime,
-                                               object: player.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
 
         return player
     }
 
-
-    private func setupRecordButton() {
-        recordButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        recordButton.buttonColor = .white
-        recordButton.progressColor = .red
-        recordButton.closeWhenFinished = false
-        recordButton.addTarget(self, action: #selector(ViewController.record), for: .touchDown)
-        recordButton.addTarget(self, action: #selector(ViewController.stop), for: .touchUpInside)
-        recordButton.center.x = self.view.center.x
-        recordButton.center.y = self.view.bounds.maxY - 85
-        self.view.addSubview(recordButton)
-    }
 
     @objc private func playerItemDidReachEnd(notification: Notification) {
         if let playerItem = notification.object as? AVPlayerItem {
@@ -252,12 +249,36 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
     @objc func record() {
-        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(ViewController.updateProgress), userInfo: nil, repeats: true)
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case .granted:
+            startRecording()
+        case .undetermined, .denied:
+            requestMicrophonePermission()
+        @unknown default:
+            break
+        }
+    }
 
+    private func requestMicrophonePermission() {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            if !granted {
+                self.displayMicrophonePermissionAlert()
+            }
+        }
+    }
+
+    private func startRecording() {
+        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(ViewController.updateProgress), userInfo: nil, repeats: true)
         do {
             try self.sceneView.startVideoRecording()
         } catch {
 
+        }
+    }
+
+    private func displayMicrophonePermissionAlert() {
+        DispatchQueue.main.async {
+            self.displayErrorMessage(title: "Microphone is needed for recording", message: "Please go to Settings -> Privacy -> Microphone and grant microphone permission ", shouldAddDismissAction: true)
         }
     }
 
@@ -269,13 +290,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         recordButton.setProgress(progress)
 
         if progress >= 1 {
-            progressTimer.invalidate()
+            self.progressTimer?.invalidate()
         }
 
     }
 
     @objc func stop() {
-        self.progressTimer.invalidate()
+        guard let progressTimer = progressTimer else {
+            return
+        }
+
+        progressTimer.invalidate()
         self.progress = 0
 
         self.sceneView.finishVideoRecording { (videoRecording) in
@@ -283,5 +308,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let controller = VideoPreviewController(videoURL: videoRecording.url)
             self.present(controller, animated: true)
         }
+    }
+
+    private func setupRecordButton() {
+        recordButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        recordButton.buttonColor = .white
+        recordButton.progressColor = .red
+        recordButton.closeWhenFinished = false
+        recordButton.addTarget(self, action: #selector(ViewController.record), for: .touchDown)
+        recordButton.addTarget(self, action: #selector(ViewController.stop), for: .touchUpInside)
+        recordButton.center.x = self.view.center.x
+        recordButton.center.y = self.view.bounds.maxY - 85
+        self.view.addSubview(recordButton)
     }
 }

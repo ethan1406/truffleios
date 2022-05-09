@@ -36,7 +36,7 @@ extension ViewController: ARSessionDelegate {
         let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
         
         DispatchQueue.main.async {
-            self.displayErrorMessage(title: "The AR session failed.", message: errorMessage)
+            self.displayErrorMessage(title: "The AR session failed.", message: errorMessage, shouldAddRestartAction: true)
         }
     }
     
@@ -49,6 +49,7 @@ extension ViewController: ARSessionDelegate {
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
+        player?.pause()
         blurView.isHidden = true
         statusViewController.showMessage("RESETTING SESSION")
         
@@ -61,18 +62,29 @@ extension ViewController: ARSessionDelegate {
     
     // MARK: - Error handling
     
-    func displayErrorMessage(title: String, message: String) {
+    func displayErrorMessage(title: String, message: String, shouldAddRestartAction: Bool = false, shouldAddDismissAction: Bool = false) {
         // Blur the background.
         blurView.isHidden = false
         
         // Present an alert informing about the error that has occurred.
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let restartAction = UIAlertAction(title: "Restart Session", style: .default) { _ in
-            alertController.dismiss(animated: true, completion: nil)
-            self.blurView.isHidden = true
-            self.resetTracking()
+
+        if (shouldAddRestartAction) {
+            let restartAction = UIAlertAction(title: "Restart Session", style: .default) { _ in
+                alertController.dismiss(animated: true, completion: nil)
+                self.blurView.isHidden = true
+                self.resetTracking()
+            }
+            alertController.addAction(restartAction)
         }
-        alertController.addAction(restartAction)
+        if (shouldAddDismissAction) {
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { _ in
+                alertController.dismiss(animated: true, completion: nil)
+                self.blurView.isHidden = true
+            }
+            alertController.addAction(dismissAction)
+        }
+
         present(alertController, animated: true, completion: nil)
     }
 
