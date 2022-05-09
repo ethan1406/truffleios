@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ARKitImageDetectionVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ARKitImageDetectionVersionString[];
+FOUNDATION_EXPORT double Pods_TruffleVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TruffleVersionString[];
 

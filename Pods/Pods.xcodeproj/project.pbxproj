@@ -10,6 +10,7 @@
 		03200252F0B58D461DC24153468FC9CB /* MediaSessionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F94F11130BE76090039870813602EE /* MediaSessionInput.swift */; };
 		06296116C6B2D5701AE6F963D481C949 /* PixelBufferOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C44A949CBDA5CC260D20C0A9C39D52 /* PixelBufferOutput.swift */; };
 		0BB6558FEC23F90B39A0D2E317314451 /* SceneRecorder.VideoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665549D041148A4CF873A7A06B9E0148 /* SceneRecorder.VideoInput.swift */; };
+		0C52CD8442EC2060B5474903171CD2E8 /* Pods-Truffle-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F11A2B08AB245D1E6A1C20CD434A2D32 /* Pods-Truffle-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E175EC4EB6B2F10E79AA56E68D1B54A /* MetalRecordable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FBC1DEC781547CA71A72A450D66C35 /* MetalRecordable.swift */; };
 		0EB8E79E833810BA26AD2FE42D1246A3 /* MTLPixelFormat+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A94093CE25AC3243CD21B48453156 /* MTLPixelFormat+Helpers.swift */; };
 		0F16EBA2C2F8D1F96B5D77144F777BF5 /* ImageOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA019FE1836FD0C842A04BEF1B45EED /* ImageOutput.swift */; };
@@ -35,6 +36,7 @@
 		4D0E343019BEC12C1DDD184A0C7C8369 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		4F9DB12D2461F28349BC4FE197BC3A78 /* CleanRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA40B85030A137FBC57A6D7F18817A /* CleanRecorder.swift */; };
 		53F675B2A619550E7A1F73F064C43AFE /* MTDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0004AE321F4AF61089596B22AEAEB1E /* MTDMulticastDelegate.m */; };
+		5501120A586C6DB5F373F9053B881E11 /* Pods-Truffle-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5445DA9CCFA3D4DBF09A8D1F1C48636 /* Pods-Truffle-dummy.m */; };
 		5555B35651DBD93FA254EABFE6A23277 /* BaseRecorder.AudioInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F606DD6B7FE838BD18AAE54A62074363 /* BaseRecorder.AudioInput.swift */; };
 		610F14A4DCE6E42E5D1CCDD25CD3E167 /* BaseRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA913B66B1632F9426462DF70236FC0 /* BaseRecorder.swift */; };
 		616C43697C9E2D0BCEC15ADB819F8876 /* MetalTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974CAA772F32D176A169D01CBA279B40 /* MetalTexture.swift */; };
@@ -50,7 +52,6 @@
 		835BD0B2FED9AD14DC8692EF2D24F5AB /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7C6B855F6D91BB5FD299FD0E95BEA /* Updater.swift */; };
 		8373ADDBF5703FDECA2652D712F637C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		8523E548423237ACABB716A2BDD32382 /* CleanRecorder.VideoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08AA24BEEE6CF18F3C42CC78D060351 /* CleanRecorder.VideoInput.swift */; };
-		85961E2BF64E0474A3DDA30E78260233 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		860CC659BD50051A6F2EC4A271FEAB8A /* MediaSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74CB86C49AFB0EDF9D2803040FDEBCB /* MediaSession.swift */; };
 		876C19C90A4ED13278DAEBE5E33B2AB2 /* VideoSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4028B6634DB69BAB875FAF311980555 /* VideoSettings.swift */; };
 		8BCFB31069ACC84C4C601688056BC57D /* PixelBufferPoolFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C972343D83430868AAF17B271B1768F0 /* PixelBufferPoolFactory.swift */; };
@@ -61,6 +62,7 @@
 		955CB8DF538D61346A73457AE8390072 /* AudioEngine.Player.State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E27EC0356851DD530EAFB4F6CA5C01D /* AudioEngine.Player.State.swift */; };
 		9C56C5ECA0FBB39FCC15F7F7BCEB0D6C /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC16918894134936C5F7B5D071C56E3D /* Atomic.swift */; };
 		9FE8CDADC019B0DE9818396FEC3E4A03 /* VideoOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E29A744B44BDB8D2FA2FBCA1C9F61 /* VideoOutput.swift */; };
+		A27E5E50D07EC1F2FE1E4DC03A020147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		A757A519634E18383EA840E14375B395 /* MTDOriginMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 241C3E9031A67D15DE47E77180088067 /* MTDOriginMulticastDelegate.m */; };
 		AC83378C7638D59340836393A22C747B /* CleanRecordable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281446D731138292F7CAA92981093AC7 /* CleanRecordable.swift */; };
 		AE94131A18586F99E1EFD2F782E2D855 /* RecordButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EF236F9FBA93A185F5E97588E6827 /* RecordButton-dummy.m */; };
@@ -75,14 +77,12 @@
 		C930DA2C1AC6701D559541B2B7FE5053 /* TimeScalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BA8C959059CCEB45321D72CC39D398 /* TimeScalable.swift */; };
 		CC7F11DE2F4CC9123E044A12AB0CB41D /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4636A489A186B6E7DDA901821B888F3A /* RecordButton.swift */; };
 		D260DD5FB03F49ECC304D22F85E15B63 /* PixelBufferPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6124D527745D947C919B589332E7A1D /* PixelBufferPool.swift */; };
-		D5C5CF079A45A8DD976D45066F324218 /* Pods-ARKitImageDetection-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 343E669299CD03F1A79E23F9521996C6 /* Pods-ARKitImageDetection-dummy.m */; };
 		DEA9C8866FED20530B1AA468818D93E5 /* VideoOutput.State.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7923F29EC3E10A8AE5AA2566065BFB3 /* VideoOutput.State.swift */; };
 		E1AE9003BE6DC5E53FD3139CAE56FC87 /* MetalTexturePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3BE8FED3E835DD39DB925CB54B4DA5 /* MetalTexturePool.swift */; };
 		E2F583496FD521DE3DD7FC79559398BC /* VideoSettings.ScalingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077EF9DFBD4906FAD28E8FC6B601C81 /* VideoSettings.ScalingMode.swift */; };
 		E483BEADA60AB6DFB7360E4E9462442A /* MetalPixelBufferProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D223CF199034E8CB6FD8551D64D8A26 /* MetalPixelBufferProducer.swift */; };
 		E6DF399A8F1F8B385557910BFAA54B23 /* MTDOriginMulticastDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = AF72964F3F4C164F40CB5C7DDCC2055F /* MTDOriginMulticastDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E768A38A029449BE77B628F1DCCDDF4D /* MediaSessionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2848998B318E9F5A7B7C3524ABDEA47 /* MediaSessionOutput.swift */; };
-		E8BB10330913711B8386783B712FACC8 /* Pods-ARKitImageDetection-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DB9EFFE503232A72F1EBBF4258C683A /* Pods-ARKitImageDetection-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EC868AFEA551DD60144E119D1C9DE030 /* SCNView+SelfSceneRecordable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E2C495901BC30A302A285FFD4298A0 /* SCNView+SelfSceneRecordable.swift */; };
 		EE0FA72DA0A96EF93F8994AA33C33BF9 /* RecordableLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD5903B4C57C7C1A06A5110FCF90DCF /* RecordableLayer.swift */; };
 		F09CEDEB2358C6DE6359453C5A42FFDD /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A9155582A89068D9B3207D8FB29475 /* Observable.swift */; };
@@ -92,12 +92,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4698F1D4D1C31083A6423CC2C5AA4B00 /* PBXContainerItemProxy */ = {
+		0F76F79A39302D07106882D65CE99DBB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0C6D40724BBD5AD0AC45C95F46F585D5;
-			remoteInfo = MTDMulticastDelegate;
+			remoteGlobalIDString = 3AC1021B94985C1DF670DE01ED11B5C7;
+			remoteInfo = RecordButton;
+		};
+		5E7708016AE69408E8958751F3427BB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51BCF70A44F955B4404D7F39BF2F245D;
+			remoteInfo = SCNRecorder;
 		};
 		6D2A4F73ACE1F04174D06CE45DC15C93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,19 +113,12 @@
 			remoteGlobalIDString = 0C6D40724BBD5AD0AC45C95F46F585D5;
 			remoteInfo = MTDMulticastDelegate;
 		};
-		92ACE0989D5733E7294E9167006873ED /* PBXContainerItemProxy */ = {
+		A43A6FB2FC26AD5A386FEE116437E581 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 51BCF70A44F955B4404D7F39BF2F245D;
-			remoteInfo = SCNRecorder;
-		};
-		B186E2048E7FC65592DC8255F5B6D51A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3AC1021B94985C1DF670DE01ED11B5C7;
-			remoteInfo = RecordButton;
+			remoteGlobalIDString = 0C6D40724BBD5AD0AC45C95F46F585D5;
+			remoteInfo = MTDMulticastDelegate;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -127,6 +127,7 @@
 		026025CCA5F1B04D8907CBE515DBF1E0 /* SCNRecorder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SCNRecorder-dummy.m"; sourceTree = "<group>"; };
 		041E18E28CD46A9DDAFB1E491C8E533F /* IOSurface+Size.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IOSurface+Size.swift"; path = "Sources/Extensions/IOSurface+Size.swift"; sourceTree = "<group>"; };
 		05F94F11130BE76090039870813602EE /* MediaSessionInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaSessionInput.swift; path = Sources/MediaSession/MediaSessionInput.swift; sourceTree = "<group>"; };
+		0C87A950E8DB0A14D2F3C8DDAA80C939 /* Pods-Truffle.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Truffle.modulemap"; sourceTree = "<group>"; };
 		0D340702FAA292F5DD55AD141D51C8D4 /* WeakCollection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeakCollection.swift; path = Sources/Helpers/WeakCollection.swift; sourceTree = "<group>"; };
 		0E2EF236F9FBA93A185F5E97588E6827 /* RecordButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RecordButton-dummy.m"; sourceTree = "<group>"; };
 		1393E692D29F0B5FBC418AC66810A358 /* ARSCNView+CleanRecordable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ARSCNView+CleanRecordable.swift"; path = "Sources/Recordable/Extensions/ARSCNView+CleanRecordable.swift"; sourceTree = "<group>"; };
@@ -139,24 +140,21 @@
 		1EC7C6B855F6D91BB5FD299FD0E95BEA /* Updater.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Updater.swift; path = Sources/Helpers/Updater.swift; sourceTree = "<group>"; };
 		1F3BE8FED3E835DD39DB925CB54B4DA5 /* MetalTexturePool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MetalTexturePool.swift; path = Sources/PixelBuffer/MetalTexturePool.swift; sourceTree = "<group>"; };
 		21C3974E33B2552FEF23D53499F64674 /* RecordButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RecordButton-umbrella.h"; sourceTree = "<group>"; };
-		2210FED3D2195F2D4F072F5B8917B2AC /* Pods-ARKitImageDetection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARKitImageDetection.release.xcconfig"; sourceTree = "<group>"; };
 		22DFE9D5C70C60D80B8A3402369AE17D /* RecordButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RecordButton.debug.xcconfig; sourceTree = "<group>"; };
 		235DC0900B245B8E302E6489FC8C7C8A /* SCNRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SCNRecorder.release.xcconfig; sourceTree = "<group>"; };
 		241C3E9031A67D15DE47E77180088067 /* MTDOriginMulticastDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MTDOriginMulticastDelegate.m; path = Sources/MulticastDelegate/MTDOriginMulticastDelegate.m; sourceTree = "<group>"; };
 		2438D9F5E419D6ADBCC864FCF2A1F3A1 /* ReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReadWriteLock.swift; path = Sources/Helpers/Multithreading/ReadWrite/ReadWriteLock.swift; sourceTree = "<group>"; };
 		24DE5316C2C76AB9C88E2CCFBA510E25 /* SCNView+MulticastDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SCNView+MulticastDelegate.swift"; path = "Sources/Extensions/SCNView+MulticastDelegate.swift"; sourceTree = "<group>"; };
 		26BEA5139ADD554C2D2F5489B09CD51C /* VideoSettings.Codec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoSettings.Codec.swift; path = Sources/VideoSettings.Codec.swift; sourceTree = "<group>"; };
-		27A9A890C948AC49EB0E6CE546586E24 /* Pods-ARKitImageDetection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARKitImageDetection.debug.xcconfig"; sourceTree = "<group>"; };
 		281446D731138292F7CAA92981093AC7 /* CleanRecordable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CleanRecordable.swift; path = Sources/Recordable/CleanRecordable.swift; sourceTree = "<group>"; };
 		2A2EC90F9355885BB44B6FD6292011F1 /* MTDMulticastDelegate-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MTDMulticastDelegate-Info.plist"; sourceTree = "<group>"; };
-		31C337097D8109C9246D837BBAECD9D1 /* Pods-ARKitImageDetection-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ARKitImageDetection-acknowledgements.markdown"; sourceTree = "<group>"; };
 		33655D7095AD837C026D29ED0E7B4C51 /* RecordButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RecordButton.modulemap; sourceTree = "<group>"; };
 		3376325450844433ED663C19B2B5A561 /* VideoRecording.State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoRecording.State.swift; path = Sources/VideoRecording.State.swift; sourceTree = "<group>"; };
-		343E669299CD03F1A79E23F9521996C6 /* Pods-ARKitImageDetection-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ARKitImageDetection-dummy.m"; sourceTree = "<group>"; };
 		37E2C495901BC30A302A285FFD4298A0 /* SCNView+SelfSceneRecordable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SCNView+SelfSceneRecordable.swift"; path = "Sources/SelfRecordable/Extensions/SCNView+SelfSceneRecordable.swift"; sourceTree = "<group>"; };
 		3C44AFBDC4022234F6E698F7E4C8DA69 /* AudioEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioEngine.swift; path = Sources/AudioEngine/AudioEngine.swift; sourceTree = "<group>"; };
 		3EE3D600BE5C96762E52EBBB48B18BD5 /* Buffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Buffer.swift; path = Sources/Helpers/Buffer.swift; sourceTree = "<group>"; };
 		3F3D015D6AFB5B8EEBAA2CDBA43B1C5E /* CAMetalLayer+RecordableLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CAMetalLayer+RecordableLayer.swift"; path = "Sources/RecordableLayer/CAMetalLayer+RecordableLayer.swift"; sourceTree = "<group>"; };
+		420232871B69DDB93460C6C74A94E782 /* Pods-Truffle-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Truffle-Info.plist"; sourceTree = "<group>"; };
 		4476D37FDCE421B7B2753D963A93F32C /* SCNRecorder-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCNRecorder-prefix.pch"; sourceTree = "<group>"; };
 		44BC19591FED40BD7F86F4C65DFCEACA /* RecordButton-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RecordButton-Info.plist"; sourceTree = "<group>"; };
 		4636A489A186B6E7DDA901821B888F3A /* RecordButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordButton.swift; path = Pod/Classes/RecordButton.swift; sourceTree = "<group>"; };
@@ -173,35 +171,33 @@
 		529BC86512FCFA6F9616088D1851DE18 /* MTDMulticastDelegate-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MTDMulticastDelegate-prefix.pch"; sourceTree = "<group>"; };
 		546DD8DB2646B109FABEEA0C604968E8 /* DispatchAtomic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchAtomic.swift; path = Sources/Helpers/Multithreading/Dispatch/DispatchAtomic.swift; sourceTree = "<group>"; };
 		54CC36C2CBB136054D0B6CA17833B89E /* VideoSettings.CompressionProperties.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoSettings.CompressionProperties.swift; path = Sources/VideoSettings.CompressionProperties.swift; sourceTree = "<group>"; };
+		65B719EF24EB36CE209FB441F1A5F22A /* Pods-Truffle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Truffle.release.xcconfig"; sourceTree = "<group>"; };
 		665549D041148A4CF873A7A06B9E0148 /* SceneRecorder.VideoInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SceneRecorder.VideoInput.swift; path = Sources/Recorder/SceneRecorder/SceneRecorder.VideoInput.swift; sourceTree = "<group>"; };
-		68716415159CCE05E319A1CF16C495AE /* Pods-ARKitImageDetection-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ARKitImageDetection-Info.plist"; sourceTree = "<group>"; };
+		68563C0147FB138EA3EAA768FE50158D /* Pods-Truffle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Truffle.debug.xcconfig"; sourceTree = "<group>"; };
 		6A819517314C3B06CD03524973B30EFF /* MTDMulticastDelegate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MTDMulticastDelegate.release.xcconfig; sourceTree = "<group>"; };
 		6AA913B66B1632F9426462DF70236FC0 /* BaseRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseRecorder.swift; path = Sources/Recorder/BaseRecorder/BaseRecorder.swift; sourceTree = "<group>"; };
 		6AB99BAD54F8132EA38F24886E19DB8A /* SelfSceneRecordable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelfSceneRecordable.swift; path = Sources/SelfRecordable/SelfSceneRecordable.swift; sourceTree = "<group>"; };
 		6ACED1085027A1657BDE3406B0E56433 /* MTDMulticastDelegate-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MTDMulticastDelegate-dummy.m"; sourceTree = "<group>"; };
-		6B47703D1DBBE1A78946103692C1EEF1 /* Pods-ARKitImageDetection */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-ARKitImageDetection"; path = Pods_ARKitImageDetection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECB9284812C705F49ACC4E9AF922A6D /* UnfairAtomic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnfairAtomic.swift; path = Sources/Helpers/Multithreading/Unfair/UnfairAtomic.swift; sourceTree = "<group>"; };
 		72B16C6F3759AF8D156F971D2204E7E0 /* VideoSettings.FileType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoSettings.FileType.swift; path = Sources/VideoSettings.FileType.swift; sourceTree = "<group>"; };
 		752C04C6C8DFA112800F49BC5A656FBC /* VideoOutput.Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoOutput.Error.swift; path = Sources/Outputs/VideoOutput/VideoOutput.Error.swift; sourceTree = "<group>"; };
+		76AD90EF62D11B5B49543DD99FF225F4 /* Pods-Truffle */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Truffle"; path = Pods_Truffle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FBC1DEC781547CA71A72A450D66C35 /* MetalRecordable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MetalRecordable.swift; path = Sources/Recordable/MetalRecordable.swift; sourceTree = "<group>"; };
 		79C44A949CBDA5CC260D20C0A9C39D52 /* PixelBufferOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PixelBufferOutput.swift; path = Sources/Outputs/PixelBufferOutput.swift; sourceTree = "<group>"; };
+		8038A9694C5FFB082612055CC6404CFB /* Pods-Truffle-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Truffle-acknowledgements.markdown"; sourceTree = "<group>"; };
 		86451D05AED3450CA4BB02F3372BF266 /* VideoRecording.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoRecording.swift; path = Sources/VideoRecording.swift; sourceTree = "<group>"; };
 		86CA40B85030A137FBC57A6D7F18817A /* CleanRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CleanRecorder.swift; path = Sources/Recorder/CleanRecorder/CleanRecorder.swift; sourceTree = "<group>"; };
 		88206515D713511E5A4C7B647ACB38D9 /* MetalTexturePoolFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MetalTexturePoolFactory.swift; path = Sources/PixelBuffer/MetalTexturePoolFactory.swift; sourceTree = "<group>"; };
 		89BA8C959059CCEB45321D72CC39D398 /* TimeScalable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeScalable.swift; path = Sources/Protocols/TimeScalable.swift; sourceTree = "<group>"; };
-		8EF0B691FCCEEECF20A0B0E07D6DA215 /* Pods-ARKitImageDetection.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ARKitImageDetection.modulemap"; sourceTree = "<group>"; };
 		9158B9401E78CB2CEC2BF73C75BC9B47 /* AVCaptureSession+BaseRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AVCaptureSession+BaseRecorder.swift"; path = "Sources/Extensions/AVCaptureSession+BaseRecorder.swift"; sourceTree = "<group>"; };
-		947C8A5726FD115C7F332ABF3FDCE33B /* Pods-ARKitImageDetection-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ARKitImageDetection-acknowledgements.plist"; sourceTree = "<group>"; };
 		9494DCD05E84F96E897B274C19AC09C6 /* SCNRecorder.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SCNRecorder.modulemap; sourceTree = "<group>"; };
 		974CAA772F32D176A169D01CBA279B40 /* MetalTexture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MetalTexture.swift; path = Sources/PixelBuffer/MetalTexture.swift; sourceTree = "<group>"; };
 		9AF8BB4295488856290705785284E89A /* PixelBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PixelBuffer.swift; path = Sources/PixelBuffer/PixelBuffer.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DB9EFFE503232A72F1EBBF4258C683A /* Pods-ARKitImageDetection-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARKitImageDetection-umbrella.h"; sourceTree = "<group>"; };
 		9F0E29A744B44BDB8D2FA2FBCA1C9F61 /* VideoOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoOutput.swift; path = Sources/Outputs/VideoOutput/VideoOutput.swift; sourceTree = "<group>"; };
 		A08AA24BEEE6CF18F3C42CC78D060351 /* CleanRecorder.VideoInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CleanRecorder.VideoInput.swift; path = Sources/Recorder/CleanRecorder/CleanRecorder.VideoInput.swift; sourceTree = "<group>"; };
 		A45406A1CFE62F436F929BBDBD84AB2E /* SceneRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SceneRecorder.swift; path = Sources/Recorder/SceneRecorder/SceneRecorder.swift; sourceTree = "<group>"; };
 		A74CB86C49AFB0EDF9D2803040FDEBCB /* MediaSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaSession.swift; path = Sources/MediaSession/MediaSession.swift; sourceTree = "<group>"; };
-		AAA2FDAECF7F1FCF5717E28683EDF9C9 /* Pods-ARKitImageDetection-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARKitImageDetection-frameworks.sh"; sourceTree = "<group>"; };
 		AC16918894134936C5F7B5D071C56E3D /* Atomic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Atomic.swift; path = Sources/Helpers/Multithreading/Atomic.swift; sourceTree = "<group>"; };
 		AF72964F3F4C164F40CB5C7DDCC2055F /* MTDOriginMulticastDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MTDOriginMulticastDelegate.h; path = Sources/MulticastDelegate/include/MulticastDelegate/MTDOriginMulticastDelegate.h; sourceTree = "<group>"; };
 		B4028B6634DB69BAB875FAF311980555 /* VideoSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoSettings.swift; path = Sources/VideoSettings.swift; sourceTree = "<group>"; };
@@ -217,6 +213,7 @@
 		CF3A94093CE25AC3243CD21B48453156 /* MTLPixelFormat+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MTLPixelFormat+Helpers.swift"; path = "Sources/Extensions/MTLPixelFormat+Helpers.swift"; sourceTree = "<group>"; };
 		D0004AE321F4AF61089596B22AEAEB1E /* MTDMulticastDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MTDMulticastDelegate.m; path = Sources/MulticastDelegate/MTDMulticastDelegate.m; sourceTree = "<group>"; };
 		D077EF9DFBD4906FAD28E8FC6B601C81 /* VideoSettings.ScalingMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoSettings.ScalingMode.swift; path = Sources/VideoSettings.ScalingMode.swift; sourceTree = "<group>"; };
+		D1ACE3259DFA539E02D0E7D15AE6BEC7 /* Pods-Truffle-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Truffle-acknowledgements.plist"; sourceTree = "<group>"; };
 		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D5C279D76CE6F78388C56EBA63E1D263 /* Renderable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Renderable.swift; path = Sources/Protocols/Renderable.swift; sourceTree = "<group>"; };
 		D6124D527745D947C919B589332E7A1D /* PixelBufferPool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PixelBufferPool.swift; path = Sources/PixelBuffer/PixelBufferPool.swift; sourceTree = "<group>"; };
@@ -224,7 +221,10 @@
 		DF6786D41D171FE1506E8D524C1226BB /* AssociatedStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssociatedStorage.swift; path = Sources/Helpers/AssociatedStorage.swift; sourceTree = "<group>"; };
 		DFD5903B4C57C7C1A06A5110FCF90DCF /* RecordableLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordableLayer.swift; path = Sources/RecordableLayer/RecordableLayer.swift; sourceTree = "<group>"; };
 		E311018D42A32334B9EBD8E928C55333 /* MTDMulticastDelegate-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MTDMulticastDelegate-umbrella.h"; sourceTree = "<group>"; };
+		E5445DA9CCFA3D4DBF09A8D1F1C48636 /* Pods-Truffle-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Truffle-dummy.m"; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F11A2B08AB245D1E6A1C20CD434A2D32 /* Pods-Truffle-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Truffle-umbrella.h"; sourceTree = "<group>"; };
+		F1D6FEDFA5F8FC2371A23380AE83ADFF /* Pods-Truffle-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Truffle-frameworks.sh"; sourceTree = "<group>"; };
 		F606DD6B7FE838BD18AAE54A62074363 /* BaseRecorder.AudioInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseRecorder.AudioInput.swift; path = Sources/Recorder/BaseRecorder/BaseRecorder.AudioInput.swift; sourceTree = "<group>"; };
 		F84F82F9FB017172CDB34BBE8D846562 /* SCNView+MetalRecordable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SCNView+MetalRecordable.swift"; path = "Sources/Recordable/Extensions/SCNView+MetalRecordable.swift"; sourceTree = "<group>"; };
 		FA2C20BC0C9F22C0A248EB25E0574229 /* AudioAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioAdapter.swift; path = Sources/Helpers/AudioAdapter.swift; sourceTree = "<group>"; };
@@ -241,6 +241,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7523363780CA72D385FA3EA4D6C0BCD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A27E5E50D07EC1F2FE1E4DC03A020147 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B33AA304B59157C5605E18213ABC7F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,14 +262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0E343019BEC12C1DDD184A0C7C8369 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DF16922AF962C284571CD0798E125067 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85961E2BF64E0474A3DDA30E78260233 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +288,23 @@
 			);
 			name = MTDMulticastDelegate;
 			path = MTDMulticastDelegate;
+			sourceTree = "<group>";
+		};
+		19BF223C7DE5B16AFE8F89033232D767 /* Pods-Truffle */ = {
+			isa = PBXGroup;
+			children = (
+				0C87A950E8DB0A14D2F3C8DDAA80C939 /* Pods-Truffle.modulemap */,
+				8038A9694C5FFB082612055CC6404CFB /* Pods-Truffle-acknowledgements.markdown */,
+				D1ACE3259DFA539E02D0E7D15AE6BEC7 /* Pods-Truffle-acknowledgements.plist */,
+				E5445DA9CCFA3D4DBF09A8D1F1C48636 /* Pods-Truffle-dummy.m */,
+				F1D6FEDFA5F8FC2371A23380AE83ADFF /* Pods-Truffle-frameworks.sh */,
+				420232871B69DDB93460C6C74A94E782 /* Pods-Truffle-Info.plist */,
+				F11A2B08AB245D1E6A1C20CD434A2D32 /* Pods-Truffle-umbrella.h */,
+				68563C0147FB138EA3EAA768FE50158D /* Pods-Truffle.debug.xcconfig */,
+				65B719EF24EB36CE209FB441F1A5F22A /* Pods-Truffle.release.xcconfig */,
+			);
+			name = "Pods-Truffle";
+			path = "Target Support Files/Pods-Truffle";
 			sourceTree = "<group>";
 		};
 		48D118B909BF104A5CAF094DD9377A65 /* SCNRecorder */ = {
@@ -377,6 +394,17 @@
 			path = "../Target Support Files/SCNRecorder";
 			sourceTree = "<group>";
 		};
+		59A409AD32628617FBAE980E4CF0AF9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD494BAEE73317FD74AD8BA4F888EFD8 /* MTDMulticastDelegate */,
+				76AD90EF62D11B5B49543DD99FF225F4 /* Pods-Truffle */,
+				170FCE3D2D9E4EA98EA5098D4A10EA3B /* RecordButton */,
+				180BC29C7168B61DEA5F541D80DED3CB /* SCNRecorder */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,31 +424,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8EC1FDB0535B65745D2A3A9F868172B4 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9C55CE5A51D279587F2020F9809ED6C5 /* Pods-ARKitImageDetection */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		9C55CE5A51D279587F2020F9809ED6C5 /* Pods-ARKitImageDetection */ = {
-			isa = PBXGroup;
-			children = (
-				8EF0B691FCCEEECF20A0B0E07D6DA215 /* Pods-ARKitImageDetection.modulemap */,
-				31C337097D8109C9246D837BBAECD9D1 /* Pods-ARKitImageDetection-acknowledgements.markdown */,
-				947C8A5726FD115C7F332ABF3FDCE33B /* Pods-ARKitImageDetection-acknowledgements.plist */,
-				343E669299CD03F1A79E23F9521996C6 /* Pods-ARKitImageDetection-dummy.m */,
-				AAA2FDAECF7F1FCF5717E28683EDF9C9 /* Pods-ARKitImageDetection-frameworks.sh */,
-				68716415159CCE05E319A1CF16C495AE /* Pods-ARKitImageDetection-Info.plist */,
-				9DB9EFFE503232A72F1EBBF4258C683A /* Pods-ARKitImageDetection-umbrella.h */,
-				27A9A890C948AC49EB0E6CE546586E24 /* Pods-ARKitImageDetection.debug.xcconfig */,
-				2210FED3D2195F2D4F072F5B8917B2AC /* Pods-ARKitImageDetection.release.xcconfig */,
-			);
-			name = "Pods-ARKitImageDetection";
-			path = "Target Support Files/Pods-ARKitImageDetection";
-			sourceTree = "<group>";
-		};
 		A26D89657705459EA6CE0B089478605A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,26 +439,23 @@
 			path = "../Target Support Files/RecordButton";
 			sourceTree = "<group>";
 		};
-		C71F3B703255E9FEEE5342C1083C08D3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FD494BAEE73317FD74AD8BA4F888EFD8 /* MTDMulticastDelegate */,
-				6B47703D1DBBE1A78946103692C1EEF1 /* Pods-ARKitImageDetection */,
-				170FCE3D2D9E4EA98EA5098D4A10EA3B /* RecordButton */,
-				180BC29C7168B61DEA5F541D80DED3CB /* SCNRecorder */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				8BD1F6D08E78C221721BFFBCDE92358F /* Pods */,
-				C71F3B703255E9FEEE5342C1083C08D3 /* Products */,
-				8EC1FDB0535B65745D2A3A9F868172B4 /* Targets Support Files */,
+				59A409AD32628617FBAE980E4CF0AF9D /* Products */,
+				E59FFE46CD8D1831D9BFDDCC3696EF51 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		E59FFE46CD8D1831D9BFDDCC3696EF51 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				19BF223C7DE5B16AFE8F89033232D767 /* Pods-Truffle */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		E76A40F846BC20F74D3B4BEB4B403700 /* RecordButton */ = {
@@ -486,6 +486,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0D50D63BC3A35A49B903AC57FFD6D770 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C52CD8442EC2060B5474903171CD2E8 /* Pods-Truffle-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		173F5E85EA730E0C62F8BFC3FB626FF4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -502,14 +510,6 @@
 				3B92D95522D52FB4731523DE768B43AD /* MTDMulticastDelegate-umbrella.h in Headers */,
 				E6DF399A8F1F8B385557910BFAA54B23 /* MTDOriginMulticastDelegate.h in Headers */,
 				49896F699E52DE59BB8BC605AEEE343A /* MulticastDelegate.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7D7EC536900869C86BAD346BDEEB410 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E8BB10330913711B8386783B712FACC8 /* Pods-ARKitImageDetection-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +560,27 @@
 			productReference = 170FCE3D2D9E4EA98EA5098D4A10EA3B /* RecordButton */;
 			productType = "com.apple.product-type.framework";
 		};
+		500B5576B3B1069CE7BCD18D9313ACDF /* Pods-Truffle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDBAAD141ABDF5E53847B67E83B5646C /* Build configuration list for PBXNativeTarget "Pods-Truffle" */;
+			buildPhases = (
+				0D50D63BC3A35A49B903AC57FFD6D770 /* Headers */,
+				EDBABA2EAF1673135F94521BA8E28F27 /* Sources */,
+				7523363780CA72D385FA3EA4D6C0BCD9 /* Frameworks */,
+				3B7811D1FF728DFCDB7773880B454EF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6B41F058BC7A4758B2BBC4B412176948 /* PBXTargetDependency */,
+				CF73532A46C0DB75FCE5E7792F340C77 /* PBXTargetDependency */,
+				4E3F7ABE0030EC1E4B85F44BD95B2BAC /* PBXTargetDependency */,
+			);
+			name = "Pods-Truffle";
+			productName = Pods_Truffle;
+			productReference = 76AD90EF62D11B5B49543DD99FF225F4 /* Pods-Truffle */;
+			productType = "com.apple.product-type.framework";
+		};
 		51BCF70A44F955B4404D7F39BF2F245D /* SCNRecorder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8463C83AA4AB58DEAD15B2013C7BDC9 /* Build configuration list for PBXNativeTarget "SCNRecorder" */;
@@ -577,27 +598,6 @@
 			name = SCNRecorder;
 			productName = SCNRecorder;
 			productReference = 180BC29C7168B61DEA5F541D80DED3CB /* SCNRecorder */;
-			productType = "com.apple.product-type.framework";
-		};
-		7EC38892886475AA85828F1DE4B1815B /* Pods-ARKitImageDetection */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA40CAFEA39C7335147EAAA7E1780456 /* Build configuration list for PBXNativeTarget "Pods-ARKitImageDetection" */;
-			buildPhases = (
-				E7D7EC536900869C86BAD346BDEEB410 /* Headers */,
-				71F0C2BDA8361B63A216BCA9C283703E /* Sources */,
-				DF16922AF962C284571CD0798E125067 /* Frameworks */,
-				E2D1113374511A00D5ED3C3638FA8C6F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3AA19BF29ECCEC5BBCFEB2B0A6A3DC5F /* PBXTargetDependency */,
-				5508915C97FBBDF667B93E7FDEE5C2F1 /* PBXTargetDependency */,
-				0ED70F8A9600574329DBAE429F184ACA /* PBXTargetDependency */,
-			);
-			name = "Pods-ARKitImageDetection";
-			productName = Pods_ARKitImageDetection;
-			productReference = 6B47703D1DBBE1A78946103692C1EEF1 /* Pods-ARKitImageDetection */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -618,12 +618,12 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = C71F3B703255E9FEEE5342C1083C08D3 /* Products */;
+			productRefGroup = 59A409AD32628617FBAE980E4CF0AF9D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				0C6D40724BBD5AD0AC45C95F46F585D5 /* MTDMulticastDelegate */,
-				7EC38892886475AA85828F1DE4B1815B /* Pods-ARKitImageDetection */,
+				500B5576B3B1069CE7BCD18D9313ACDF /* Pods-Truffle */,
 				3AC1021B94985C1DF670DE01ED11B5C7 /* RecordButton */,
 				51BCF70A44F955B4404D7F39BF2F245D /* SCNRecorder */,
 			);
@@ -632,6 +632,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		0F1254C4ED01E745CF4A74CB386ABD1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B7811D1FF728DFCDB7773880B454EF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -652,13 +659,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2D1113374511A00D5ED3C3638FA8C6F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -669,14 +669,6 @@
 				53F675B2A619550E7A1F73F064C43AFE /* MTDMulticastDelegate.m in Sources */,
 				460C4EB67DFF85E61B95F00B9E458A2A /* MTDMulticastDelegate-dummy.m in Sources */,
 				A757A519634E18383EA840E14375B395 /* MTDOriginMulticastDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71F0C2BDA8361B63A216BCA9C283703E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D5C5CF079A45A8DD976D45066F324218 /* Pods-ARKitImageDetection-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,32 +752,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDBABA2EAF1673135F94521BA8E28F27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5501120A586C6DB5F373F9053B881E11 /* Pods-Truffle-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0ED70F8A9600574329DBAE429F184ACA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SCNRecorder;
-			target = 51BCF70A44F955B4404D7F39BF2F245D /* SCNRecorder */;
-			targetProxy = 92ACE0989D5733E7294E9167006873ED /* PBXContainerItemProxy */;
-		};
 		15D9C1C7A05509E769F1E2EEA294BD46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MTDMulticastDelegate;
 			target = 0C6D40724BBD5AD0AC45C95F46F585D5 /* MTDMulticastDelegate */;
 			targetProxy = 6D2A4F73ACE1F04174D06CE45DC15C93 /* PBXContainerItemProxy */;
 		};
-		3AA19BF29ECCEC5BBCFEB2B0A6A3DC5F /* PBXTargetDependency */ = {
+		4E3F7ABE0030EC1E4B85F44BD95B2BAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SCNRecorder;
+			target = 51BCF70A44F955B4404D7F39BF2F245D /* SCNRecorder */;
+			targetProxy = 5E7708016AE69408E8958751F3427BB0 /* PBXContainerItemProxy */;
+		};
+		6B41F058BC7A4758B2BBC4B412176948 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MTDMulticastDelegate;
 			target = 0C6D40724BBD5AD0AC45C95F46F585D5 /* MTDMulticastDelegate */;
-			targetProxy = 4698F1D4D1C31083A6423CC2C5AA4B00 /* PBXContainerItemProxy */;
+			targetProxy = A43A6FB2FC26AD5A386FEE116437E581 /* PBXContainerItemProxy */;
 		};
-		5508915C97FBBDF667B93E7FDEE5C2F1 /* PBXTargetDependency */ = {
+		CF73532A46C0DB75FCE5E7792F340C77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RecordButton;
 			target = 3AC1021B94985C1DF670DE01ED11B5C7 /* RecordButton */;
-			targetProxy = B186E2048E7FC65592DC8255F5B6D51A /* PBXContainerItemProxy */;
+			targetProxy = 0F76F79A39302D07106882D65CE99DBB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -918,6 +918,41 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		6EB242BAC9E1CA00801679A84E639E2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65B719EF24EB36CE209FB441F1A5F22A /* Pods-Truffle.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Truffle/Pods-Truffle-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Truffle/Pods-Truffle.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1111,9 +1146,9 @@
 			};
 			name = Release;
 		};
-		EB737039A991A88D9B74BD712EE54978 /* Release */ = {
+		FBAD0171271CA7963402AAD15CA605D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2210FED3D2195F2D4F072F5B8917B2AC /* Pods-ARKitImageDetection.release.xcconfig */;
+			baseConfigurationReference = 68563C0147FB138EA3EAA768FE50158D /* Pods-Truffle.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -1126,47 +1161,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ARKitImageDetection/Pods-ARKitImageDetection-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Truffle/Pods-Truffle-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ARKitImageDetection/Pods-ARKitImageDetection.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		EC476E9BE56BFF5FDBA201CEDBB9CBC0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27A9A890C948AC49EB0E6CE546586E24 /* Pods-ARKitImageDetection.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-ARKitImageDetection/Pods-ARKitImageDetection-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ARKitImageDetection/Pods-ARKitImageDetection.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-Truffle/Pods-Truffle.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1210,11 +1210,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA40CAFEA39C7335147EAAA7E1780456 /* Build configuration list for PBXNativeTarget "Pods-ARKitImageDetection" */ = {
+		EDBAAD141ABDF5E53847B67E83B5646C /* Build configuration list for PBXNativeTarget "Pods-Truffle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EC476E9BE56BFF5FDBA201CEDBB9CBC0 /* Debug */,
-				EB737039A991A88D9B74BD712EE54978 /* Release */,
+				FBAD0171271CA7963402AAD15CA605D2 /* Debug */,
+				6EB242BAC9E1CA00801679A84E639E2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

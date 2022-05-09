@@ -1,0 +1,6 @@
+framework module Pods_Truffle {
+  umbrella header "Pods-Truffle-umbrella.h"
+
+  export *
+  module * { export * }
+}

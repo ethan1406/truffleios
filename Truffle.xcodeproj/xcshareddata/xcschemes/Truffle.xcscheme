@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
-               BuildableName = "ARKitImageDetection.app"
-               BlueprintName = "ARKitImageDetection"
-               ReferencedContainer = "container:ARKitImageDetection.xcodeproj">
+               BuildableName = "Truffle AR.app"
+               BlueprintName = "Truffle"
+               ReferencedContainer = "container:Truffle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
-            BuildableName = "ARKitImageDetection.app"
-            BlueprintName = "ARKitImageDetection"
-            ReferencedContainer = "container:ARKitImageDetection.xcodeproj">
+            BuildableName = "Truffle AR.app"
+            BlueprintName = "Truffle"
+            ReferencedContainer = "container:Truffle.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
-            BuildableName = "ARKitImageDetection.app"
-            BlueprintName = "ARKitImageDetection"
-            ReferencedContainer = "container:ARKitImageDetection.xcodeproj">
+            BuildableName = "Truffle AR.app"
+            BlueprintName = "Truffle"
+            ReferencedContainer = "container:Truffle.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3929C4871E89EC2C00E00B60"
-            BuildableName = "ARKitImageDetection.app"
-            BlueprintName = "ARKitImageDetection"
-            ReferencedContainer = "container:ARKitImageDetection.xcodeproj">
+            BuildableName = "Truffle AR.app"
+            BlueprintName = "Truffle"
+            ReferencedContainer = "container:Truffle.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

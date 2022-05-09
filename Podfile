@@ -1,12 +1,12 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '15.0'
 
-target 'ARKitImageDetection' do
+target 'Truffle' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ARKitImageDetection
-
+  # Pods for Truffle
   pod 'SCNRecorder'
   pod 'RecordButton'
+
 end

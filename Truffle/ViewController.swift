@@ -260,9 +260,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     private func requestMicrophonePermission() {
+        player?.pause()
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
             if !granted {
                 self.displayMicrophonePermissionAlert()
+            } else {
+                self.player?.play()
             }
         }
     }

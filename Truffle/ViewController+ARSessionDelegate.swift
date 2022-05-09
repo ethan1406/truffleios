@@ -81,6 +81,7 @@ extension ViewController: ARSessionDelegate {
             let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { _ in
                 alertController.dismiss(animated: true, completion: nil)
                 self.blurView.isHidden = true
+                self.player?.play()
             }
             alertController.addAction(dismissAction)
         }

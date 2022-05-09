@@ -119,7 +119,7 @@
         
         let duration: TimeInterval = 0.15
         circleLayer.contentsGravity = .center
-        
+
         let scale = CABasicAnimation(keyPath: "transform.scale")
         scale.fromValue = recording ? 1.0 : 0.88
         scale.toValue = recording ? 0.88 : 1
