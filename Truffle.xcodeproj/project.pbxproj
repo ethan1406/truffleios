@@ -15,9 +15,9 @@
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
 		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 844AEDA4281FADD200095E01 /* wedding_card.mp4 */; };
-		845F3E7C2828F09000AFE3E4 /* fred.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 845F3E7B2828F09000AFE3E4 /* fred.MOV */; };
 		84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */; };
 		84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */; };
+		84C88965282A38CB006C002B /* fred.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 84C88964282A38CB006C002B /* fred.MOV */; };
 		84E0C5CC2828AB6F00F28759 /* FileManagerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */; };
 		84E0C5CE2828ADD100F28759 /* VideoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */; };
 		C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41366B81EB80DD400EC054A /* StatusViewController.swift */; };
@@ -37,9 +37,9 @@
 		7050AA985D6C24A0051E9918 /* Pods-Truffle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truffle.debug.xcconfig"; path = "Target Support Files/Pods-Truffle/Pods-Truffle.debug.xcconfig"; sourceTree = "<group>"; };
 		844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArCollectionViewCell.swift; sourceTree = "<group>"; };
 		844AEDA4281FADD200095E01 /* wedding_card.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = wedding_card.mp4; path = ../../../Desktop/wedding_card.mp4; sourceTree = "<group>"; };
-		845F3E7B2828F09000AFE3E4 /* fred.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = fred.MOV; path = ../../../Desktop/fred.MOV; sourceTree = "<group>"; };
 		84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
+		84C88964282A38CB006C002B /* fred.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = fred.MOV; path = ../../../Desktop/fred.MOV; sourceTree = "<group>"; };
 		84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExt.swift; sourceTree = "<group>"; };
 		84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewController.swift; sourceTree = "<group>"; };
 		B8AE7549A2472F11C9D46447 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		3929C47F1E89EC2C00E00B60 = {
 			isa = PBXGroup;
 			children = (
-				845F3E7B2828F09000AFE3E4 /* fred.MOV */,
+				84C88964282A38CB006C002B /* fred.MOV */,
 				844AEDA4281FADD200095E01 /* wedding_card.mp4 */,
 				11063F3B1EBE651B0033EE6D /* README.md */,
 				3929C48A1E89EC2C00E00B60 /* Truffle */,
@@ -112,10 +112,10 @@
 				84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */,
 				3929C48D1E89EC2C00E00B60 /* ViewController.swift */,
 				C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */,
+				84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */,
 				84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */,
 				1488324B1EFC3EBF0043E0AB /* Additional View Controllers */,
 				1488324C1EFC3ED00043E0AB /* Resources */,
-				84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */,
 			);
 			path = Truffle;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845F3E7C2828F09000AFE3E4 /* fred.MOV in Resources */,
+				84C88965282A38CB006C002B /* fred.MOV in Resources */,
 				844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */,
 				39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */,
 				3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */,

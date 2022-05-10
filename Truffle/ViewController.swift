@@ -52,7 +52,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         sceneView.delegate = self
         sceneView.session.delegate = self
         sceneView.prepareForRecording()
@@ -64,10 +64,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.restartExperience()
         }
 
-        // initialize collection view controller
-        attachmentCollectionViewLayout.scrollDirection = .horizontal
-        attachmentCollectionViewController = AttachmentCollectionViewController(collectionViewLayout: attachmentCollectionViewLayout)
-        attachmentCollectionViewController.view.isOpaque = false
+        setupAttachmentCollectionView()
 
         FileManager.default.clearTmpVideos()
     }
@@ -93,7 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+        clearVideoObserver()
     }
 
     // MARK: - Session management (Image detection setup)
@@ -142,11 +139,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.player = createVideoPlayer()
         }
 
-        player?.play()
-
         guard let avPlayer = player else {
             return
         }
+
+        loopVideo()
 
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
@@ -235,9 +232,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let player = AVPlayer(playerItem: playerItem)
         player.actionAtItemEnd = .none
 
+        return player
+    }
+
+    private func loopVideo() {
+        guard let player = player else {
+            return
+        }
+
+        clearVideoObserver()
+
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
 
-        return player
+        player.play()
+    }
+
+    private func clearVideoObserver() {
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
     }
 
 
@@ -308,7 +319,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         self.sceneView.finishVideoRecording { (videoRecording) in
           /* Process the captured video. Main thread. */
+
             let controller = VideoPreviewController(videoURL: videoRecording.url)
+            controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: true)
         }
     }
@@ -323,5 +336,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         recordButton.center.x = self.view.center.x
         recordButton.center.y = self.view.bounds.maxY - 85
         self.view.addSubview(recordButton)
+    }
+
+    private func setupAttachmentCollectionView() {
+        attachmentCollectionViewLayout.scrollDirection = .horizontal
+        attachmentCollectionViewController = AttachmentCollectionViewController(collectionViewLayout: attachmentCollectionViewLayout)
+        attachmentCollectionViewController.view.isOpaque = false
+    }
+
+    private func clearAttachmentCollectionView() {
+        attachmentCollectionViewController = nil
     }
 }
