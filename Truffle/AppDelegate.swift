@@ -5,14 +5,17 @@ Abstract:
 Application's delegate.
 */
 
-import UIKit
 import ARKit
+import Bugsnag
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        configureBugsnag()
+
         guard ARWorldTrackingConfiguration.isSupported else {
             fatalError("""
                 ARKit is not available on this device. For apps that require ARKit
@@ -26,5 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+
+    private func configureBugsnag() {
+        //Bugsnag.start()
+        //Bugsnag.notifyError(NSError(domain:"com.example", code:408, userInfo:nil))
     }
 }

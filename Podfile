@@ -6,6 +6,7 @@ target 'Truffle' do
   use_frameworks!
 
   # Pods for Truffle
+  pod 'Bugsnag'
   pod 'SCNRecorder'
   pod 'RecordButton'
 

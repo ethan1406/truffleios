@@ -1,24 +1,28 @@
 PODS:
+  - Bugsnag (6.16.8)
   - MTDMulticastDelegate (1.0.1)
   - RecordButton (1.0.2)
   - SCNRecorder (2.7.0):
     - MTDMulticastDelegate
 
 DEPENDENCIES:
+  - Bugsnag
   - RecordButton
   - SCNRecorder
 
 SPEC REPOS:
   trunk:
+    - Bugsnag
     - MTDMulticastDelegate
     - RecordButton
     - SCNRecorder
 
 SPEC CHECKSUMS:
+  Bugsnag: 2bf29783d20fbc1c934aa23c483d06b42b8c2db8
   MTDMulticastDelegate: dcedff914c281710e3faa64b79ff775741f25b4b
   RecordButton: 76677be0f4b94f8a387454a23b4b64bd9b6c0e51
   SCNRecorder: f1891098c0ea72fe166a1c10fc2e5a4e3dd8c9a5
 
-PODFILE CHECKSUM: 8549d8e4946255d54749ba0bec722014d60b96f5
+PODFILE CHECKSUM: b9bc53b1a50e0968a2f5aef2e249eaf6f0d5179a
 
 COCOAPODS: 1.11.3
