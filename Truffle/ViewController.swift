@@ -36,8 +36,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         ".serialSceneKitQueue")
 
 
-    private let attachmentCollectionViewLayout = UICollectionViewFlowLayout()
-
     private var attachmentCollectionViewController: AttachmentCollectionViewController!
 
 
@@ -82,6 +80,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
+
+        /*
+         when a view is attached to sceneview, a snapshot window is created. It doesn't go away even
+         after the scene is dismissed and intercepts touch events in following screens. This is a hack
+         to remove the created window:
+         https://stackoverflow.com/questions/54658514/delete-scnsnapshotwindow-after-leaving-augmented-reality-view
+         */
+
+        UIApplication.shared.windows.forEach {
+            if $0.frame.width == 650 && $0.frame.height == 100 {
+                $0.isHidden = true
+            }
+        }
 
         player?.pause()
         session.pause()
@@ -151,14 +162,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.statusViewController.showMessage("Detected image “\(imageName)”")
 
             // set material to custom views
-
             self.attachmentCollectionViewController.view.frame.size.height = 100
             self.attachmentCollectionViewController.view.frame.size.width = 650
 
             collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
             videoMaterial.diffuse.contents = avPlayer
-
-            //self.attachmentCollectionViewController.collectionView.reloadData()
         }
         // Create a plane to visualize the initial position of the detected image.
         let imageWidth = referenceImage.physicalSize.width
@@ -207,7 +215,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 
-    var imageHighlightAction: SCNAction {
+    private var imageHighlightAction: SCNAction {
         return .sequence([
             .wait(duration: 0.20),
             .fadeOpacity(to: 0.35, duration: 0.20),
@@ -339,12 +347,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     private func setupAttachmentCollectionView() {
+        let attachmentCollectionViewLayout = UICollectionViewFlowLayout()
         attachmentCollectionViewLayout.scrollDirection = .horizontal
+        
         attachmentCollectionViewController = AttachmentCollectionViewController(collectionViewLayout: attachmentCollectionViewLayout)
         attachmentCollectionViewController.view.isOpaque = false
-    }
-
-    private func clearAttachmentCollectionView() {
-        attachmentCollectionViewController = nil
     }
 }

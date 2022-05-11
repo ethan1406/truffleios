@@ -18,20 +18,20 @@ private let sectionInsets = UIEdgeInsets(
   bottom: 50.0,
   right: 20.0)
 
-private let attachments = [
-    Attachment(title: "wedding pics", image: "ic_calendar", link: "https://www.trufflear.com/"),
-    Attachment(title: "Schedule", image: "ic_gallery", link: "https://www.trufflear.com/"),
-    Attachment(title: "Registry", image: "ic_instagram", link: "https://www.trufflear.com/"),
-    Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//    Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//    Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//    Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//    Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
-]
 
 class AttachmentCollectionViewController: UICollectionViewController {
 
+    var attachments = [
+        Attachment(title: "wedding pics", image: "ic_calendar", link: "https://www.trufflear.com/"),
+        Attachment(title: "Schedule", image: "ic_gallery", link: "https://www.trufflear.com/"),
+        Attachment(title: "Registry", image: "ic_instagram", link: "https://www.trufflear.com/"),
+        Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
+        Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
+        Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
+        Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
+        Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
+        Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +42,12 @@ class AttachmentCollectionViewController: UICollectionViewController {
         // Register cell classes
 
         self.collectionView.delegate = self
-        self.collectionView!.register(ArCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(ArCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.backgroundColor = .clear
         self.collectionView.showsHorizontalScrollIndicator = false
+        self.collectionView.showsVerticalScrollIndicator = false
         // Do any additional setup after loading the view.
+        self.collectionView.isMultipleTouchEnabled = false
     }
 
     /*
@@ -74,18 +76,17 @@ class AttachmentCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ArCollectionViewCell
 
-
         let attachment = attachments[indexPath.row]
         cell.setTitle(attachment.title)
         cell.link = attachment.link
-        cell.setImage(attachment.image)
+        //cell.setImage(attachment.image)
         
         cell.setTouchHandler {link in
             print("selected")
             print(indexPath)
-            if let url = URL(string: attachment.link) {
-                UIApplication.shared.open(url)
-            }
+//            if let url = URL(string: attachment.link) {
+//                UIApplication.shared.open(url)
+//            }
         }
         return cell
 
