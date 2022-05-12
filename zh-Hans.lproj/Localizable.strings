@@ -1,0 +1,18 @@
+
+"Look around to detect your wedding card" = "尋找喜帖中";
+"Please place the card before the camera" = "請把喜帖擺置在相機前";
+"Something went wrong." = "系統出問題";
+"Dismiss" = "取消";
+"Detected %@" = "辨認到 %@";
+"Share on Truffle" = "分享於松露";
+"Enable microphone access so you can start taking videos" = "開啟麥克風來開始拍攝";
+"Enable access" = "允許使用權";
+
+"Initializing" = "啟動中";
+"Restart Session" = "重新啟動";
+"Resetting Session" = "重新啟動中";
+"Detecting unavailable" = "暫時無法辨識";
+
+"Try slowing down your movement." = "試著放慢你的動作";
+"Try pointing at a flat surface." = "試著指向一塊平面";
+"Try returning to where you were when the interruption began." = "回到中斷前的位置";

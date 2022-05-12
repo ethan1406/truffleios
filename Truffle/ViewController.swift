@@ -77,7 +77,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         resetTracking()
 	}
 
-	
+
+
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
@@ -115,6 +116,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
             fatalError("Missing expected asset catalog resources.")
+
+            // TODO bug snag tracking + return + display dialog
         }
         
         let configuration = ARImageTrackingConfiguration()
@@ -132,7 +135,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         configuration.trackingImages = referenceImages
         session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
 
-        statusViewController.scheduleMessage("Look around to detect wedding cards", inSeconds: 7.5, messageType: .contentPlacement)
+        let message = NSLocalizedString("Please place the card before the camera", comment: "")
+        statusViewController.scheduleMessage(message, inSeconds: 7.5, messageType: .contentPlacement)
 	}
 
     // MARK: - ARSCNViewDelegate (Image detection results)
@@ -159,7 +163,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
             self.statusViewController.cancelAllScheduledMessages()
-            self.statusViewController.showMessage("Detected image “\(imageName)”")
+            let message = String(format: NSLocalizedString("Detected image %@", comment: ""), "\(imageName)")
+            self.statusViewController.showMessage(message)
 
             // set material to custom views
             self.attachmentCollectionViewController.view.frame.size.height = 100
@@ -300,7 +305,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     private func displayMicrophonePermissionAlert() {
         DispatchQueue.main.async {
-            self.displayErrorMessage(title: "Microphone is needed for recording", message: "Please go to Settings -> Privacy -> Microphone and grant microphone permission ", shouldAddDismissAction: true)
+            let title = NSLocalizedString("Share on Truffle", comment: "")
+            let message = NSLocalizedString("Enable microphone access so you can start taking videos", comment: "")
+            let alertController = self.getAlertController(title: title, message: message)
+
+            let actionText = NSLocalizedString("Enable access", comment: "")
+            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
+                alertController.dismiss(animated: true, completion: nil)
+                if let url = URL(string:UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            alertController.addAction(enableAccessAction)
+
+
+            let dismissText = NSLocalizedString("Dismiss", comment: "")
+            let dismissAction = UIAlertAction(title: dismissText, style: .default) { _ in
+                alertController.dismiss(animated: true, completion: nil)
+                self.blurView.isHidden = true
+                self.player?.play()
+            }
+            alertController.addAction(dismissAction)
+
         }
     }
 

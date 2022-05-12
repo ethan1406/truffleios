@@ -84,9 +84,9 @@ class AttachmentCollectionViewController: UICollectionViewController {
         cell.setTouchHandler {link in
             print("selected")
             print(indexPath)
-//            if let url = URL(string: attachment.link) {
-//                UIApplication.shared.open(url)
-//            }
+            if let url = URL(string: attachment.link) {
+                UIApplication.shared.open(url)
+            }
         }
         return cell
 

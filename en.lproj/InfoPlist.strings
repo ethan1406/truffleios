@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Truffle
+
+  Created by Ethan Chang on 5/11/22.
+  Copyright © 2022 Apple. All rights reserved.
+*/
+"CFBundleDisplayName" = "Truffle AR";
+"NSHumanReadableCopyright" = "2016 Trufflear Inc. All rights reserved.";

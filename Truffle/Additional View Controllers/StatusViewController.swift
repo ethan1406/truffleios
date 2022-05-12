@@ -99,9 +99,6 @@ class StatusViewController: UIViewController {
             self.cancelScheduledMessage(for: .trackingStateEscalation)
 
             var message = trackingState.presentationString
-            if let recommendation = trackingState.recommendation {
-                message.append(": \(recommendation)")
-            }
 
             self.showMessage(message, autoHide: false)
 		})
@@ -136,32 +133,19 @@ extension ARCamera.TrackingState {
     var presentationString: String {
         switch self {
         case .notAvailable:
-            return "TRACKING UNAVAILABLE"
+            return NSLocalizedString("Tracking unavailable", comment: "")
         case .normal:
-            return "TRACKING NORMAL"
+            return NSLocalizedString("Look around to detect your wedding card", comment: "")
         case .limited(.excessiveMotion):
-            return "TRACKING LIMITED\nExcessive motion"
+            return NSLocalizedString("Try slowing down your movement.", comment: "")
         case .limited(.insufficientFeatures):
-            return "TRACKING LIMITED\nLow detail"
+            return NSLocalizedString("Try pointing at a flat surface.", comment: "")
         case .limited(.initializing):
-            return "Initializing"
+            return NSLocalizedString("Initializing", comment: "")
         case .limited(.relocalizing):
-            return "Recovering from session interruption"
+            return NSLocalizedString("Try returning to where you were when the interruption began.", comment: "")
         default:
-            return "TRACKING UNAVAILABLE"
-        }
-    }
-
-    var recommendation: String? {
-        switch self {
-        case .limited(.excessiveMotion):
-            return "Try slowing down your movement, or reset the session."
-        case .limited(.insufficientFeatures):
-            return "Try pointing at a flat surface, or reset the session."
-        case .limited(.relocalizing):
-            return "Try returning to where you were when the interruption began, or reset the session."
-        default:
-            return nil
+            return NSLocalizedString("Tracking unavailable", comment: "")
         }
     }
 }
