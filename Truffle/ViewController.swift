@@ -8,6 +8,7 @@ Main view controller for the AR experience.
 import ARKit
 import AVFoundation
 import AVKit
+import FirebaseAnalytics
 import SceneKit
 import SpriteKit
 import RecordButton
@@ -75,6 +76,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Start the AR experience
         resetTracking()
+
+        //Analytics.logEvent(AnalyticsEventSelectContent)
 	}
 
 
@@ -286,10 +289,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private func requestMicrophonePermission() {
         player?.pause()
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            self.player?.play()
+            self.startRecording()
             if !granted {
-                self.displayMicrophonePermissionAlert()
-            } else {
-                self.player?.play()
+                self.displayMicrophonePermissionRequestMessage()
             }
         }
     }
@@ -303,31 +306,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 
-    private func displayMicrophonePermissionAlert() {
-        DispatchQueue.main.async {
-            let title = NSLocalizedString("Share on Truffle", comment: "")
-            let message = NSLocalizedString("Enable microphone access so you can start taking videos", comment: "")
-            let alertController = self.getAlertController(title: title, message: message)
+    private func displayMicrophonePermissionRequestMessage() {
+        let message = NSLocalizedString("Your microphone is disabled. Enable it in Settings.", comment: "")
+        statusViewController.showMessage(message)
 
-            let actionText = NSLocalizedString("Enable access", comment: "")
-            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
-                alertController.dismiss(animated: true, completion: nil)
-                if let url = URL(string:UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
-                }
-            }
-            alertController.addAction(enableAccessAction)
-
-
-            let dismissText = NSLocalizedString("Dismiss", comment: "")
-            let dismissAction = UIAlertAction(title: dismissText, style: .default) { _ in
-                alertController.dismiss(animated: true, completion: nil)
-                self.blurView.isHidden = true
-                self.player?.play()
-            }
-            alertController.addAction(dismissAction)
-
-        }
+//        DispatchQueue.main.async {
+//            let title = NSLocalizedString("Share on Truffle", comment: "")
+//            let message = NSLocalizedString("Enable microphone access so you can start taking videos", comment: "")
+//            let alertController = self.getAlertController(title: title, message: message)
+//
+//            let actionText = NSLocalizedString("Enable access", comment: "")
+//            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
+//                alertController.dismiss(animated: true, completion: nil)
+//                if let url = URL(string:UIApplication.openSettingsURLString) {
+//                    UIApplication.shared.open(url)
+//                }
+//            }
+//            alertController.addAction(enableAccessAction)
+//
+//
+//            let dismissText = NSLocalizedString("Dismiss", comment: "")
+//            let dismissAction = UIAlertAction(title: dismissText, style: .default) { _ in
+//                alertController.dismiss(animated: true, completion: nil)
+//                self.blurView.isHidden = true
+//                self.player?.play()
+//            }
+//            alertController.addAction(dismissAction)
+//
+//            self.present(alertController, animated: true, completion: nil)
+//        }
     }
 
     @objc func updateProgress() {

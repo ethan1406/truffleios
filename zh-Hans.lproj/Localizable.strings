@@ -7,6 +7,9 @@
 "Share on Truffle" = "分享於松露";
 "Enable microphone access so you can start taking videos" = "開啟麥克風來開始拍攝";
 "Enable access" = "允許使用權";
+"Your microphone is disabled. Enable it in Settings." = "你的麥克風沒有開啟 在設定裡給予使用權";
+"Oops!" = "糟糕";
+"Truffle is a camera app! To continue, you'll need to allow Camera access in Settings" = "松露需要你的相機！請到設定給予相機的使用權";
 
 "Initializing" = "啟動中";
 "Restart Session" = "重新啟動";

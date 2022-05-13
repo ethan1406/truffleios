@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>bugsnag</key>
-	<dict>
-		<key>apiKey</key>
-		<string>260a47b9732471cf3821c013423e9cf3</string>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -28,11 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>The camera is used for augmenting reality</string>
+	<string>Use your camera to watch the wedding card transform with augmented reality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The location is used for augmenting reality</string>
+	<string>Truffle uses this to enhance your augmented reality experience.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>The microphone is required for recording</string>
+	<string>Use your microphone to record and share.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -56,5 +51,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>bugsnag</key>
+	<dict>
+		<key>apiKey</key>
+		<string>260a47b9732471cf3821c013423e9cf3</string>
+	</dict>
 </dict>
 </plist>

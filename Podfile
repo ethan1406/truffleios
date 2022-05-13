@@ -10,4 +10,12 @@ target 'Truffle' do
   pod 'SCNRecorder'
   pod 'RecordButton'
 
+  # Add the Firebase pod for Google Analytics
+  pod 'FirebaseAnalytics'
+
+  # Add the pods for any other Firebase products you want to use in your app
+  # For example, to use Firebase Authentication and Cloud Firestore
+#  pod 'FirebaseAuth'
+#  pod 'FirebaseFirestore'
+
 end

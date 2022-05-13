@@ -8,6 +8,9 @@
 "Share on Truffle" = "Share on Truffle";
 "Enable microphone access so you can start taking videos" = "Enable microphone access so you can start taking videos";
 "Enable access" = "Enable access";
+"Your microphone is disabled. Enable it in Settings." = "Your microphone is disabled. Enable it in Settings.";
+"Oops!" = "Oops!";
+"Truffle is a camera app! To continue, you'll need to allow Camera access in Settings" = "Truffle is a camera app! To continue, you'll need to allow Camera access in Settings"; 
 
 "Initializing" = "Initializing";
 "Restart Session" = "Restart Session";

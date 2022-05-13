@@ -45,7 +45,14 @@ class StatusViewController: UIViewController {
     private var messageHideTimer: Timer?
     
     private var timers: [MessageType: Timer] = [:]
-    
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        restartExperienceButton.isHidden = true
+    }
+
     // MARK: - Message Handling
 	
 	func showMessage(_ text: String, autoHide: Bool = true) {

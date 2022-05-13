@@ -7,6 +7,7 @@ Application's delegate.
 
 import ARKit
 import Bugsnag
+import FirebaseCore
 import UIKit
 
 @UIApplicationMain
@@ -14,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        configureGoogleAnalytics()
         configureBugsnag()
 
         guard ARWorldTrackingConfiguration.isSupported else {
@@ -35,5 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureBugsnag() {
         Bugsnag.start()
         //Bugsnag.notifyError(NSError(domain:"com.example", code:408, userInfo:nil))
+    }
+
+    private func configureGoogleAnalytics() {
+        FirebaseApp.configure()
     }
 }

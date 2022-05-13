@@ -11,6 +11,7 @@ import AVKit
 
 final class VideoPreviewController: UIViewController {
 
+    private var spinner = UIActivityIndicatorView(style: .large)
     private let videoURL: URL
 
     private var looper: AVPlayerLooper? = nil
@@ -48,9 +49,8 @@ final class VideoPreviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         setupVideoPlayer()
-        addButtons()
+        addViews()
 
         NotificationCenter.default.addObserver(self, selector: #selector(appCameToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
@@ -95,6 +95,17 @@ final class VideoPreviewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
+    private func addViews() {
+        addButtons()
+
+        // add spinner
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinner)
+
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
     private func addButtons() {
         view.addSubview(dismissButton)
         view.addSubview(shareButton)
@@ -123,11 +134,12 @@ final class VideoPreviewController: UIViewController {
     }
 
     @objc func share() {
+        spinner.startAnimating()
         present(
             UIActivityViewController(activityItems: [videoURL], applicationActivities: nil),
-            animated: true,
-            completion: nil
-        )
+            animated: true) {
+                self.spinner.stopAnimating()
+            }
     }
 
     @objc func dismissScreen() {

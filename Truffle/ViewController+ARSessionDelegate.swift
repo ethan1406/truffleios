@@ -24,20 +24,39 @@ extension ViewController: ARSessionDelegate {
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         guard error is ARError else { return }
-        
-        let errorWithInfo = error as NSError
-        let messages = [
-            errorWithInfo.localizedDescription,
-            errorWithInfo.localizedFailureReason,
-            errorWithInfo.localizedRecoverySuggestion
-        ]
-        
-        // Use `flatMap(_:)` to remove optional error messages.
-        let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
-        
-        DispatchQueue.main.async {
-            let message = NSLocalizedString("Something went wrong.", comment: "")
-            self.displayErrorMessage(title: message, message: errorMessage, shouldAddRestartAction: true)
+        guard let arError = error as? ARError else { return }
+
+        if arError.code == .cameraUnauthorized {
+            let message = NSLocalizedString("Oops!", comment: "")
+            let description = NSLocalizedString("Truffle is a camera app! To continue, you'll need to allow Camera access in Settings", comment: "")
+            let alertController = self.getAlertController(title: message, message: description)
+
+            let actionText = NSLocalizedString("Enable access", comment: "")
+            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
+                if let url = URL(string:UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            alertController.addAction(enableAccessAction)
+
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
+        } else {
+            let errorWithInfo = error as NSError
+            let messages = [
+                errorWithInfo.localizedDescription,
+                errorWithInfo.localizedFailureReason,
+                errorWithInfo.localizedRecoverySuggestion
+            ]
+
+            // Use `flatMap(_:)` to remove optional error messages.
+            let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
+
+            DispatchQueue.main.async {
+                let message = NSLocalizedString("Something went wrong.", comment: "")
+                self.displayErrorMessage(title: message, message: errorMessage, shouldAddRestartAction: true)
+            }
         }
     }
     

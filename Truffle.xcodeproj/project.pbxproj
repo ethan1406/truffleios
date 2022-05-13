@@ -16,6 +16,7 @@
 		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 844AEDA4281FADD200095E01 /* wedding_card.mp4 */; };
 		8485143E282CD52900344FA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84851440282CD52900344FA1 /* InfoPlist.strings */; };
+		84851444282E399600344FA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84851443282E399600344FA1 /* GoogleService-Info.plist */; };
 		84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */; };
 		84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */; };
 		84C88965282A38CB006C002B /* fred.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 84C88964282A38CB006C002B /* fred.MOV */; };
@@ -44,6 +45,7 @@
 		8485143F282CD52900344FA1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		84851441282CD53300344FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84851442282CD53500344FA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		84851443282E399600344FA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
 		84C88964282A38CB006C002B /* fred.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = fred.MOV; path = ../../../Desktop/fred.MOV; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				3929C4921E89EC2C00E00B60 /* Assets.xcassets */,
 				3929C4971E89EC2C00E00B60 /* Info.plist */,
+				84851443282E399600344FA1 /* GoogleService-Info.plist */,
 				3929C48F1E89EC2C00E00B60 /* Main.storyboard */,
 				39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */,
 			);
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C88965282A38CB006C002B /* fred.MOV in Resources */,
+				84851444282E399600344FA1 /* GoogleService-Info.plist in Resources */,
 				8485143E282CD52900344FA1 /* InfoPlist.strings in Resources */,
 				84C8896B282CBD7B006C002B /* Localizable.strings in Resources */,
 				844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */,
@@ -289,16 +293,32 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Truffle/Pods-Truffle-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bugsnag/Bugsnag.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MTDMulticastDelegate/MulticastDelegate.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/RecordButton/RecordButton.framework",
 				"${BUILT_PRODUCTS_DIR}/SCNRecorder/SCNRecorder.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bugsnag.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MulticastDelegate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecordButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCNRecorder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
