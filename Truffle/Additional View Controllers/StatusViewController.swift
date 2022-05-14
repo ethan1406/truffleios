@@ -105,7 +105,7 @@ class StatusViewController: UIViewController {
 		let timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [unowned self] _ in
             self.cancelScheduledMessage(for: .trackingStateEscalation)
 
-            var message = trackingState.presentationString
+            let message = trackingState.presentationString
 
             self.showMessage(message, autoHide: false)
 		})

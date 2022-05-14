@@ -6,6 +6,7 @@
 //  Copyright © 2022 Apple. All rights reserved.
 //
 
+import FirebaseAnalytics
 import Foundation
 import AVKit
 
@@ -82,6 +83,8 @@ final class VideoPreviewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        Analytics.logEvent("preview_edit_screen_viewed", parameters: [:])
     }
 
 
@@ -134,6 +137,7 @@ final class VideoPreviewController: UIViewController {
     }
 
     @objc func share() {
+        Analytics.logEvent("preview_edit_share_button_tapped", parameters: [:])
         spinner.startAnimating()
         present(
             UIActivityViewController(activityItems: [videoURL], applicationActivities: nil),
@@ -143,6 +147,8 @@ final class VideoPreviewController: UIViewController {
     }
 
     @objc func dismissScreen() {
+
+        Analytics.logEvent("preview_edit_dismiss_button_tapped", parameters: [:])
         dismiss(animated: true)
     }
 

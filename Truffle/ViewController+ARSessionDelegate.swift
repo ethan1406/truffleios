@@ -6,6 +6,7 @@ Session status management for `ViewController`.
 */
 
 import ARKit
+import FirebaseAnalytics
 
 extension ViewController: ARSessionDelegate {
     
@@ -18,6 +19,7 @@ extension ViewController: ARSessionDelegate {
         case .notAvailable, .limited:
             statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)
         case .normal:
+            Analytics.logEvent("tracking_normal", parameters: [:])
             statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
         }
     }
@@ -34,12 +36,20 @@ extension ViewController: ARSessionDelegate {
             let actionText = NSLocalizedString("Enable access", comment: "")
             let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
                 if let url = URL(string:UIApplication.openSettingsURLString) {
+                    Analytics.logEvent("alert_camera_permission_button_tapped", parameters: [
+                        "url": url
+                    ])
                     UIApplication.shared.open(url)
                 }
             }
             alertController.addAction(enableAccessAction)
 
             DispatchQueue.main.async {
+                Analytics.logEvent("alert_dialog_viewed", parameters: [
+                    "type": "camera_permission",
+                    "title": message,
+                    "message": description
+                ])
                 self.present(alertController, animated: true, completion: nil)
             }
         } else {
@@ -86,6 +96,12 @@ extension ViewController: ARSessionDelegate {
         let alertController = getAlertController(title: title, message: message, shouldAddRestartAction: shouldAddRestartAction)
 
         present(alertController, animated: true, completion: nil)
+
+        Analytics.logEvent("alert_dialog_viewed", parameters: [
+            "type": "error",
+            "title": title,
+            "message": message
+        ])
     }
 
     func getAlertController(title: String, message: String, shouldAddRestartAction: Bool = false) -> UIAlertController {
@@ -101,6 +117,8 @@ extension ViewController: ARSessionDelegate {
                 alertController.dismiss(animated: true, completion: nil)
                 self.blurView.isHidden = true
                 self.resetTracking()
+
+                Analytics.logEvent("alert_reset_button_tapped", parameters: [:])
             }
             alertController.addAction(restartAction)
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 private let reuseIdentifier = "cell"
 
@@ -82,9 +83,10 @@ class AttachmentCollectionViewController: UICollectionViewController {
         //cell.setImage(attachment.image)
         
         cell.setTouchHandler {link in
-            print("selected")
-            print(indexPath)
             if let url = URL(string: attachment.link) {
+                Analytics.logEvent("attachment_link_button_tapped", parameters: [
+                    "url": url
+                ])
                 UIApplication.shared.open(url)
             }
         }

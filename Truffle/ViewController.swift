@@ -77,7 +77,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Start the AR experience
         resetTracking()
 
-        //Analytics.logEvent(AnalyticsEventSelectContent)
+        Analytics.logEvent("home_screen_viewed", parameters: [:])
 	}
 
 
@@ -201,6 +201,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             videoPlaneNode.runAction(self.imageHighlightAction)
             node.addChildNode(videoPlaneNode)
 
+            Analytics.logEvent("video_viewed", parameters: [
+                "type": "local"
+            ])
+
 
             attachmentPlaneNode.geometry?.firstMaterial = collectionViewMaterial
             //attachmentPlaneNode.geometry?.firstMaterial?.fillMode = .fill
@@ -220,6 +224,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             // Add the plane visualization to the scene.
             node.addChildNode(attachmentPlaneNode)
+
+            Analytics.logEvent("attachment_links_viewed", parameters: [
+                "type": "local",
+                "count":self.attachmentCollectionViewController.attachments.count
+            ])
         }
     }
 
@@ -271,6 +280,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @objc private func playerItemDidReachEnd(notification: Notification) {
         if let playerItem = notification.object as? AVPlayerItem {
             playerItem.seek(to: .zero, completionHandler: nil)
+
+            Analytics.logEvent("home_screen_video_restarting", parameters: [
+                "type": "local"
+            ])
         }
     }
 
@@ -309,6 +322,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private func displayMicrophonePermissionRequestMessage() {
         let message = NSLocalizedString("Your microphone is disabled. Enable it in Settings.", comment: "")
         statusViewController.showMessage(message)
+
+        Analytics.logEvent("status_message_viewed", parameters: [
+            "type": "microphone_permission",
+            "message": message,
+        ])
 
 //        DispatchQueue.main.async {
 //            let title = NSLocalizedString("Share on Truffle", comment: "")
