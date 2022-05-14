@@ -26,6 +26,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private var recordButton : RecordButton!
     var progressTimer : Timer?
     var progress : CGFloat! = 0
+    var timeElapsed = 0.0
+    private let maxDuration = CGFloat(15) // Max duration of the recordButton
 
     // The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
@@ -287,7 +289,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 
-
     @objc func record() {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
@@ -311,11 +312,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     private func startRecording() {
-        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(ViewController.updateProgress), userInfo: nil, repeats: true)
+        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(ViewController.updateProgress), userInfo: nil, repeats: true)
         do {
             try self.sceneView.startVideoRecording()
         } catch {
-
+            
         }
     }
 
@@ -327,45 +328,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             "type": "microphone_permission",
             "message": message,
         ])
-
-//        DispatchQueue.main.async {
-//            let title = NSLocalizedString("Share on Truffle", comment: "")
-//            let message = NSLocalizedString("Enable microphone access so you can start taking videos", comment: "")
-//            let alertController = self.getAlertController(title: title, message: message)
-//
-//            let actionText = NSLocalizedString("Enable access", comment: "")
-//            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
-//                alertController.dismiss(animated: true, completion: nil)
-//                if let url = URL(string:UIApplication.openSettingsURLString) {
-//                    UIApplication.shared.open(url)
-//                }
-//            }
-//            alertController.addAction(enableAccessAction)
-//
-//
-//            let dismissText = NSLocalizedString("Dismiss", comment: "")
-//            let dismissAction = UIAlertAction(title: dismissText, style: .default) { _ in
-//                alertController.dismiss(animated: true, completion: nil)
-//                self.blurView.isHidden = true
-//                self.player?.play()
-//            }
-//            alertController.addAction(dismissAction)
-//
-//            self.present(alertController, animated: true, completion: nil)
-//        }
     }
 
     @objc func updateProgress() {
-
-        let maxDuration = CGFloat(5) // Max duration of the recordButton
-
-        progress = progress + (CGFloat(0.05) / maxDuration)
+        timeElapsed = timeElapsed + 0.02
+        progress = progress + (CGFloat(0.02) / maxDuration)
         recordButton.setProgress(progress)
 
         if progress >= 1 {
-            self.progressTimer?.invalidate()
+            stop()
         }
-
     }
 
     @objc func stop() {
@@ -374,15 +346,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
 
         progressTimer.invalidate()
-        self.progress = 0
 
-        self.sceneView.finishVideoRecording { (videoRecording) in
-          /* Process the captured video. Main thread. */
-
-            let controller = VideoPreviewController(videoURL: videoRecording.url)
-            controller.modalPresentationStyle = .fullScreen
-            self.present(controller, animated: true)
+        if (self.timeElapsed < 1) {
+            DispatchQueue.main.async {
+                self.statusViewController.showMessage("Press the button longer to record")
+            }
+        } else {
+            self.sceneView.finishVideoRecording { (videoRecording) in
+              /* Process the captured video. Main thread. */
+                let controller = VideoPreviewController(videoURL: videoRecording.url)
+                controller.modalPresentationStyle = .fullScreen
+                self.present(controller, animated: true)
+            }
         }
+
+        self.timeElapsed = 0
+        self.progress = 0
     }
 
     private func setupRecordButton() {
