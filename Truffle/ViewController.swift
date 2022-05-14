@@ -5,6 +5,7 @@ Abstract:
 Main view controller for the AR experience.
 */
 
+import Bugsnag
 import ARKit
 import AVFoundation
 import AVKit
@@ -316,7 +317,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         do {
             try self.sceneView.startVideoRecording()
         } catch {
-            
+            Bugsnag.notifyError(error)
+            DispatchQueue.main.async {
+                let message = NSLocalizedString("Please try again.", comment: "")
+                self.statusViewController.showMessage(message)
+            }
         }
     }
 
@@ -349,7 +354,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         if (self.timeElapsed < 1) {
             DispatchQueue.main.async {
-                self.statusViewController.showMessage("Press the button longer to record")
+                let message = NSLocalizedString("Press the button longer to record", comment: "")
+                self.statusViewController.showMessage(message)
             }
         } else {
             self.sceneView.finishVideoRecording { (videoRecording) in

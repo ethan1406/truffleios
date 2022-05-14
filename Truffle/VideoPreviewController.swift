@@ -147,7 +147,6 @@ final class VideoPreviewController: UIViewController {
     }
 
     @objc func dismissScreen() {
-
         Analytics.logEvent("preview_edit_dismiss_button_tapped", parameters: [:])
         dismiss(animated: true)
     }

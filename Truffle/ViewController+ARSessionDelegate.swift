@@ -5,6 +5,7 @@ Abstract:
 Session status management for `ViewController`.
 */
 
+import Bugsnag
 import ARKit
 import FirebaseAnalytics
 
@@ -17,9 +18,14 @@ extension ViewController: ARSessionDelegate {
         
         switch camera.trackingState {
         case .notAvailable, .limited:
+            Analytics.logEvent("tracking", parameters: [
+                "status": "unavailable"
+            ])
             statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)
         case .normal:
-            Analytics.logEvent("tracking_normal", parameters: [:])
+            Analytics.logEvent("tracking", parameters: [
+                "status": "normal"
+            ])
             statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
         }
     }
@@ -27,6 +33,8 @@ extension ViewController: ARSessionDelegate {
     func session(_ session: ARSession, didFailWithError error: Error) {
         guard error is ARError else { return }
         guard let arError = error as? ARError else { return }
+
+        Bugsnag.notifyError(error)
 
         if arError.code == .cameraUnauthorized {
             let message = NSLocalizedString("Oops!", comment: "")
@@ -90,7 +98,6 @@ extension ViewController: ARSessionDelegate {
     }
     
     // MARK: - Error handling
-    
     func displayErrorMessage(title: String, message: String, shouldAddRestartAction: Bool = false) {
 
         let alertController = getAlertController(title: title, message: message, shouldAddRestartAction: shouldAddRestartAction)
@@ -141,5 +148,4 @@ extension ViewController: ARSessionDelegate {
             self.isRestartAvailable = true
         }
     }
-    
 }
