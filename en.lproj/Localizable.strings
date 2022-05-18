@@ -4,7 +4,7 @@
 "Please place the card before the camera" = "Please place the card before the camera";
 "Something went wrong." = "Something went wrong.";
 "Dismiss" = "Dismiss";
-"Detected image %@" = "Detected image %@";
+"Detected %@" = "Detected %@";
 "Share on Truffle" = "Share on Truffle";
 "Enable microphone access so you can start taking videos" = "Enable microphone access so you can start taking videos";
 "Enable access" = "Enable access";

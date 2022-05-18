@@ -30,6 +30,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var timeElapsed = 0.0
     private let maxDuration = CGFloat(15) // Max duration of the recordButton
 
+
+    // video dimensions
+    private let videoHeight: CGFloat = 100
+    private let videoWidth: CGFloat = 400
+
     // The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
         return children.lazy.compactMap({ $0 as? StatusViewController }).first!
@@ -69,7 +74,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         setupAttachmentCollectionView()
 
         FileManager.default.clearTmpVideos()
+
+        setupBackgroundObserver()
     }
+
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -96,7 +104,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
          */
 
         UIApplication.shared.windows.forEach {
-            if $0.frame.width == 650 && $0.frame.height == 100 {
+            if $0.frame.width == videoWidth && $0.frame.height == videoHeight {
                 $0.isHidden = true
             }
         }
@@ -108,7 +116,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        clearVideoObserver()
+        clearObservers()
     }
 
     // MARK: - Session management (Image detection setup)
@@ -119,6 +127,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     /// Creates a new AR configuration to run on the `session`.
     /// - Tag: ARReferenceImage-Loading
 	func resetTracking() {
+        resetVideoPlayer()
         
         guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
             fatalError("Missing expected asset catalog resources.")
@@ -166,15 +175,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         loopVideo()
 
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             let imageName = referenceImage.name ?? ""
             self.statusViewController.cancelAllScheduledMessages()
-            let message = String(format: NSLocalizedString("Detected image %@", comment: ""), "\(imageName)")
+            let message = String(format: NSLocalizedString("Detected %@", comment: ""), "\(imageName)")
             self.statusViewController.showMessage(message)
 
             // set material to custom views
-            self.attachmentCollectionViewController.view.frame.size.height = 100
-            self.attachmentCollectionViewController.view.frame.size.width = 650
+            self.attachmentCollectionViewController.view.frame.size.height = self.videoHeight
+            self.attachmentCollectionViewController.view.frame.size.width = self.videoWidth
 
             collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
             videoMaterial.diffuse.contents = avPlayer
@@ -182,8 +191,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a plane to visualize the initial position of the detected image.
         let imageWidth = referenceImage.physicalSize.width
         let imageHeight = referenceImage.physicalSize.height
-        let attachmentPlaneGeometry = SCNPlane(width: imageWidth * 1.5,
-                                               height: imageWidth / 5)
+        let planeHeight = imageWidth / 2
+        let attachmentPlaneGeometry = SCNPlane(width: planeHeight * self.videoWidth/self.videoHeight,
+                                               height: planeHeight)
 
         let attachmentPlaneNode = SCNNode(geometry: attachmentPlaneGeometry)
 
@@ -230,25 +240,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
                 "type": "local",
-                "count":self.attachmentCollectionViewController.attachments.count
+                "count": self.attachmentCollectionViewController.attachments.count
             ])
         }
     }
 
+    private let opacityIncrementInterval = 0.20
+
     private var imageHighlightAction: SCNAction {
         return .sequence([
-            .wait(duration: 0.20),
-            .fadeOpacity(to: 0.35, duration: 0.20),
-            .fadeOpacity(to: 0.55, duration: 0.20),
-            .fadeOpacity(to: 0.75, duration: 0.20),
-            .fadeOpacity(to: 0.95, duration: 0.20),
-            .fadeOpacity(to: 1.00, duration: 0.20)
+            .wait(duration: opacityIncrementInterval),
+            .fadeOpacity(to: 0.35, duration: opacityIncrementInterval),
+            .fadeOpacity(to: 0.55, duration: opacityIncrementInterval),
+            .fadeOpacity(to: 0.75, duration: opacityIncrementInterval),
+            .fadeOpacity(to: 0.95, duration: opacityIncrementInterval),
+            .fadeOpacity(to: 1.00, duration: opacityIncrementInterval)
         ])
     }
 
     private func createVideoPlayer() -> AVPlayer? {
         //video node
-        guard let path = Bundle.main.path(forResource: "fred", ofType:"MOV") else {
+        guard let path = Bundle.main.path(forResource: "wedding_card", ofType:"mp4") else {
             debugPrint("wedding_card not found")
             return nil
         }
@@ -275,6 +287,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         player.play()
     }
 
+    private func clearObservers() {
+        clearVideoObserver()
+
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+
     private func clearVideoObserver() {
         NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
     }
@@ -291,21 +309,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     @objc func record() {
+        var permissionStatus = ""
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
+            permissionStatus = "granted"
             startRecording()
-        case .undetermined, .denied:
+        case .denied:
+            permissionStatus = "denied"
+            startRecording()
+        case .undetermined:
+            permissionStatus = "undetermined"
             requestMicrophonePermission()
         @unknown default:
             break
         }
+
+        Analytics.logEvent("start_recording", parameters: [
+            "microphone_permission_status": permissionStatus
+        ])
     }
 
     private func requestMicrophonePermission() {
         player?.pause()
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
             self.player?.play()
-            self.startRecording()
             if !granted {
                 self.displayMicrophonePermissionRequestMessage()
             }
@@ -340,24 +367,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         progress = progress + (CGFloat(0.02) / maxDuration)
         recordButton.setProgress(progress)
 
-        if progress >= 1 {
+        if progress > 1 {
             stop()
         }
     }
 
-    @objc func stop() {
+    private func stopRecording(_ didEnterBackground: Bool) {
+        Analytics.logEvent("stop_recording", parameters: [
+            "didEnterBackground": didEnterBackground
+        ])
+
         guard let progressTimer = progressTimer else {
             return
         }
 
         progressTimer.invalidate()
 
-        if (self.timeElapsed < 1) {
+        if self.timeElapsed < 1 && !didEnterBackground {
             DispatchQueue.main.async {
                 let message = NSLocalizedString("Press the button longer to record", comment: "")
                 self.statusViewController.showMessage(message)
             }
-        } else {
+        } else if !didEnterBackground {
             self.sceneView.finishVideoRecording { (videoRecording) in
               /* Process the captured video. Main thread. */
                 let controller = VideoPreviewController(videoURL: videoRecording.url)
@@ -368,6 +399,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         self.timeElapsed = 0
         self.progress = 0
+        recordButton.buttonState = .idle
+    }
+
+    @objc func stop() {
+        stopRecording(false)
     }
 
     private func setupRecordButton() {
@@ -388,5 +424,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         attachmentCollectionViewController = AttachmentCollectionViewController(collectionViewLayout: attachmentCollectionViewLayout)
         attachmentCollectionViewController.view.isOpaque = false
+    }
+
+
+    private func setupBackgroundObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appEnterToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+
+    @objc func appEnterToBackground() {
+        stopRecording(true)
+    }
+
+    func resetVideoPlayer() {
+        self.player?.pause()
+        self.player?.replaceCurrentItem(with: nil)
+        self.player = nil
     }
 }

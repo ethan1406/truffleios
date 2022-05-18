@@ -11,28 +11,28 @@ import FirebaseAnalytics
 
 private let reuseIdentifier = "cell"
 
-private let itemsPerRow: CGFloat = 2
+private let itemsPerRow: CGFloat = 3
 
 private let sectionInsets = UIEdgeInsets(
   top: 50.0,
-  left: 20.0,
+  left: 10.0,
   bottom: 50.0,
-  right: 20.0)
+  right: 10.0)
 
 
 class AttachmentCollectionViewController: UICollectionViewController {
 
     var attachments = [
-        Attachment(title: "wedding pics", image: "ic_calendar", link: "https://www.trufflear.com/"),
-        Attachment(title: "Schedule", image: "ic_gallery", link: "https://www.trufflear.com/"),
-        Attachment(title: "Registry", image: "ic_instagram", link: "https://www.trufflear.com/"),
-        Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
-        Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
-        Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
-        Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
-        Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
-        Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
-    ]
+        Attachment(title: "wedding pics", image: "ic_instagram", link: "https://www.trufflear.com/wedding-cards"),
+        Attachment(title: "Schedule", image: "ic_calendar", link: "https://www.zola.com/wedding/phoebeandethan2022"),
+        Attachment(title: "Registry", image: "ic_gallery", link: "https://www.zola.com/wedding/phoebeandethan2022"),
+//        Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//        Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//        Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//        Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//        Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
+//        Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
+]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,8 @@ class AttachmentCollectionViewController: UICollectionViewController {
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.showsVerticalScrollIndicator = false
         // Do any additional setup after loading the view.
-        self.collectionView.isMultipleTouchEnabled = false
     }
+
 
     /*
     // MARK: - Navigation
@@ -80,9 +80,10 @@ class AttachmentCollectionViewController: UICollectionViewController {
         let attachment = attachments[indexPath.row]
         cell.setTitle(attachment.title)
         cell.link = attachment.link
-        //cell.setImage(attachment.image)
+        cell.setImage(attachment.image)
         
         cell.setTouchHandler {link in
+            print("testing 123")
             if let url = URL(string: attachment.link) {
                 Analytics.logEvent("attachment_link_button_tapped", parameters: [
                     "url": url
@@ -136,7 +137,7 @@ extension AttachmentCollectionViewController: UICollectionViewDelegateFlowLayout
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
 
-          return CGSize(width: widthPerItem, height: view.frame.height)
+        return CGSize(width: widthPerItem, height: view.frame.height/2.5)
       }
 
       // 3

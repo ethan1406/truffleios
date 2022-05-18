@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func configureBugsnag() {
         Bugsnag.start()
-        //Bugsnag.notifyError(NSError(domain:"com.example", code:408, userInfo:nil))
     }
 
     private func configureGoogleAnalytics() {

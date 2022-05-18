@@ -79,6 +79,8 @@ extension ViewController: ARSessionDelegate {
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
+        resetVideoPlayer()
+
         blurView.isHidden = false
         let message = NSLocalizedString("Resetting Session", comment: "")
         statusViewController.showMessage(message, autoHide: false)

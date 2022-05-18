@@ -30,7 +30,7 @@ class ArCollectionViewCell: UICollectionViewCell {
 
     func setTitle(_ title: String) {
         var container = AttributeContainer()
-        container.font = UIFont.boldSystemFont(ofSize: 26)
+        container.font = UIFont.boldSystemFont(ofSize: 11)
 
         linkButton.configuration?.attributedTitle = AttributedString(title, attributes: container)
     }
@@ -73,8 +73,8 @@ class ArCollectionViewCell: UICollectionViewCell {
 
     private static func createLinkButtonConfiguration() -> UIButton.Configuration {
         var configuration = UIButton.Configuration.filled()
-        configuration.titlePadding = 20
-        configuration.imagePadding = 20
+        configuration.titlePadding = 5
+        configuration.imagePadding = 5
         configuration.cornerStyle = .capsule
 
         return configuration
