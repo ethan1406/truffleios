@@ -32,8 +32,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
     // video dimensions
-    private let videoHeight: CGFloat = 100
-    private let videoWidth: CGFloat = 400
+    private let attachmentViewHeight: CGFloat = 100
+    private let attachmentViewWidth: CGFloat = 300
 
     // effect dimensions
     private let effectHeight: CGFloat = 600
@@ -108,7 +108,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
          */
 
         UIApplication.shared.windows.forEach {
-            if ($0.frame.width == videoWidth && $0.frame.height == videoHeight) || ($0.frame.width == effectWidth && $0.frame.height == effectHeight) {
+            if ($0.frame.width == attachmentViewWidth && $0.frame.height == attachmentViewHeight) || ($0.frame.width == effectWidth && $0.frame.height == effectHeight) {
                 $0.isHidden = true
             }
         }
@@ -187,8 +187,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.statusViewController.showMessage(message)
 
             // set material to custom views
-            self.attachmentCollectionViewController.view.frame.size.height = self.videoHeight
-            self.attachmentCollectionViewController.view.frame.size.width = self.videoWidth
+            self.attachmentCollectionViewController.view.frame.size.height = self.attachmentViewHeight
+            self.attachmentCollectionViewController.view.frame.size.width = self.attachmentViewWidth
 
             collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
             videoMaterial.diffuse.contents = avPlayer
@@ -199,7 +199,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
 
         updateQueue.async { [self] in
-            node.addChildNode(createVideoNode(width: referenceImage.physicalSize.width * 2, height: referenceImage.physicalSize.width * 2 * 720/1280, material: videoMaterial, position: SCNVector3(x: 0, y: 0.01, z: 0)))
+            let videoWidth = referenceImage.physicalSize.width * 1.12
+            node.addChildNode(createVideoNode(width: videoWidth, height: videoWidth * 720/1280, material: videoMaterial, position: SCNVector3(x: 0, y: 0, z: 0)))
 
             Analytics.logEvent("video_viewed", parameters: [
                 "type": "local"
@@ -207,7 +208,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
             let attachmentHeight = referenceImage.physicalSize.width/2
-            node.addChildNode(createAttachmentNode(width: attachmentHeight * self.videoWidth/self.videoHeight, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
+            node.addChildNode(createAttachmentNode(width: attachmentHeight * self.attachmentViewWidth/self.attachmentViewHeight, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
                 "type": "local",
@@ -215,12 +216,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             ])
 
 
-            node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * -0.35)))
+            node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: 0.00, z: Float(referenceImage.physicalSize.height) * -0.45)))
         }
     }
 
 
-    private let opacityIncrementInterval = 0.20
+    private let opacityIncrementInterval = 0.25
 
     private var imageHighlightAction: SCNAction {
         return .sequence([

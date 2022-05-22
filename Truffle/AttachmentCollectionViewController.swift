@@ -11,7 +11,7 @@ import FirebaseAnalytics
 
 private let reuseIdentifier = "cell"
 
-private let itemsPerRow: CGFloat = 3
+private let itemsPerRow: CGFloat = 2
 
 private let sectionInsets = UIEdgeInsets(
   top: 50.0,

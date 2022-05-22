@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "wedding_invitation_cover_1.jpg",
+      "filename" : "wedding_invitation_cover_3.jpg",
       "idiom" : "universal"
     }
   ],
@@ -10,6 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "width" : 0.129
+    "width" : 0.13729805013927576
   }
 }
