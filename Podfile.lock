@@ -78,6 +78,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
+  - lottie-ios (3.3.0)
   - MTDMulticastDelegate (1.0.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -92,6 +93,7 @@ PODS:
 DEPENDENCIES:
   - Bugsnag
   - FirebaseAnalytics
+  - lottie-ios
   - RecordButton
   - SCNRecorder
 
@@ -106,6 +108,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - lottie-ios
     - MTDMulticastDelegate
     - nanopb
     - PromisesObjC
@@ -122,12 +125,13 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 2c2792d43ebdea0524adbc90cba9139721f3039b
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   MTDMulticastDelegate: dcedff914c281710e3faa64b79ff775741f25b4b
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   RecordButton: 76677be0f4b94f8a387454a23b4b64bd9b6c0e51
   SCNRecorder: f1891098c0ea72fe166a1c10fc2e5a4e3dd8c9a5
 
-PODFILE CHECKSUM: 20c0aa454b7c34e1e01f938a273c2817bf8dc18d
+PODFILE CHECKSUM: 786ef086525dff29e039133cafdacc4b0befc77c
 
 COCOAPODS: 1.11.3

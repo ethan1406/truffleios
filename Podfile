@@ -9,6 +9,7 @@ target 'Truffle' do
   pod 'Bugsnag'
   pod 'SCNRecorder'
   pod 'RecordButton'
+  pod 'lottie-ios'
 
   # Add the Firebase pod for Google Analytics
   pod 'FirebaseAnalytics'

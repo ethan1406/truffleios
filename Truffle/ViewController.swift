@@ -35,6 +35,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private let videoHeight: CGFloat = 100
     private let videoWidth: CGFloat = 400
 
+    // effect dimensions
+    private let effectHeight: CGFloat = 600
+    private let effectWidth: CGFloat = 600
+
     // The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
         return children.lazy.compactMap({ $0 as? StatusViewController }).first!
@@ -104,7 +108,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
          */
 
         UIApplication.shared.windows.forEach {
-            if $0.frame.width == videoWidth && $0.frame.height == videoHeight {
+            if ($0.frame.width == videoWidth && $0.frame.height == videoHeight) || ($0.frame.width == effectWidth && $0.frame.height == effectHeight) {
                 $0.isHidden = true
             }
         }
@@ -160,9 +164,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let imageAnchor = anchor as? ARImageAnchor else { return }
         let referenceImage = imageAnchor.referenceImage
 
-        // create material
+        // create materials
         let collectionViewMaterial = SCNMaterial()
         let videoMaterial = SCNMaterial()
+        let effectMaterial = SCNMaterial()
 
         // create video player
         if (self.player == nil) {
@@ -187,63 +192,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
             videoMaterial.diffuse.contents = avPlayer
-        }
-        // Create a plane to visualize the initial position of the detected image.
-        let imageWidth = referenceImage.physicalSize.width
-        let imageHeight = referenceImage.physicalSize.height
-        let planeHeight = imageWidth / 2
-        let attachmentPlaneGeometry = SCNPlane(width: planeHeight * self.videoWidth/self.videoHeight,
-                                               height: planeHeight)
 
-        let attachmentPlaneNode = SCNNode(geometry: attachmentPlaneGeometry)
+            //
+            let effectView = EffectView(frame: CGRect(x: 0, y: 0, width: effectWidth, height: effectHeight))
+            effectMaterial.diffuse.contents = effectView
+        }
 
         updateQueue.async { [self] in
-            // Add video to the scene
-            let videoPlaneGeometry = SCNPlane(width: referenceImage.physicalSize.width * 2,
-                                     height: referenceImage.physicalSize.width * 2 * 720/1280)
-
-
-            let videoPlaneNode = SCNNode(geometry: videoPlaneGeometry)
-            videoPlaneNode.geometry?.firstMaterial = videoMaterial
-
-            videoPlaneNode.eulerAngles.x = -.pi / 2
-            attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.01, z: 0)
-
-            // add animation
-            videoPlaneNode.opacity = 0.25
-            videoPlaneNode.runAction(self.imageHighlightAction)
-            node.addChildNode(videoPlaneNode)
+            node.addChildNode(createVideoNode(width: referenceImage.physicalSize.width * 2, height: referenceImage.physicalSize.width * 2 * 720/1280, material: videoMaterial, position: SCNVector3(x: 0, y: 0.01, z: 0)))
 
             Analytics.logEvent("video_viewed", parameters: [
                 "type": "local"
             ])
 
 
-            attachmentPlaneNode.geometry?.firstMaterial = collectionViewMaterial
-            //attachmentPlaneNode.geometry?.firstMaterial?.fillMode = .fill
-
-            /*
-             `SCNPlane` is vertically oriented in its local coordinate space, but
-             `ARImageAnchor` assumes the image is horizontal in its local space, so
-             rotate the plane to match.
-             */
-            attachmentPlaneNode.eulerAngles.x = -.pi / 2
-            attachmentPlaneNode.position = SCNVector3(x: 0, y: 0.01, z: Float(imageHeight) * 0.75)
-
-
-            // add animation
-            attachmentPlaneNode.opacity = 0.25
-            attachmentPlaneNode.runAction(self.imageHighlightAction)
-
-            // Add the plane visualization to the scene.
-            node.addChildNode(attachmentPlaneNode)
+            let attachmentHeight = referenceImage.physicalSize.width/2
+            node.addChildNode(createAttachmentNode(width: attachmentHeight * self.videoWidth/self.videoHeight, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
                 "type": "local",
                 "count": self.attachmentCollectionViewController.attachments.count
             ])
+
+
+            node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * -0.35)))
         }
     }
+
 
     private let opacityIncrementInterval = 0.20
 
@@ -439,5 +414,42 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.player?.pause()
         self.player?.replaceCurrentItem(with: nil)
         self.player = nil
+    }
+
+    private func createVideoNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
+        let videoPlaneGeometry = SCNPlane(width: width, height: height)
+        let videoPlaneNode = SCNNode(geometry: videoPlaneGeometry)
+        videoPlaneNode.eulerAngles.x = -.pi / 2
+        videoPlaneNode.position = position
+        videoPlaneNode.geometry?.firstMaterial = material
+
+        videoPlaneNode.opacity = 0.25
+        videoPlaneNode.runAction(self.imageHighlightAction)
+
+        return videoPlaneNode
+    }
+
+
+    private func createEffectNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
+        let effectPlane = SCNPlane(width: width, height: height)
+        let effectPlaneNode = SCNNode(geometry: effectPlane)
+        effectPlaneNode.eulerAngles.x = -.pi / 2
+        effectPlaneNode.position = position
+        effectPlaneNode.geometry?.firstMaterial = material
+
+        return effectPlaneNode
+    }
+
+    private func createAttachmentNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
+        let attachmentPlaneGeometry = SCNPlane(width: width, height: height)
+        let attachmentPlaneNode = SCNNode(geometry: attachmentPlaneGeometry)
+        attachmentPlaneNode.eulerAngles.x = -.pi / 2
+        attachmentPlaneNode.position = position
+        attachmentPlaneNode.geometry?.firstMaterial = material
+
+        attachmentPlaneNode.opacity = 0.25
+        attachmentPlaneNode.runAction(self.imageHighlightAction)
+
+        return attachmentPlaneNode
     }
 }
