@@ -1,24 +1,24 @@
 
-"Look around to detect your wedding card" = "尋找喜帖中";
-"Please place the card before the camera" = "請把喜帖擺置在相機前";
-"Something went wrong." = "系統出問題";
+"Look around to detect your wedding card" = "寻找喜帖中";
+"Please place the card before the camera" = "请把喜帖摆置在相机前";
+"Something went wrong." = "系统出问题";
 "Dismiss" = "取消";
-"Detected %@" = "辨認到 %@";
-"Share on Truffle" = "分享於松露";
-"Enable microphone access so you can start taking videos" = "開啟麥克風來開始拍攝";
-"Enable access" = "允許使用權";
-"Your microphone is disabled. Enable it in Settings." = "你的麥克風沒有開啟 在設定裡給予使用權";
+"Detected %@" = "辨认到 %@";
+"Share on Truffle" = "分享于松露";
+"Enable microphone access so you can start taking videos" = "开启麦克风来开始拍摄";
+"Enable access" = "允许使用权";
+"Your microphone is disabled. Enable it in Settings." = "你的麦克风没有开启 在设定里给予使用权";
 "Oops!" = "糟糕";
-"Truffle is a camera app! To continue, you'll need to allow Camera access in Settings" = "松露需要你的相機！請到設定給予相機的使用權";
+"Truffle is a camera app! To continue, you'll need to allow Camera access in Settings" = "松露需要你的相机！请到设定给予相机的使用权";
 
-"Initializing" = "啟動中";
-"Restart Session" = "重新啟動";
-"Resetting Session" = "重新啟動中";
-"Detecting unavailable" = "暫時無法辨識";
+"Initializing" = "启动中";
+"Restart Session" = "重新启动";
+"Resetting Session" = "重新启动中";
+"Detecting unavailable" = "暂时无法辨识";
 
-"Try slowing down your movement." = "試著放慢你的動作";
-"Try pointing at a flat surface." = "試著指向一塊平面";
-"Try returning to where you were when the interruption began." = "回到中斷前的位置";
+"Try slowing down your movement." = "试着放慢你的动作";
+"Try pointing at a flat surface." = "试着指向一块平面";
+"Try returning to where you were when the interruption began." = "回到中断前的位置";
 
-"Press the button longer to record" = "按久一點";
-"Please try again." = "請再試一次";
+"Press the button longer to record" = "按久一点";
+"Please try again." = "请再试一次";
