@@ -30,7 +30,7 @@ class EffectView: UIView {
     }
 
     func addAnimation() {
-        animationView.animation = Animation.named("starfall")
+        animationView.animation = Animation.named("confetti-congratulation-sparkle")
         animationView.contentMode = .scaleAspectFit
 
         animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,8 @@ class EffectView: UIView {
         animationView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         animationView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 
-        animationView.loopMode = .loop
-        animationView.play()
+        animationView.play { (finished) in
+            self.isHidden = true
+        }
     }
 }

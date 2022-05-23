@@ -33,7 +33,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // video dimensions
     private let attachmentViewHeight: CGFloat = 100
-    private let attachmentViewWidth: CGFloat = 300
+    private let attachmentViewWidth: CGFloat = 250
 
     // effect dimensions
     private let effectHeight: CGFloat = 600
@@ -199,7 +199,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
 
         updateQueue.async { [self] in
-            let videoWidth = referenceImage.physicalSize.width * 1.12
+            let videoWidth = referenceImage.physicalSize.width * 1.2
             node.addChildNode(createVideoNode(width: videoWidth, height: videoWidth * 720/1280, material: videoMaterial, position: SCNVector3(x: 0, y: 0, z: 0)))
 
             Analytics.logEvent("video_viewed", parameters: [
@@ -216,12 +216,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             ])
 
 
-            node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: 0.00, z: Float(referenceImage.physicalSize.height) * -0.45)))
+            node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: -0.005, z: Float(referenceImage.physicalSize.height) * -0.45)))
         }
     }
 
 
-    private let opacityIncrementInterval = 0.25
+    private let opacityIncrementInterval = 0.70
 
     private var imageHighlightAction: SCNAction {
         return .sequence([

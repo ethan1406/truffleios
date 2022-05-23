@@ -25,7 +25,7 @@ class AttachmentCollectionViewController: UICollectionViewController {
     var attachments = [
         Attachment(title: "wedding pics", image: "ic_instagram", link: "https://www.trufflear.com/wedding-cards"),
         Attachment(title: "Schedule", image: "ic_calendar", link: "https://www.zola.com/wedding/phoebeandethan2022"),
-        Attachment(title: "Registry", image: "ic_gallery", link: "https://www.zola.com/wedding/phoebeandethan2022"),
+//        Attachment(title: "Registry", image: "ic_gallery", link: "https://www.zola.com/wedding/phoebeandethan2022"),
 //        Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
 //        Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
 //        Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),

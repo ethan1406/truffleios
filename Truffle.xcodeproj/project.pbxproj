@@ -21,9 +21,9 @@
 		84C8896B282CBD7B006C002B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84C8896D282CBD7B006C002B /* Localizable.strings */; };
 		84E0C5CC2828AB6F00F28759 /* FileManagerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */; };
 		84E0C5CE2828ADD100F28759 /* VideoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */; };
-		84ED76EE2839FCF20025B005 /* starfall.json in Resources */ = {isa = PBXBuildFile; fileRef = 84ED76ED2839FCF20025B005 /* starfall.json */; };
 		84ED76F02839FD4D0025B005 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED76EF2839FD4D0025B005 /* EffectView.swift */; };
 		84ED76F2283A01DA0025B005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84ED76F1283A01DA0025B005 /* GoogleService-Info.plist */; };
+		84ED76F6283AD44D0025B005 /* confetti-congratulation-sparkle.json in Resources */ = {isa = PBXBuildFile; fileRef = 84ED76F5283AD44D0025B005 /* confetti-congratulation-sparkle.json */; };
 		C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41366B81EB80DD400EC054A /* StatusViewController.swift */; };
 		C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -53,9 +53,9 @@
 		84C8896E282CBD7F006C002B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExt.swift; sourceTree = "<group>"; };
 		84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewController.swift; sourceTree = "<group>"; };
-		84ED76ED2839FCF20025B005 /* starfall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = starfall.json; path = ../../../../Downloads/starfall.json; sourceTree = "<group>"; };
 		84ED76EF2839FD4D0025B005 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
 		84ED76F1283A01DA0025B005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Truffle/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84ED76F5283AD44D0025B005 /* confetti-congratulation-sparkle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "confetti-congratulation-sparkle.json"; sourceTree = "<group>"; };
 		B8AE7549A2472F11C9D46447 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		C17E12BC981B62B3753B451B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C41366B81EB80DD400EC054A /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		3929C48A1E89EC2C00E00B60 /* Truffle */ = {
 			isa = PBXGroup;
 			children = (
-				84ED76ED2839FCF20025B005 /* starfall.json */,
+				84ED76F5283AD44D0025B005 /* confetti-congratulation-sparkle.json */,
 				84CA5F9B2827994F00DD28B9 /* models */,
 				844AEDA1281F550300095E01 /* views */,
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
@@ -258,7 +258,7 @@
 				844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */,
 				39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */,
 				3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */,
-				84ED76EE2839FCF20025B005 /* starfall.json in Resources */,
+				84ED76F6283AD44D0025B005 /* confetti-congratulation-sparkle.json in Resources */,
 				3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
