@@ -139,11 +139,16 @@ final class VideoPreviewController: UIViewController {
     @objc func share() {
         Analytics.logEvent("preview_edit_share_button_tapped", parameters: [:])
         spinner.startAnimating()
-        present(
-            UIActivityViewController(activityItems: [videoURL], applicationActivities: nil),
-            animated: true) {
-                self.spinner.stopAnimating()
-            }
+
+        let controller = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            controller.popoverPresentationController?.sourceView = shareButton
+        }
+
+        present(controller, animated: true) {
+            self.spinner.stopAnimating()
+        }
     }
 
     @objc func dismissScreen() {
