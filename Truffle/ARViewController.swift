@@ -17,7 +17,7 @@ import SCNRecorder
 import UIKit
 
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ArViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -33,7 +33,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // video dimensions
     private let attachmentViewHeight: CGFloat = 100
-    private let attachmentViewWidth: CGFloat = 250
+    private let attachmentViewWidth: CGFloat = 300
 
     // effect dimensions
     private let effectHeight: CGFloat = 600
@@ -79,7 +79,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         FileManager.default.clearTmpVideos()
 
-        setupBackgroundObserver()
+        setupObservers()
     }
 
 
@@ -94,8 +94,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         Analytics.logEvent("home_screen_viewed", parameters: [:])
 	}
-
-
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -207,7 +205,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             ])
 
 
-            let attachmentHeight = referenceImage.physicalSize.width/2
+            let attachmentHeight = referenceImage.physicalSize.width/2.5
             node.addChildNode(createAttachmentNode(width: attachmentHeight * self.attachmentViewWidth/self.attachmentViewHeight, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
@@ -267,6 +265,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         clearVideoObserver()
 
         NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     private func clearVideoObserver() {
@@ -316,7 +315,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     private func startRecording() {
-        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(ViewController.updateProgress), userInfo: nil, repeats: true)
+        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(ArViewController.updateProgress), userInfo: nil, repeats: true)
         do {
             try self.sceneView.startVideoRecording()
         } catch {
@@ -387,8 +386,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         recordButton.buttonColor = .white
         recordButton.progressColor = .red
         recordButton.closeWhenFinished = false
-        recordButton.addTarget(self, action: #selector(ViewController.record), for: .touchDown)
-        recordButton.addTarget(self, action: #selector(ViewController.stop), for: .touchUpInside)
+        recordButton.addTarget(self, action: #selector(ArViewController.record), for: .touchDown)
+        recordButton.addTarget(self, action: #selector(ArViewController.stop), for: .touchUpInside)
         recordButton.center.x = self.view.center.x
         recordButton.center.y = self.view.bounds.maxY - 85
         self.view.addSubview(recordButton)
@@ -403,12 +402,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
 
-    private func setupBackgroundObserver() {
+    private func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(appEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     @objc func appEnterToBackground() {
         stopRecording(true)
+    }
+
+    @objc func appEnterForeground() {
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        if status == AVAuthorizationStatus.denied {
+            requestVideoPermission()
+        }
     }
 
     func resetVideoPlayer() {

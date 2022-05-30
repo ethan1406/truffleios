@@ -9,7 +9,7 @@ import Bugsnag
 import ARKit
 import FirebaseAnalytics
 
-extension ViewController: ARSessionDelegate {
+extension ArViewController: ARSessionDelegate {
     
     // MARK: - ARSessionDelegate
     
@@ -34,33 +34,11 @@ extension ViewController: ARSessionDelegate {
         guard error is ARError else { return }
         guard let arError = error as? ARError else { return }
 
-        Bugsnag.notifyError(error)
-
         if arError.code == .cameraUnauthorized {
-            let message = NSLocalizedString("Oops!", comment: "")
-            let description = NSLocalizedString("Truffle is a camera app! To continue, you'll need to allow Camera access in Settings", comment: "")
-            let alertController = self.getAlertController(title: message, message: description)
-
-            let actionText = NSLocalizedString("Enable access", comment: "")
-            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
-                if let url = URL(string:UIApplication.openSettingsURLString) {
-                    Analytics.logEvent("alert_camera_permission_button_tapped", parameters: [
-                        "url": url
-                    ])
-                    UIApplication.shared.open(url)
-                }
-            }
-            alertController.addAction(enableAccessAction)
-
-            DispatchQueue.main.async {
-                Analytics.logEvent("alert_dialog_viewed", parameters: [
-                    "type": "camera_permission",
-                    "title": message,
-                    "message": description
-                ])
-                self.present(alertController, animated: true, completion: nil)
-            }
+            requestVideoPermission()
         } else {
+            Bugsnag.notifyError(error)
+
             let errorWithInfo = error as NSError
             let messages = [
                 errorWithInfo.localizedDescription,
@@ -148,6 +126,34 @@ extension ViewController: ARSessionDelegate {
         // Disable restart for a while in order to give the session time to restart.
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.isRestartAvailable = true
+        }
+    }
+
+    func requestVideoPermission() {
+        if presentedViewController == nil {
+            let message = NSLocalizedString("Oops!", comment: "")
+            let description = NSLocalizedString("Truffle is a camera app! To continue, you'll need to allow Camera access in Settings", comment: "")
+            let alertController = self.getAlertController(title: message, message: description)
+
+            let actionText = NSLocalizedString("Enable access", comment: "")
+            let enableAccessAction = UIAlertAction(title: actionText, style: .default) { _ in
+                if let url = URL(string:UIApplication.openSettingsURLString) {
+                    Analytics.logEvent("alert_camera_permission_button_tapped", parameters: [
+                        "url": url
+                    ])
+                    UIApplication.shared.open(url)
+                }
+            }
+            alertController.addAction(enableAccessAction)
+
+            DispatchQueue.main.async {
+                Analytics.logEvent("alert_dialog_viewed", parameters: [
+                    "type": "camera_permission",
+                    "title": message,
+                    "message": description
+                ])
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
 }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		34BEE1E7EECB542A93EE852F /* Pods_Truffle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF9001C64D94EADD0CD8733E /* Pods_Truffle.framework */; };
 		3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */; };
-		3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C48D1E89EC2C00E00B60 /* ViewController.swift */; };
+		3929C48E1E89EC2C00E00B60 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C48D1E89EC2C00E00B60 /* ArViewController.swift */; };
 		3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3929C48F1E89EC2C00E00B60 /* Main.storyboard */; };
 		3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3929C4921E89EC2C00E00B60 /* Assets.xcassets */; };
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
@@ -25,14 +25,14 @@
 		84ED76F2283A01DA0025B005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84ED76F1283A01DA0025B005 /* GoogleService-Info.plist */; };
 		84ED76F6283AD44D0025B005 /* confetti-congratulation-sparkle.json in Resources */ = {isa = PBXBuildFile; fileRef = 84ED76F5283AD44D0025B005 /* confetti-congratulation-sparkle.json */; };
 		C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41366B81EB80DD400EC054A /* StatusViewController.swift */; };
-		C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */; };
+		C8C12A711F29277B00B011FE /* ArViewController+ARSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C12A701F29277B00B011FE /* ArViewController+ARSessionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11063F3B1EBE651B0033EE6D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3929C4881E89EC2C00E00B60 /* Truffle AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Truffle AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3929C48D1E89EC2C00E00B60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3929C48D1E89EC2C00E00B60 /* ArViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
 		3929C4901E89EC2C00E00B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3929C4921E89EC2C00E00B60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3929C4971E89EC2C00E00B60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		B8AE7549A2472F11C9D46447 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		C17E12BC981B62B3753B451B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C41366B81EB80DD400EC054A /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
-		C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ARSessionDelegate.swift"; sourceTree = "<group>"; };
+		C8C12A701F29277B00B011FE /* ArViewController+ARSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArViewController+ARSessionDelegate.swift"; sourceTree = "<group>"; };
 		CF9001C64D94EADD0CD8733E /* Pods_Truffle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Truffle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,8 +127,8 @@
 				844AEDA1281F550300095E01 /* views */,
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */,
-				3929C48D1E89EC2C00E00B60 /* ViewController.swift */,
-				C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */,
+				3929C48D1E89EC2C00E00B60 /* ArViewController.swift */,
+				C8C12A701F29277B00B011FE /* ArViewController+ARSessionDelegate.swift */,
 				84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */,
 				84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */,
 				1488324B1EFC3EBF0043E0AB /* Additional View Controllers */,
@@ -337,10 +337,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */,
+				3929C48E1E89EC2C00E00B60 /* ArViewController.swift in Sources */,
 				84E0C5CE2828ADD100F28759 /* VideoPreviewController.swift in Sources */,
 				C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */,
-				C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */,
+				C8C12A711F29277B00B011FE /* ArViewController+ARSessionDelegate.swift in Sources */,
 				84E0C5CC2828AB6F00F28759 /* FileManagerExt.swift in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
 				84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */,
@@ -513,7 +513,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Truffle/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.01;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trufflear.trufflear;
 				PRODUCT_NAME = "Truffle AR";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -535,7 +535,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Truffle/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.01;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trufflear.trufflear;
 				PRODUCT_NAME = "Truffle AR";
 				PROVISIONING_PROFILE_SPECIFIER = "";

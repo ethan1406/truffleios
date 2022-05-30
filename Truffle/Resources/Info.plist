@@ -24,8 +24,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Use your camera to watch the wedding card transform with augmented reality.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Truffle uses this to enhance your augmented reality experience.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Use your microphone to record and share.</string>
 	<key>UILaunchStoryboardName</key>
