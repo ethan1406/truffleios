@@ -33,7 +33,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
     // video dimensions
     private let attachmentViewHeight: CGFloat = 100
-    private let attachmentViewWidth: CGFloat = 300
+    private let attachmentViewWidth: CGFloat = 260
 
     // effect dimensions
     private let effectHeight: CGFloat = 600
@@ -363,6 +363,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
                 let message = NSLocalizedString("Press the button longer to record", comment: "")
                 self.statusViewController.showMessage(message)
             }
+            self.sceneView.cancelVideoRecording()
         } else if !didEnterBackground {
             self.sceneView.finishVideoRecording { (videoRecording) in
               /* Process the captured video. Main thread. */
