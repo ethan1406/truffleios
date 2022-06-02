@@ -10,6 +10,9 @@ import Bugsnag
 import FirebaseCore
 import UIKit
 
+
+let hasOnboardedKey = "hasOnboarded"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
@@ -28,6 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 In apps where AR is an additive feature, use `isSupported` to
                 determine whether to show UI for launching AR experiences.
             """) // For details, see https://developer.apple.com/documentation/arkit
+        }
+
+
+        let hasOnboarded = UserDefaults.standard.bool(forKey: hasOnboardedKey)
+
+        if !hasOnboarded {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingScreenId")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+
         }
 
         return true

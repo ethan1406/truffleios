@@ -16,6 +16,8 @@
 		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 844AEDA4281FADD200095E01 /* wedding_card.mp4 */; };
 		8485143E282CD52900344FA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84851440282CD52900344FA1 /* InfoPlist.strings */; };
+		84C2D9F328487871008342BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2D9F228487871008342BE /* OnboardingViewController.swift */; };
+		84C2D9F5284882A0008342BE /* wedding_card_lighter_gray.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84C2D9F4284882A0008342BE /* wedding_card_lighter_gray.mp4 */; };
 		84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */; };
 		84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */; };
 		84C8896B282CBD7B006C002B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84C8896D282CBD7B006C002B /* Localizable.strings */; };
@@ -46,6 +48,8 @@
 		8485143F282CD52900344FA1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		84851441282CD53300344FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84851442282CD53500344FA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		84C2D9F228487871008342BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		84C2D9F4284882A0008342BE /* wedding_card_lighter_gray.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wedding_card_lighter_gray.mp4; sourceTree = "<group>"; };
 		84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCollectionViewController.swift; sourceTree = "<group>"; };
 		84C88968282CBCE6006C002B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 		3929C47F1E89EC2C00E00B60 = {
 			isa = PBXGroup;
 			children = (
+				84C2D9F4284882A0008342BE /* wedding_card_lighter_gray.mp4 */,
 				84ED76F1283A01DA0025B005 /* GoogleService-Info.plist */,
 				84851440282CD52900344FA1 /* InfoPlist.strings */,
 				84C8896D282CBD7B006C002B /* Localizable.strings */,
@@ -128,6 +133,7 @@
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */,
 				3929C48D1E89EC2C00E00B60 /* ArViewController.swift */,
+				84C2D9F228487871008342BE /* OnboardingViewController.swift */,
 				C8C12A701F29277B00B011FE /* ArViewController+ARSessionDelegate.swift */,
 				84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */,
 				84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */,
@@ -252,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C2D9F5284882A0008342BE /* wedding_card_lighter_gray.mp4 in Resources */,
 				8485143E282CD52900344FA1 /* InfoPlist.strings in Resources */,
 				84ED76F2283A01DA0025B005 /* GoogleService-Info.plist in Resources */,
 				84C8896B282CBD7B006C002B /* Localizable.strings in Resources */,
@@ -346,6 +353,7 @@
 				84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */,
 				84ED76F02839FD4D0025B005 /* EffectView.swift in Sources */,
 				844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */,
+				84C2D9F328487871008342BE /* OnboardingViewController.swift in Sources */,
 				84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,7 +521,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Truffle/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trufflear.trufflear;
 				PRODUCT_NAME = "Truffle AR";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -535,7 +543,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Truffle/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trufflear.trufflear;
 				PRODUCT_NAME = "Truffle AR";
 				PROVISIONING_PROFILE_SPECIFIER = "";

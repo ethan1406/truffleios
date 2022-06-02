@@ -3,7 +3,9 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -102,7 +104,7 @@
         <!--Ar View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ArViewController" customModule="Truffle_AR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="arViewControllerId" id="BV1-FR-VrT" customClass="ArViewController" customModule="Truffle_AR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RLh-bf-1c3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -153,9 +155,107 @@
             </objects>
             <point key="canvasLocation" x="56.799999999999997" y="98.50074962518741"/>
         </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="V2J-bM-if2">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingScreenId" id="e9U-5E-rgR" customClass="OnboardingViewController" customModule="Truffle_AR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VS4-iu-M0H">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3p-Re-Ig3">
+                                <rect key="frame" x="103.5" y="767" width="207" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="ksb-Fb-37B"/>
+                                </constraints>
+                                <color key="tintColor" name="PrimaryColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Continue" cornerStyle="capsule">
+                                    <backgroundConfiguration key="background"/>
+                                    <color key="baseBackgroundColor" name="PrimaryColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="continueButton:" destination="e9U-5E-rgR" eventType="touchUpInside" id="NiM-GO-coW"/>
+                                    <segue destination="BV1-FR-VrT" kind="presentation" identifier="toArView" modalPresentationStyle="fullScreen" id="zHJ-UZ-jLv"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-Ql-wZJ">
+                                <rect key="frame" x="0.0" y="410.5" width="414" height="298.5"/>
+                                <connections>
+                                    <segue destination="MvJ-ud-Pts" kind="embed" id="X8W-ZY-d9g"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Truffle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0t-SX-EYI">
+                                <rect key="frame" x="32" y="76" width="350" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccW-k7-FNA">
+                                <rect key="frame" x="32" y="132" width="350" height="107.5"/>
+                                <string key="text">Truffle brings wedding cards to life with augmented reality. To have the best experience in the app, you must have or obtain wedding cards that are partnered with Truffle2. </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w5U-av-Xt9"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" name="LightGray"/>
+                        <constraints>
+                            <constraint firstItem="h0t-SX-EYI" firstAttribute="top" secondItem="w5U-av-Xt9" secondAttribute="top" constant="32" id="8AI-fh-lee"/>
+                            <constraint firstItem="6UY-Ql-wZJ" firstAttribute="height" secondItem="VS4-iu-M0H" secondAttribute="height" multiplier="1:3" id="8dS-do-J6G"/>
+                            <constraint firstItem="ccW-k7-FNA" firstAttribute="top" secondItem="h0t-SX-EYI" secondAttribute="bottom" constant="32" id="HeP-wr-W9g"/>
+                            <constraint firstItem="6UY-Ql-wZJ" firstAttribute="trailing" secondItem="w5U-av-Xt9" secondAttribute="trailing" id="IOg-jj-d7U"/>
+                            <constraint firstItem="ccW-k7-FNA" firstAttribute="leading" secondItem="VS4-iu-M0H" secondAttribute="leading" constant="32" id="Led-bU-q8l"/>
+                            <constraint firstItem="w5U-av-Xt9" firstAttribute="bottom" secondItem="W3p-Re-Ig3" secondAttribute="bottom" constant="30" id="bqw-2d-izx"/>
+                            <constraint firstItem="6UY-Ql-wZJ" firstAttribute="leading" secondItem="w5U-av-Xt9" secondAttribute="leading" id="cXp-cl-AOi"/>
+                            <constraint firstItem="W3p-Re-Ig3" firstAttribute="top" secondItem="6UY-Ql-wZJ" secondAttribute="bottom" constant="58" id="dmO-Mv-wEI"/>
+                            <constraint firstItem="W3p-Re-Ig3" firstAttribute="width" secondItem="VS4-iu-M0H" secondAttribute="width" multiplier="1:2" id="fli-vG-YEB"/>
+                            <constraint firstItem="h0t-SX-EYI" firstAttribute="centerX" secondItem="VS4-iu-M0H" secondAttribute="centerX" id="na9-Mo-HBp"/>
+                            <constraint firstItem="w5U-av-Xt9" firstAttribute="trailing" secondItem="h0t-SX-EYI" secondAttribute="trailing" constant="32" id="sDS-fA-05Q"/>
+                            <constraint firstAttribute="trailing" secondItem="ccW-k7-FNA" secondAttribute="trailing" constant="32" id="tAy-rd-rb3"/>
+                            <constraint firstItem="W3p-Re-Ig3" firstAttribute="centerX" secondItem="VS4-iu-M0H" secondAttribute="centerX" id="tzB-wR-MFg"/>
+                            <constraint firstItem="h0t-SX-EYI" firstAttribute="leading" secondItem="w5U-av-Xt9" secondAttribute="leading" constant="32" id="w3K-rT-aeu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="ccW-k7-FNA" id="In8-m0-TTi"/>
+                        <outlet property="playerView" destination="6UY-Ql-wZJ" id="X7q-L2-ehj"/>
+                        <outlet property="titleLabel" destination="h0t-SX-EYI" id="WWh-xp-EaX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kuJ-YU-soF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1208.4112149532709" y="97.840172786177106"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eq1-Qc-kkD">
+            <objects>
+                <viewController id="MvJ-ud-Pts" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lyr-mX-TbU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="298.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hLn-Jn-wre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k5G-kh-WJu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2553" y="557"/>
+        </scene>
     </scenes>
     <resources>
         <image name="restart" width="20" height="20"/>
         <image name="restartPressed" width="20" height="20"/>
+        <namedColor name="LightGray">
+            <color red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryColor">
+            <color red="0.30199998617172241" green="0.71399998664855957" blue="0.67500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
