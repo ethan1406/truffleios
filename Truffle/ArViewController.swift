@@ -36,8 +36,10 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     private let attachmentViewWidth: CGFloat = 260
 
     // effect dimensions
-    private let effectHeight: CGFloat = 600
-    private let effectWidth: CGFloat = 600
+    private let effectHeight: CGFloat = 200
+    private let effectWidth: CGFloat = 200
+
+    private let cardService = CardTransformationService()
 
     // The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
@@ -75,10 +77,12 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             self.restartExperience()
         }
 
+        // Start the AR experience
+        resetTracking()
+
         setupAttachmentCollectionView()
 
         FileManager.default.clearTmpVideos()
-
         setupObservers()
     }
 
@@ -88,9 +92,6 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 		
 		// Prevent the screen from being dimmed to avoid interuppting the AR experience.
 		UIApplication.shared.isIdleTimerDisabled = true
-        
-        // Start the AR experience
-        resetTracking()
 
         Analytics.logEvent("home_screen_viewed", parameters: [:])
 	}
@@ -130,30 +131,44 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     /// - Tag: ARReferenceImage-Loading
 	func resetTracking() {
         resetVideoPlayer()
-        
-        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
-            fatalError("Missing expected asset catalog resources.")
 
-            // TODO bug snag tracking + return + display dialog
+        Task.init {
+            do {
+                let result = try await cardService.getCardTransformationData()
+
+                switch result {
+                case .success(let response):
+                    guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
+                        fatalError("Missing expected asset catalog resources.")
+
+                        // TODO bug snag tracking + return + display dialog
+                    }
+
+                    let configuration = ARImageTrackingConfiguration()
+
+                    switch AVAudioSession.sharedInstance().recordPermission {
+                    case .granted:
+                        configuration.providesAudioData = true
+                    case .undetermined,
+                            .denied:
+                        configuration.providesAudioData = false
+                    @unknown default:
+                        configuration.providesAudioData = false
+                    }
+
+                    configuration.trackingImages = referenceImages
+                    session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+
+                    let message = NSLocalizedString("Please place the card before the camera", comment: "")
+                    statusViewController.scheduleMessage(message, inSeconds: 7.5, messageType: .contentPlacement)
+                case .failure(.genericError):
+                    print("error")
+                }
+
+            } catch {
+                print("error")
+            }
         }
-        
-        let configuration = ARImageTrackingConfiguration()
-
-        switch AVAudioSession.sharedInstance().recordPermission {
-        case .granted:
-            configuration.providesAudioData = true
-        case .undetermined,
-                .denied:
-            configuration.providesAudioData = false
-        @unknown default:
-            configuration.providesAudioData = false
-        }
-
-        configuration.trackingImages = referenceImages
-        session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-
-        let message = NSLocalizedString("Please place the card before the camera", comment: "")
-        statusViewController.scheduleMessage(message, inSeconds: 7.5, messageType: .contentPlacement)
 	}
 
     // MARK: - ARSCNViewDelegate (Image detection results)
@@ -205,8 +220,12 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             ])
 
 
-            let attachmentHeight = referenceImage.physicalSize.width/2.5
-            node.addChildNode(createAttachmentNode(width: attachmentHeight * self.attachmentViewWidth/self.attachmentViewHeight, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
+
+            let attachmentHeight = referenceImage.physicalSize.width * 0.4
+
+            let attachmentWidth = referenceImage.physicalSize.width * 1.04
+
+            node.addChildNode(createAttachmentNode(width: attachmentWidth, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
                 "type": "local",
@@ -217,7 +236,6 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: -0.005, z: Float(referenceImage.physicalSize.height) * -0.45)))
         }
     }
-
 
     private let opacityIncrementInterval = 0.70
 
@@ -442,10 +460,12 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
     private func createEffectNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
         let effectPlane = SCNPlane(width: width, height: height)
+
         let effectPlaneNode = SCNNode(geometry: effectPlane)
         effectPlaneNode.eulerAngles.x = -.pi / 2
         effectPlaneNode.position = position
         effectPlaneNode.geometry?.firstMaterial = material
+
 
         return effectPlaneNode
     }

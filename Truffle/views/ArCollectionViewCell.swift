@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
 class ArCollectionViewCell: UICollectionViewCell {
@@ -43,7 +44,12 @@ class ArCollectionViewCell: UICollectionViewCell {
     }
 
     func setImage(_ imageName: String) {
-        linkButton.configuration?.image = UIImage(named: imageName)
+        let url = URL(string: "https://truffle.s3.us-west-1.amazonaws.com/staging/linkButtonIcons/ic_gallery.png")
+
+        linkButton.kf.setImage(with: url, for: .normal)
+
+        //linkButton.configuration?.image
+        //linkButton.configuration?.image = UIImage(named: imageName)
     }
 
 

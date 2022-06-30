@@ -24,9 +24,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac7-7y-dTM">
-                                            <rect key="frame" x="0.0" y="0.0" width="119" height="30.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="119" height="31"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="d6V-vA-DSm">
-                                                <rect key="frame" x="0.0" y="0.0" width="119" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="119" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Tracking status" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="x6b-bh-aZK" userLabel="Messages label">
@@ -175,7 +175,6 @@
                                     <color key="baseBackgroundColor" name="PrimaryColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="continueButton:" destination="e9U-5E-rgR" eventType="touchUpInside" id="NiM-GO-coW"/>
                                     <segue destination="BV1-FR-VrT" kind="presentation" identifier="toArView" modalPresentationStyle="fullScreen" id="zHJ-UZ-jLv"/>
                                 </connections>
                             </button>
@@ -220,6 +219,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="W3p-Re-Ig3" id="QoR-5m-hYZ"/>
                         <outlet property="descriptionLabel" destination="ccW-k7-FNA" id="In8-m0-TTi"/>
                         <outlet property="playerView" destination="6UY-Ql-wZJ" id="X7q-L2-ehj"/>
                         <outlet property="titleLabel" destination="h0t-SX-EYI" id="WWh-xp-EaX"/>

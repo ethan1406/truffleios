@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,12 +15,24 @@
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
 		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		844AEDA5281FADD200095E01 /* wedding_card.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 844AEDA4281FADD200095E01 /* wedding_card.mp4 */; };
+		845E17FB286D574C00504FDC /* CardTransformationService.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */; };
+		845E17FC286D574C00504FDC /* CardTransformationService.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */; };
+		845E17FF286D57F400504FDC /* CardTransformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17FE286D57F400504FDC /* CardTransformationService.swift */; };
+		845E1801286D58B200504FDC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E1800286D58B200504FDC /* Constants.swift */; };
+		845E1803286D655900504FDC /* CardTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E1802286D655900504FDC /* CardTransformation.swift */; };
+		845E1805286D6F0A00504FDC /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E1804286D6F0A00504FDC /* Size.swift */; };
+		845E1807286D6F5A00504FDC /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E1806286D6F5A00504FDC /* CardImage.swift */; };
+		845E1809286D702500504FDC /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E1808286D702500504FDC /* AttachmentView.swift */; };
+		845E180B286D70AB00504FDC /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E180A286D70AB00504FDC /* Position.swift */; };
 		8485143E282CD52900344FA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84851440282CD52900344FA1 /* InfoPlist.strings */; };
 		84C2D9F328487871008342BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2D9F228487871008342BE /* OnboardingViewController.swift */; };
 		84C2D9F5284882A0008342BE /* wedding_card_lighter_gray.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84C2D9F4284882A0008342BE /* wedding_card_lighter_gray.mp4 */; };
 		84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */; };
 		84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */; };
 		84C8896B282CBD7B006C002B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84C8896D282CBD7B006C002B /* Localizable.strings */; };
+		84DB10A12862EA3400D9FBBA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 84DB10A02862EA3400D9FBBA /* Kingfisher */; };
+		84DE737F28602E5800DCE1B8 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 84DE737E28602E5800DCE1B8 /* GRPC */; };
+		84DE73832860300300DCE1B8 /* CardTransformationService.proto in Sources */ = {isa = PBXBuildFile; fileRef = 84DE73822860300300DCE1B8 /* CardTransformationService.proto */; };
 		84E0C5CC2828AB6F00F28759 /* FileManagerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */; };
 		84E0C5CE2828ADD100F28759 /* VideoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */; };
 		84ED76F02839FD4D0025B005 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED76EF2839FD4D0025B005 /* EffectView.swift */; };
@@ -43,6 +55,15 @@
 		7050AA985D6C24A0051E9918 /* Pods-Truffle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truffle.debug.xcconfig"; path = "Target Support Files/Pods-Truffle/Pods-Truffle.debug.xcconfig"; sourceTree = "<group>"; };
 		844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArCollectionViewCell.swift; sourceTree = "<group>"; };
 		844AEDA4281FADD200095E01 /* wedding_card.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = wedding_card.mp4; path = ../../../Desktop/wedding_card.mp4; sourceTree = "<group>"; };
+		845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransformationService.grpc.swift; sourceTree = "<group>"; };
+		845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransformationService.pb.swift; sourceTree = "<group>"; };
+		845E17FE286D57F400504FDC /* CardTransformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransformationService.swift; sourceTree = "<group>"; };
+		845E1800286D58B200504FDC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		845E1802286D655900504FDC /* CardTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransformation.swift; sourceTree = "<group>"; };
+		845E1804286D6F0A00504FDC /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		845E1806286D6F5A00504FDC /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
+		845E1808286D702500504FDC /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
+		845E180A286D70AB00504FDC /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		8485143A282CC32B00344FA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		8485143B282CC32B00344FA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8485143F282CD52900344FA1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -55,6 +76,7 @@
 		84C88968282CBCE6006C002B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		84C8896C282CBD7B006C002B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		84C8896E282CBD7F006C002B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		84DE73822860300300DCE1B8 /* CardTransformationService.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = CardTransformationService.proto; sourceTree = "<group>"; };
 		84E0C5CB2828AB6F00F28759 /* FileManagerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExt.swift; sourceTree = "<group>"; };
 		84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewController.swift; sourceTree = "<group>"; };
 		84ED76EF2839FD4D0025B005 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
@@ -72,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DB10A12862EA3400D9FBBA /* Kingfisher in Frameworks */,
+				84DE737F28602E5800DCE1B8 /* GRPC in Frameworks */,
 				34BEE1E7EECB542A93EE852F /* Pods_Truffle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,12 +151,14 @@
 		3929C48A1E89EC2C00E00B60 /* Truffle */ = {
 			isa = PBXGroup;
 			children = (
+				845E17FD286D57DD00504FDC /* data */,
 				84ED76F5283AD44D0025B005 /* confetti-congratulation-sparkle.json */,
 				84CA5F9B2827994F00DD28B9 /* models */,
 				844AEDA1281F550300095E01 /* views */,
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				84C5B8DC2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift */,
 				3929C48D1E89EC2C00E00B60 /* ArViewController.swift */,
+				845E1800286D58B200504FDC /* Constants.swift */,
 				84C2D9F228487871008342BE /* OnboardingViewController.swift */,
 				C8C12A701F29277B00B011FE /* ArViewController+ARSessionDelegate.swift */,
 				84E0C5CD2828ADD100F28759 /* VideoPreviewController.swift */,
@@ -168,12 +194,36 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		845E17FD286D57DD00504FDC /* data */ = {
+			isa = PBXGroup;
+			children = (
+				845E17FE286D57F400504FDC /* CardTransformationService.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		84CA5F9B2827994F00DD28B9 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				84DE738128602F4B00DCE1B8 /* proto */,
 				84C5B8D82823A2FD00D4D6A7 /* Attachment.swift */,
+				845E1802286D655900504FDC /* CardTransformation.swift */,
+				845E1804286D6F0A00504FDC /* Size.swift */,
+				845E1806286D6F5A00504FDC /* CardImage.swift */,
+				845E1808286D702500504FDC /* AttachmentView.swift */,
+				845E180A286D70AB00504FDC /* Position.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		84DE738128602F4B00DCE1B8 /* proto */ = {
+			isa = PBXGroup;
+			children = (
+				845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */,
+				845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */,
+				84DE73822860300300DCE1B8 /* CardTransformationService.proto */,
+			);
+			path = proto;
 			sourceTree = "<group>";
 		};
 		895B89F1FDA649E6F5014972 /* LICENSE */ = {
@@ -211,6 +261,10 @@
 			dependencies = (
 			);
 			name = Truffle;
+			packageProductDependencies = (
+				84DE737E28602E5800DCE1B8 /* GRPC */,
+				84DB10A02862EA3400D9FBBA /* Kingfisher */,
+			);
 			productName = ARKitImageRecognition;
 			productReference = 3929C4881E89EC2C00E00B60 /* Truffle AR.app */;
 			productType = "com.apple.product-type.application";
@@ -244,6 +298,10 @@
 				"zh-Hans",
 			);
 			mainGroup = 3929C47F1E89EC2C00E00B60;
+			packageReferences = (
+				84DE737D28602E5800DCE1B8 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				84DB109F2862EA3400D9FBBA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 3929C4891E89EC2C00E00B60 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -345,15 +403,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				3929C48E1E89EC2C00E00B60 /* ArViewController.swift in Sources */,
+				845E17FF286D57F400504FDC /* CardTransformationService.swift in Sources */,
 				84E0C5CE2828ADD100F28759 /* VideoPreviewController.swift in Sources */,
 				C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */,
+				845E1805286D6F0A00504FDC /* Size.swift in Sources */,
 				C8C12A711F29277B00B011FE /* ArViewController+ARSessionDelegate.swift in Sources */,
 				84E0C5CC2828AB6F00F28759 /* FileManagerExt.swift in Sources */,
+				845E17FB286D574C00504FDC /* CardTransformationService.grpc.swift in Sources */,
+				845E1801286D58B200504FDC /* Constants.swift in Sources */,
+				84DE73832860300300DCE1B8 /* CardTransformationService.proto in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
+				845E1809286D702500504FDC /* AttachmentView.swift in Sources */,
 				84C5B8DD2823A3DE00D4D6A7 /* AttachmentCollectionViewController.swift in Sources */,
 				84ED76F02839FD4D0025B005 /* EffectView.swift in Sources */,
+				845E180B286D70AB00504FDC /* Position.swift in Sources */,
+				845E17FC286D574C00504FDC /* CardTransformationService.pb.swift in Sources */,
 				844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */,
 				84C2D9F328487871008342BE /* OnboardingViewController.swift in Sources */,
+				845E1807286D6F5A00504FDC /* CardImage.swift in Sources */,
+				845E1803286D655900504FDC /* CardTransformation.swift in Sources */,
 				84C5B8D92823A2FE00D4D6A7 /* Attachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,7 +570,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -520,8 +589,11 @@
 				DEVELOPMENT_TEAM = E6654C355Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Truffle/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trufflear.trufflear;
 				PRODUCT_NAME = "Truffle AR";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -542,8 +614,11 @@
 				DEVELOPMENT_TEAM = E6654C355Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Truffle/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trufflear.trufflear;
 				PRODUCT_NAME = "Truffle AR";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -574,6 +649,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84DB109F2862EA3400D9FBBA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		84DE737D28602E5800DCE1B8 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84DB10A02862EA3400D9FBBA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84DB109F2862EA3400D9FBBA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		84DE737E28602E5800DCE1B8 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84DE737D28602E5800DCE1B8 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3929C4801E89EC2C00E00B60 /* Project object */;
 }

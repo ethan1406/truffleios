@@ -18,7 +18,6 @@ final class VideoPreviewController: UIViewController {
     private var looper: AVPlayerLooper? = nil
     private var player: AVPlayer? = nil
 
-
     // There's a bug that's causing first button tap to be intercepted by buttons in view controller. Using a counter as a hack for now.
     private var buttonTapCounter = 0
 

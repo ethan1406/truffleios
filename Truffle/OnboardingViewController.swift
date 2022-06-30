@@ -16,7 +16,9 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 
-    @IBAction func continueButton(_ sender: UIButton) {
+    @IBOutlet weak var continueButton: UIButton!
+
+    @objc func continueToAr() {
         Analytics.logEvent("continue_button_tapped", parameters: [:])
 
         let defaults = UserDefaults.standard
@@ -36,6 +38,10 @@ class OnboardingViewController: UIViewController {
 
         titleLabel.text = NSLocalizedString("Welcome to Truffle", comment: "")
         descriptionLabel.text = NSLocalizedString("Description label", comment: "")
+
+
+        continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)
+        continueButton.addTarget(self, action: #selector(continueToAr), for: .touchUpInside)
 
         Analytics.logEvent("onboarding_screen_viewed", parameters: [:])
     }
