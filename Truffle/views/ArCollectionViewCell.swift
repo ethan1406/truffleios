@@ -20,7 +20,6 @@ class ArCollectionViewCell: UICollectionViewCell {
     private let linkButton: UIButton = {
 
         let button = UIButton(configuration: createLinkButtonConfiguration(), primaryAction: nil)
-        button.configurationUpdateHandler = createLinkButtonHandler()
 
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -43,13 +42,27 @@ class ArCollectionViewCell: UICollectionViewCell {
 
     }
 
-    func setImage(_ imageName: String) {
-        let url = URL(string: "https://truffle.s3.us-west-1.amazonaws.com/staging/linkButtonIcons/ic_gallery.png")
+    func setImage(_ imageUrl: String) {
+        guard let url = URL(string: imageUrl) else {
+            return
+        }
 
-        linkButton.kf.setImage(with: url, for: .normal)
+        let resource = ImageResource(downloadURL: url)
 
-        //linkButton.configuration?.image
-        //linkButton.configuration?.image = UIImage(named: imageName)
+        KingfisherManager.shared.retrieveImage(with: resource) { result in
+            switch result {
+            case .success(let uiImage):
+                guard let cgImage = uiImage.image.cgImage else { return }
+                let scaledImage = UIImage(cgImage: cgImage, scale: 2, orientation: .up)
+                self.linkButton.configuration?.image = scaledImage
+            case .failure(_):
+                break
+            }
+        }
+    }
+
+    func setColor(colorHexCode: String) {
+        linkButton.configurationUpdateHandler = createLinkButtonHandler(colorHexCode)
     }
 
 
@@ -86,20 +99,20 @@ class ArCollectionViewCell: UICollectionViewCell {
         return configuration
     }
 
-    private static func createLinkButtonHandler() -> UIButton.ConfigurationUpdateHandler {
-        let baseColor = UIColor(named: "PrimaryColor")
+    private func createLinkButtonHandler(_ colorHexCode: String) -> UIButton.ConfigurationUpdateHandler {
+        let baseColor = UIColor(hex: colorHexCode)
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .normal:
                 button.configuration?.background.backgroundColor = baseColor
             case [.highlighted]:
-                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+                button.configuration?.background.backgroundColor = baseColor.withAlphaComponent(0.9)
             case .selected:
-                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+                button.configuration?.background.backgroundColor = baseColor.withAlphaComponent(0.9)
             case [.selected, .highlighted]:
-                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+                button.configuration?.background.backgroundColor = baseColor.withAlphaComponent(0.9)
             case .disabled:
-                button.configuration?.background.backgroundColor = baseColor?.withAlphaComponent(0.9)
+                button.configuration?.background.backgroundColor = baseColor.withAlphaComponent(0.9)
             default:
                 button.configuration?.background.backgroundColor = baseColor
 
@@ -107,5 +120,36 @@ class ArCollectionViewCell: UICollectionViewCell {
         }
 
         return handler
+    }
+}
+
+extension UIColor {
+
+    convenience init(hex: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.currentIndex = hexString.index(after: hex.startIndex)
+        }
+        var color: UInt64 = 0
+        scanner.scanHexInt64(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
     }
 }

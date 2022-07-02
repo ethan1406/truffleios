@@ -12,7 +12,7 @@ import AVKit
 
 final class VideoPreviewController: UIViewController {
 
-    private var spinner = UIActivityIndicatorView(style: .large)
+    private let spinner = UIActivityIndicatorView(style: .large)
     private let videoURL: URL
 
     private var looper: AVPlayerLooper? = nil

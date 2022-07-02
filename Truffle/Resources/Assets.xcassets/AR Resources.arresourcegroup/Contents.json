@@ -4,14 +4,6 @@
     "version" : 1
   },
   "resources" : [
-    {
-      "filename" : "invitation card.arreferenceimage"
-    },
-    {
-      "filename" : "wedding card.arreferenceimage"
-    },
-    {
-      "filename" : "wedding_invitation_cover.arreferenceimage"
-    }
+
   ]
 }

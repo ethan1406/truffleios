@@ -13,12 +13,15 @@ class EffectView: UIView {
 
     var animationView = AnimationView()
 
+
+    let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + "animationEffectQueue")
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         isOpaque = false
         backgroundColor = UIColor.clear
-        addAnimation()
+        setupAnimationView()
     }
 
     convenience init() {
@@ -29,19 +32,31 @@ class EffectView: UIView {
         fatalError("This class does not support NSCoding")
     }
 
-    func addAnimation() {
-        animationView.animation = Animation.named("confetti-congratulation-sparkle")
-        animationView.contentMode = .scaleAspectFit
+    private func setupAnimationView() {
+        self.animationView.contentMode = .scaleAspectFit
 
-        animationView.translatesAutoresizingMaskIntoConstraints = false
+        self.animationView.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(animationView)
+        self.addSubview(self.animationView)
 
-        animationView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        animationView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        self.animationView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        self.animationView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+    }
 
-        animationView.play { (finished) in
-            self.isHidden = true
+    func startAnimation(_ lottieUrlString: String) {
+        guard let lottieUrl = URL.init(string: lottieUrlString) else { return }
+
+        queue.async { [self] in
+            Animation.loadedFrom(url: lottieUrl, closure: { animation in
+                DispatchQueue.main.async { [self] in
+                    self.animationView.animation = animation
+
+                    self.animationView.play { (finished) in
+                        self.isHidden = true
+                    }
+                }
+
+            }, animationCache: nil)
         }
     }
 }

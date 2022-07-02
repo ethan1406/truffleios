@@ -8,21 +8,18 @@
 
 struct Attachment {
     let title: String
-    let image: String
-    let link: String
+    let imageUrl: String
     let colorCode: String
     let webUrl: String
 
     init(
         title: String,
-        image: String,
-        link: String,
+        imageUrl: String,
         colorCode: String,
         webUrl: String
     ) {
-        self.image = image
+        self.imageUrl = imageUrl
         self.title = title
-        self.link = link
         self.colorCode = colorCode
         self.webUrl = webUrl
     }

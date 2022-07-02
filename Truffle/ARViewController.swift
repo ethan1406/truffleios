@@ -23,6 +23,8 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet weak var blurView: UIVisualEffectView!
 
+    private let spinner = UIActivityIndicatorView(style: .large)
+
     // record button
     private var recordButton : RecordButton!
     var progressTimer : Timer?
@@ -32,14 +34,14 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
 
     // video dimensions
-    private let attachmentViewHeight: CGFloat = 100
-    private let attachmentViewWidth: CGFloat = 260
+    private var attachmentViewHeight: CGFloat = 100
+    private var attachmentViewWidth: CGFloat = 260
 
     // effect dimensions
-    private let effectHeight: CGFloat = 200
-    private let effectWidth: CGFloat = 200
+    private var effectHeight: CGFloat = 200
+    private var effectWidth: CGFloat = 200
 
-    private let cardService = CardTransformationService()
+    private let cardLogic = CardTransformationLogic(transformationService: CardTransformationService())
 
     // The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
@@ -72,13 +74,12 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
         setupRecordButton()
 
+        addSubviews()
+
         // Hook up status view controller callback(s).
         statusViewController.restartExperienceHandler = { [unowned self] in
             self.restartExperience()
         }
-
-        // Start the AR experience
-        resetTracking()
 
         setupAttachmentCollectionView()
 
@@ -86,9 +87,24 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
         setupObservers()
     }
 
+    private func addSubviews() {
+        addLoadingSpinnerView()
+    }
+
+    private func addLoadingSpinnerView() {
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinner)
+
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+
+        // Start the AR experience
+        resetTracking()
 		
 		// Prevent the screen from being dimmed to avoid interuppting the AR experience.
 		UIApplication.shared.isIdleTimerDisabled = true
@@ -132,35 +148,19 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 	func resetTracking() {
         resetVideoPlayer()
 
+        startLoading(true)
+        let message = NSLocalizedString("Please place the card before the camera", comment: "")
+        statusViewController.scheduleMessage(message, inSeconds: 7.5, messageType: .contentPlacement)
+
+        session.run(ARImageTrackingConfiguration())
+
         Task.init {
             do {
-                let result = try await cardService.getCardTransformationData()
+                let result = try await cardLogic.getCardImages()
 
                 switch result {
-                case .success(let response):
-                    guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
-                        fatalError("Missing expected asset catalog resources.")
-
-                        // TODO bug snag tracking + return + display dialog
-                    }
-
-                    let configuration = ARImageTrackingConfiguration()
-
-                    switch AVAudioSession.sharedInstance().recordPermission {
-                    case .granted:
-                        configuration.providesAudioData = true
-                    case .undetermined,
-                            .denied:
-                        configuration.providesAudioData = false
-                    @unknown default:
-                        configuration.providesAudioData = false
-                    }
-
-                    configuration.trackingImages = referenceImages
-                    session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-
-                    let message = NSLocalizedString("Please place the card before the camera", comment: "")
-                    statusViewController.scheduleMessage(message, inSeconds: 7.5, messageType: .contentPlacement)
+                case .success(let images):
+                    loadArReferenceImages(images)
                 case .failure(.genericError):
                     print("error")
                 }
@@ -168,14 +168,45 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             } catch {
                 print("error")
             }
+
+            startLoading(false)
         }
 	}
+
+    private func loadArReferenceImages(_ images: [CardCGImage]) {
+        let referenceImages = images.map { image -> ARReferenceImage in
+            let referenceImage = ARReferenceImage(image.cgImage, orientation: .up, physicalWidth: CGFloat(image.physicalSize.width))
+            referenceImage.name = String(image.imageId)
+            return referenceImage
+        }
+
+        let configuration = ARImageTrackingConfiguration()
+
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case .granted:
+            configuration.providesAudioData = true
+        case .undetermined,
+                .denied:
+            configuration.providesAudioData = false
+        @unknown default:
+            configuration.providesAudioData = false
+        }
+
+        configuration.trackingImages = Set(referenceImages)
+
+        session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+    }
 
     // MARK: - ARSCNViewDelegate (Image detection results)
     /// - Tag: ARImageAnchor-Visualizing
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imageAnchor = anchor as? ARImageAnchor else { return }
         let referenceImage = imageAnchor.referenceImage
+
+        guard let referenceImageName = referenceImage.name,
+              let imageId = Int(referenceImageName),
+              let transformation = cardLogic.getCardTransformation(imageId: imageId)
+        else { return }
 
         // create materials
         let collectionViewMaterial = SCNMaterial()
@@ -184,7 +215,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
         // create video player
         if (self.player == nil) {
-            self.player = createVideoPlayer()
+            self.player = createVideoPlayer(transformation.cardVideo.videoUrl)
         }
 
         guard let avPlayer = player else {
@@ -193,11 +224,10 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
         loopVideo()
 
+        configureSideViews(effectViewSize: transformation.animationEffectConfig.size, attachmentViewSize: transformation.attachmentViewConfig.uiSize)
+
         DispatchQueue.main.async { [self] in
-            let imageName = referenceImage.name ?? ""
-            self.statusViewController.cancelAllScheduledMessages()
-            let message = String(format: NSLocalizedString("Detected %@", comment: ""), "\(imageName)")
-            self.statusViewController.showMessage(message)
+            showDetectionMessage(imageName: transformation.cardImage.imageName)
 
             // set material to custom views
             self.attachmentCollectionViewController.view.frame.size.height = self.attachmentViewHeight
@@ -206,26 +236,24 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             collectionViewMaterial.diffuse.contents = self.attachmentCollectionViewController.view
             videoMaterial.diffuse.contents = avPlayer
 
-            //
-            let effectView = EffectView(frame: CGRect(x: 0, y: 0, width: effectWidth, height: effectHeight))
-            effectMaterial.diffuse.contents = effectView
+            // create effect view
+            effectMaterial.diffuse.contents = generateEffectView(
+                transformation.animationEffectConfig,
+                imageWidth: referenceImage.physicalSize.width,
+                imageHeight: referenceImage.physicalSize.height
+            )
+            loadAttachmentLinks(transformation.attachments)
         }
 
         updateQueue.async { [self] in
-            let videoWidth = referenceImage.physicalSize.width * 1.2
-            node.addChildNode(createVideoNode(width: videoWidth, height: videoWidth * 720/1280, material: videoMaterial, position: SCNVector3(x: 0, y: 0, z: 0)))
+
+            node.addChildNode(createVideoNode(imageWidth: referenceImage.physicalSize.width, imageHeight: referenceImage.physicalSize.height, material: videoMaterial, cardVideo: transformation.cardVideo))
 
             Analytics.logEvent("video_viewed", parameters: [
                 "type": "local"
             ])
 
-
-
-            let attachmentHeight = referenceImage.physicalSize.width * 0.4
-
-            let attachmentWidth = referenceImage.physicalSize.width * 1.04
-
-            node.addChildNode(createAttachmentNode(width: attachmentWidth, height : attachmentHeight, material: collectionViewMaterial, position: SCNVector3(x: 0, y: 0.01, z: Float(referenceImage.physicalSize.height) * 0.75)))
+            node.addChildNode(createAttachmentNode(imageWidth: referenceImage.physicalSize.width, imageHeight : referenceImage.physicalSize.height, material: collectionViewMaterial, config: transformation.attachmentViewConfig))
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
                 "type": "local",
@@ -233,7 +261,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             ])
 
 
-            node.addChildNode(createEffectNode(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height, material:  effectMaterial, position: SCNVector3(x: 0, y: -0.005, z: Float(referenceImage.physicalSize.height) * -0.45)))
+            node.addChildNode(createEffectNode(imageWidth: referenceImage.physicalSize.width, imageHeight: referenceImage.physicalSize.height, material:  effectMaterial, config: transformation.animationEffectConfig))
         }
     }
 
@@ -250,18 +278,48 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
         ])
     }
 
-    private func createVideoPlayer() -> AVPlayer? {
+    private func configureTransformation() {
+
+    }
+
+    private func generateEffectView(_ config: AnimationEffectConfig, imageWidth: CGFloat, imageHeight: CGFloat) -> EffectView {
+        let effectView = EffectView(
+            frame: CGRect(
+                x: imageWidth * CGFloat(config.position.xScaleToImageWidth),
+                y: imageHeight * CGFloat(config.position.zScaleToImageHeight),
+                width: effectWidth,
+                height: effectHeight
+            )
+        )
+        effectView.startAnimation(config.lottieUrl)
+        return effectView
+    }
+
+    private func showDetectionMessage(imageName: String) {
+        self.statusViewController.cancelAllScheduledMessages()
+        let message = String(format: NSLocalizedString("Detected %@", comment: ""), "\(imageName)")
+        self.statusViewController.showMessage(message)
+    }
+
+    private func configureSideViews(effectViewSize: TruffleSize, attachmentViewSize: TruffleSize) {
+        attachmentViewHeight = CGFloat(attachmentViewSize.height)
+        attachmentViewWidth = CGFloat(attachmentViewSize.width)
+
+        effectWidth = CGFloat(effectViewSize.width)
+        effectHeight = CGFloat(effectViewSize.height)
+    }
+
+    private func loadAttachmentLinks(_ attachments: [Attachment]) {
+        attachmentCollectionViewController.attachments = attachments
+        attachmentCollectionViewController.reloadData()
+    }
+
+    private func createVideoPlayer(_ videoUrlString: String) -> AVPlayer? {
         //video node
-        guard let path = Bundle.main.path(forResource: "wedding_card", ofType:"mp4") else {
-            debugPrint("wedding_card not found")
-            return nil
-        }
 
-        let url = NSURL(fileURLWithPath: path)
+        guard let videoUrl = URL.init(string: videoUrlString) else { return nil }
 
-        let asset = AVURLAsset(url: url as URL, options: nil)
-        let playerItem = AVPlayerItem(asset: asset)
-        let player = AVPlayer(playerItem: playerItem)
+        let player = AVPlayer(url: videoUrl)
         player.actionAtItemEnd = .none
 
         return player
@@ -444,11 +502,18 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
         self.player = nil
     }
 
-    private func createVideoNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
-        let videoPlaneGeometry = SCNPlane(width: width, height: height)
+    private func createVideoNode(imageWidth: CGFloat, imageHeight: CGFloat, material: SCNMaterial, cardVideo: CardVideo) -> SCNNode {
+        let videoWidth = imageWidth * CGFloat(cardVideo.widthScaleToImageWidth)
+        let videoHeight = videoWidth * CGFloat(cardVideo.videoHeightPx)/CGFloat(cardVideo.videoWidthPx)
+
+        let videoPlaneGeometry = SCNPlane(width: videoWidth, height: videoHeight)
         let videoPlaneNode = SCNNode(geometry: videoPlaneGeometry)
         videoPlaneNode.eulerAngles.x = -.pi / 2
-        videoPlaneNode.position = position
+        videoPlaneNode.position = SCNVector3(
+            x: Float(imageWidth) * cardVideo.position.xScaleToImageWidth,
+            y: cardVideo.position.y,
+            z: Float(imageHeight) * cardVideo.position.zScaleToImageHeight
+        )
         videoPlaneNode.geometry?.firstMaterial = material
 
         videoPlaneNode.opacity = 0.25
@@ -458,28 +523,46 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     }
 
 
-    private func createEffectNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
-        let effectPlane = SCNPlane(width: width, height: height)
+    private func createEffectNode(imageWidth: CGFloat, imageHeight: CGFloat, material: SCNMaterial, config: AnimationEffectConfig) -> SCNNode {
+        let effectPlane = SCNPlane(width: imageWidth, height: imageHeight)
 
         let effectPlaneNode = SCNNode(geometry: effectPlane)
         effectPlaneNode.eulerAngles.x = -.pi / 2
-        effectPlaneNode.position = position
+        effectPlaneNode.position = SCNVector3(
+            x: Float(imageWidth) * config.position.xScaleToImageWidth,
+            y: config.position.y,
+            z: Float(imageHeight) * config.position.zScaleToImageHeight
+        )
         effectPlaneNode.geometry?.firstMaterial = material
 
 
         return effectPlaneNode
     }
 
-    private func createAttachmentNode(width: CGFloat, height: CGFloat, material: SCNMaterial, position: SCNVector3) -> SCNNode {
+    private func createAttachmentNode(imageWidth: CGFloat, imageHeight: CGFloat, material: SCNMaterial, config: AttachmentViewConfig) -> SCNNode {
+        let width = imageWidth * CGFloat(config.widthScaleToImageWidth)
+        let height = imageWidth * 0.4
         let attachmentPlaneGeometry = SCNPlane(width: width, height: height)
         let attachmentPlaneNode = SCNNode(geometry: attachmentPlaneGeometry)
         attachmentPlaneNode.eulerAngles.x = -.pi / 2
-        attachmentPlaneNode.position = position
+        attachmentPlaneNode.position = SCNVector3(
+            x: Float(imageWidth) * config.position.xScaleToImageWidth,
+            y: config.position.y,
+            z: Float(imageHeight) * config.position.zScaleToImageHeight
+        )
         attachmentPlaneNode.geometry?.firstMaterial = material
 
         attachmentPlaneNode.opacity = 0.25
         attachmentPlaneNode.runAction(self.imageHighlightAction)
 
         return attachmentPlaneNode
+    }
+
+    private func startLoading(_ shouldEnable: Bool) {
+        if (shouldEnable) {
+            spinner.startAnimating()
+        } else {
+            spinner.stopAnimating()
+        }
     }
 }

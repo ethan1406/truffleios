@@ -22,17 +22,11 @@ private let sectionInsets = UIEdgeInsets(
 
 class AttachmentCollectionViewController: UICollectionViewController {
 
-    var attachments = [
-        Attachment(title: "wedding pics", image: "ic_instagram", link: "https://www.trufflear.com/wedding-cards"),
-        Attachment(title: "Schedule", image: "ic_calendar", link: "https://www.zola.com/wedding/phoebeandethan2022"),
+    var attachments = [Attachment]()
+//        Attachment(title: "wedding pics", image: "ic_instagram", link: "https://www.trufflear.com/wedding-cards"),
+//        Attachment(title: "Schedule", image: "ic_calendar", link: "https://www.zola.com/wedding/phoebeandethan2022"),
 //        Attachment(title: "Registry", image: "ic_gallery", link: "https://www.zola.com/wedding/phoebeandethan2022"),
-//        Attachment(title: "testing 3", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//        Attachment(title: "testing 4", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//        Attachment(title: "testing 5", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//        Attachment(title: "testing 6", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//        Attachment(title: "testing 7", image: "", link: "https://www.trufflear.com/wedding-cards"),
-//        Attachment(title: "testing 8", image: "", link: "https://www.trufflear.com/wedding-cards"),
-]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,17 +45,11 @@ class AttachmentCollectionViewController: UICollectionViewController {
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
+
+    func reloadData() {
+        collectionView.reloadData()
+    }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -79,12 +67,12 @@ class AttachmentCollectionViewController: UICollectionViewController {
 
         let attachment = attachments[indexPath.row]
         cell.setTitle(attachment.title)
-        cell.link = attachment.link
-        cell.setImage(attachment.image)
-        
+        cell.link = attachment.webUrl
+        cell.setImage(attachment.imageUrl)
+        cell.setColor(colorHexCode: attachment.colorCode)
+
         cell.setTouchHandler {link in
-            print("testing 123")
-            if let url = URL(string: attachment.link) {
+            if let url = URL(string: attachment.webUrl) {
                 Analytics.logEvent("attachment_link_button_tapped", parameters: [
                     "url": url
                 ])
@@ -94,37 +82,6 @@ class AttachmentCollectionViewController: UICollectionViewController {
         return cell
 
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
 
