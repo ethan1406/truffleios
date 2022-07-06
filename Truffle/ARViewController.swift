@@ -162,11 +162,14 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
                 case .success(let images):
                     loadArReferenceImages(images)
                 case .failure(.genericError):
-                    print("error")
+                    let title = NSLocalizedString("Something went wrong.", comment: "")
+                    let message = NSLocalizedString("Please restart the app.", comment: "")
+
+                    self.displayErrorMessage(title: title, message: message)
                 }
 
             } catch {
-                print("error")
+                Bugsnag.notifyError(error)
             }
 
             startLoading(false)
@@ -207,6 +210,11 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
               let imageId = Int(referenceImageName),
               let transformation = cardLogic.getCardTransformation(imageId: imageId)
         else { return }
+
+        Analytics.logEvent("image_detected", parameters: [
+            "type": "remote",
+            "image_id": imageId
+        ])
 
         // create materials
         let collectionViewMaterial = SCNMaterial()
@@ -250,13 +258,14 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             node.addChildNode(createVideoNode(imageWidth: referenceImage.physicalSize.width, imageHeight: referenceImage.physicalSize.height, material: videoMaterial, cardVideo: transformation.cardVideo))
 
             Analytics.logEvent("video_viewed", parameters: [
-                "type": "local"
+                "type": "remote",
+                "url": transformation.cardVideo.videoUrl
             ])
 
             node.addChildNode(createAttachmentNode(imageWidth: referenceImage.physicalSize.width, imageHeight : referenceImage.physicalSize.height, material: collectionViewMaterial, config: transformation.attachmentViewConfig))
 
             Analytics.logEvent("attachment_links_viewed", parameters: [
-                "type": "local",
+                "type": "remote",
                 "count": self.attachmentCollectionViewController.attachments.count
             ])
 
@@ -354,7 +363,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             playerItem.seek(to: .zero, completionHandler: nil)
 
             Analytics.logEvent("home_screen_video_restarting", parameters: [
-                "type": "local"
+                "type": "remote"
             ])
         }
     }

@@ -13,6 +13,7 @@
 		3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3929C48F1E89EC2C00E00B60 /* Main.storyboard */; };
 		3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3929C4921E89EC2C00E00B60 /* Assets.xcassets */; };
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
+		841183862875529C001A0C39 /* Truffle_ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841183852875529C001A0C39 /* Truffle_ARTests.swift */; };
 		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		845E17FB286D574C00504FDC /* CardTransformationService.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */; };
 		845E17FC286D574C00504FDC /* CardTransformationService.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */; };
@@ -43,6 +44,16 @@
 		C8C12A711F29277B00B011FE /* ArViewController+ARSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C12A701F29277B00B011FE /* ArViewController+ARSessionDelegate.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		841183872875529C001A0C39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3929C4801E89EC2C00E00B60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3929C4871E89EC2C00E00B60;
+			remoteInfo = Truffle;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		11063F3B1EBE651B0033EE6D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3929C4881E89EC2C00E00B60 /* Truffle AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Truffle AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +65,8 @@
 		39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D3CDA9A462FAFFA020A0AD2 /* Pods-Truffle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truffle.release.xcconfig"; path = "Target Support Files/Pods-Truffle/Pods-Truffle.release.xcconfig"; sourceTree = "<group>"; };
 		7050AA985D6C24A0051E9918 /* Pods-Truffle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truffle.debug.xcconfig"; path = "Target Support Files/Pods-Truffle/Pods-Truffle.debug.xcconfig"; sourceTree = "<group>"; };
+		841183832875529C001A0C39 /* Truffle ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Truffle ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		841183852875529C001A0C39 /* Truffle_ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truffle_ARTests.swift; sourceTree = "<group>"; };
 		844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArCollectionViewCell.swift; sourceTree = "<group>"; };
 		845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransformationService.grpc.swift; sourceTree = "<group>"; };
 		845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransformationService.pb.swift; sourceTree = "<group>"; };
@@ -102,6 +115,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		841183802875529C001A0C39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -133,6 +153,7 @@
 				84C8896D282CBD7B006C002B /* Localizable.strings */,
 				11063F3B1EBE651B0033EE6D /* README.md */,
 				3929C48A1E89EC2C00E00B60 /* Truffle */,
+				841183842875529C001A0C39 /* Truffle ARTests */,
 				3929C4891E89EC2C00E00B60 /* Products */,
 				3A5846375545754B2813312D /* Configuration */,
 				895B89F1FDA649E6F5014972 /* LICENSE */,
@@ -145,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				3929C4881E89EC2C00E00B60 /* Truffle AR.app */,
+				841183832875529C001A0C39 /* Truffle ARTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +205,14 @@
 				CF9001C64D94EADD0CD8733E /* Pods_Truffle.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		841183842875529C001A0C39 /* Truffle ARTests */ = {
+			isa = PBXGroup;
+			children = (
+				841183852875529C001A0C39 /* Truffle_ARTests.swift */,
+			);
+			path = "Truffle ARTests";
 			sourceTree = "<group>";
 		};
 		844AEDA1281F550300095E01 /* views */ = {
@@ -272,13 +302,31 @@
 			productReference = 3929C4881E89EC2C00E00B60 /* Truffle AR.app */;
 			productType = "com.apple.product-type.application";
 		};
+		841183822875529C001A0C39 /* Truffle ARTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8411838B2875529C001A0C39 /* Build configuration list for PBXNativeTarget "Truffle ARTests" */;
+			buildPhases = (
+				8411837F2875529C001A0C39 /* Sources */,
+				841183802875529C001A0C39 /* Frameworks */,
+				841183812875529C001A0C39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				841183882875529C001A0C39 /* PBXTargetDependency */,
+			);
+			name = "Truffle ARTests";
+			productName = "Truffle ARTests";
+			productReference = 841183832875529C001A0C39 /* Truffle ARTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3929C4801E89EC2C00E00B60 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
@@ -287,6 +335,10 @@
 						DevelopmentTeam = E6654C355Q;
 						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
+					};
+					841183822875529C001A0C39 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 3929C4871E89EC2C00E00B60;
 					};
 				};
 			};
@@ -310,6 +362,7 @@
 			projectRoot = "";
 			targets = (
 				3929C4871E89EC2C00E00B60 /* Truffle */,
+				841183822875529C001A0C39 /* Truffle ARTests */,
 			);
 		};
 /* End PBXProject section */
@@ -326,6 +379,13 @@
 				39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */,
 				3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */,
 				3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		841183812875529C001A0C39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +490,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8411837F2875529C001A0C39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				841183862875529C001A0C39 /* Truffle_ARTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		841183882875529C001A0C39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3929C4871E89EC2C00E00B60 /* Truffle */;
+			targetProxy = 841183872875529C001A0C39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3929C48F1E89EC2C00E00B60 /* Main.storyboard */ = {
@@ -631,6 +707,57 @@
 			};
 			name = Release;
 		};
+		841183892875529C001A0C39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E6654C355Q;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.trufflear.trufflear.Truffle-ARTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Truffle AR.app/Truffle AR";
+			};
+			name = Debug;
+		};
+		8411838A2875529C001A0C39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E6654C355Q;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.trufflear.trufflear.Truffle-ARTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Truffle AR.app/Truffle AR";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -648,6 +775,15 @@
 			buildConfigurations = (
 				3929C49B1E89EC2C00E00B60 /* Debug */,
 				3929C49C1E89EC2C00E00B60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8411838B2875529C001A0C39 /* Build configuration list for PBXNativeTarget "Truffle ARTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				841183892875529C001A0C39 /* Debug */,
+				8411838A2875529C001A0C39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

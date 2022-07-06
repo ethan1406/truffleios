@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Bugsnag
 import GRPC
 
 struct CardTransformationService {
@@ -20,12 +21,7 @@ struct CardTransformationService {
         let channel = ClientConnection
             .usingPlatformAppropriateTLS(for: group)
             .connect(host: Constants.apiBaseUrl, port: Constants.apiEndpointPort)
-//
-//        let channel = try GRPCChannelPool.with(
-//            target: .host("api.trufflear.com", port: self.port),
-//            transportSecurity: .tls( .makeClientConfigurationBackedByNIOSSL()),
-//            eventLoopGroup: group
-//        )
+
         defer {
             try? channel.close().wait()
         }
@@ -37,14 +33,9 @@ struct CardTransformationService {
         }
 
         do {
-            let response = try await cardTransformationServiceClient.getCardTransformationData(request)
-            print("responseEthan")
-            print(response.augmentedTransformations)
-
-            return .success(response)
+            return .success(try await cardTransformationServiceClient.getCardTransformationData(request))
         }  catch {
-            print("failed")
-
+            Bugsnag.notifyError(error)
             return .failure(TransformationServiceError.genericError)
         }
 

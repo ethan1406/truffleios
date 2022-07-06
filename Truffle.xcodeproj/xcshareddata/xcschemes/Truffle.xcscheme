@@ -37,6 +37,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "841183822875529C001A0C39"
+               BuildableName = "Truffle ARTests.xctest"
+               BlueprintName = "Truffle ARTests"
+               ReferencedContainer = "container:Truffle.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

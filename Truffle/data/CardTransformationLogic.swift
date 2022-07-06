@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Bugsnag
 import Kingfisher
 import Network
 
@@ -61,7 +62,8 @@ class CardTransformationLogic {
                 imageName: cardImage.imageName,
                 physicalSize: cardImage.physicalSize
             )
-        case .failure(_):
+        case .failure(let error):
+            Bugsnag.notifyError(error)
             return nil
         }
 
