@@ -78,20 +78,24 @@ extension ArViewController: ARSessionDelegate {
     }
     
     // MARK: - Error handling
-    func displayErrorMessage(title: String, message: String, shouldAddRestartAction: Bool = false) {
+    func displayErrorMessage(title: String, message: String, shouldAddRestartAction: Bool = false, shouldAddDismissAction: Bool = false) {
 
-        let alertController = getAlertController(title: title, message: message, shouldAddRestartAction: shouldAddRestartAction)
+        let alertController = getAlertController(title: title, message: message, shouldAddRestartAction: shouldAddRestartAction, shouldAddDismissAction: shouldAddDismissAction)
 
-        present(alertController, animated: true, completion: nil)
+        if presentedViewController == nil {
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
 
-        Analytics.logEvent("alert_dialog_viewed", parameters: [
-            "type": "error",
-            "title": title,
-            "message": message
-        ])
+            Analytics.logEvent("alert_dialog_viewed", parameters: [
+                "type": "error",
+                "title": title,
+                "message": message
+            ])
+        }
     }
 
-    func getAlertController(title: String, message: String, shouldAddRestartAction: Bool = false) -> UIAlertController {
+    func getAlertController(title: String, message: String, shouldAddRestartAction: Bool = false, shouldAddDismissAction: Bool = false) -> UIAlertController {
         // Blur the background.
         blurView.isHidden = false
 
@@ -108,6 +112,17 @@ extension ArViewController: ARSessionDelegate {
                 Analytics.logEvent("alert_reset_button_tapped", parameters: [:])
             }
             alertController.addAction(restartAction)
+        }
+
+        if (shouldAddDismissAction) {
+            let actionText = NSLocalizedString("Dismiss", comment: "")
+            let dismissAction = UIAlertAction(title: actionText, style: .default) { _ in
+                self.blurView.isHidden = true
+                alertController.dismiss(animated: true, completion: nil)
+
+                Analytics.logEvent("dismiss_button_tapped", parameters: [:])
+            }
+            alertController.addAction(dismissAction)
         }
 
         return alertController

@@ -14,6 +14,7 @@
 		3929C4931E89EC2C00E00B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3929C4921E89EC2C00E00B60 /* Assets.xcassets */; };
 		39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D8DC1A1E8ADAE600386B05 /* LaunchScreen.storyboard */; };
 		841183862875529C001A0C39 /* Truffle_ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841183852875529C001A0C39 /* Truffle_ARTests.swift */; };
+		8411838D28768DC6001A0C39 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8411838C28768DC6001A0C39 /* NetworkMonitor.swift */; };
 		844AEDA3281F55D400095E01 /* ArCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */; };
 		845E17FB286D574C00504FDC /* CardTransformationService.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */; };
 		845E17FC286D574C00504FDC /* CardTransformationService.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */; };
@@ -67,6 +68,7 @@
 		7050AA985D6C24A0051E9918 /* Pods-Truffle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Truffle.debug.xcconfig"; path = "Target Support Files/Pods-Truffle/Pods-Truffle.debug.xcconfig"; sourceTree = "<group>"; };
 		841183832875529C001A0C39 /* Truffle ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Truffle ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		841183852875529C001A0C39 /* Truffle_ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truffle_ARTests.swift; sourceTree = "<group>"; };
+		8411838C28768DC6001A0C39 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		844AEDA2281F55D400095E01 /* ArCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArCollectionViewCell.swift; sourceTree = "<group>"; };
 		845E17F9286D574C00504FDC /* CardTransformationService.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransformationService.grpc.swift; sourceTree = "<group>"; };
 		845E17FA286D574C00504FDC /* CardTransformationService.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTransformationService.pb.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			children = (
 				845E17FE286D57F400504FDC /* CardTransformationService.swift */,
 				845E180C287003BC00504FDC /* CardTransformationLogic.swift */,
+				8411838C28768DC6001A0C39 /* NetworkMonitor.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				84E0C5CC2828AB6F00F28759 /* FileManagerExt.swift in Sources */,
 				845E17FB286D574C00504FDC /* CardTransformationService.grpc.swift in Sources */,
 				845E1801286D58B200504FDC /* Constants.swift in Sources */,
+				8411838D28768DC6001A0C39 /* NetworkMonitor.swift in Sources */,
 				84DE73832860300300DCE1B8 /* CardTransformationService.proto in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
 				845E1809286D702500504FDC /* AttachmentView.swift in Sources */,

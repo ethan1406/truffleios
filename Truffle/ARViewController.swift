@@ -85,6 +85,8 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
         FileManager.default.clearTmpVideos()
         setupObservers()
+
+        NetworkMonitor.shared.startMonitoring()
     }
 
     private func addSubviews() {
@@ -136,6 +138,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidDisappear(animated)
 
         clearObservers()
+        NetworkMonitor.shared.stopMonitoring()
     }
 
     // MARK: - Session management (Image detection setup)
@@ -154,25 +157,33 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
 
         session.run(ARImageTrackingConfiguration())
 
-        Task.init {
-            do {
-                let result = try await cardLogic.getCardImages()
 
-                switch result {
-                case .success(let images):
-                    loadArReferenceImages(images)
-                case .failure(.genericError):
-                    let title = NSLocalizedString("Something went wrong.", comment: "")
-                    let message = NSLocalizedString("Please restart the app.", comment: "")
+        if (NetworkMonitor.shared.isReachable) {
+            Task.init {
+                do {
+                    let result = try await cardLogic.getCardImages()
 
-                    self.displayErrorMessage(title: title, message: message)
+                    switch result {
+                    case .success(let images):
+                        loadArReferenceImages(images)
+                    case .failure(.genericError):
+                        let title = NSLocalizedString("Something went wrong.", comment: "")
+                        let message = NSLocalizedString("Please restart the app.", comment: "")
+
+                        self.displayErrorMessage(title: title, message: message, shouldAddDismissAction: true)
+                    }
+
+                } catch {
+                    Bugsnag.notifyError(error)
                 }
-
-            } catch {
-                Bugsnag.notifyError(error)
+                
+                startLoading(false)
             }
+        } else {
+            let title = NSLocalizedString("Make you that you have internet access", comment: "")
+            let message = NSLocalizedString("Please restart the app.", comment: "")
 
-            startLoading(false)
+            self.displayErrorMessage(title: title, message: message, shouldAddDismissAction: true)
         }
 	}
 
